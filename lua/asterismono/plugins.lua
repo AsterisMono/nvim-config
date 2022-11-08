@@ -1,21 +1,21 @@
 require('packer').startup(function(use)
   -- Utility
-	use 'wbthomason/packer.nvim' -- Package manager
-	use 'nvim-lua/plenary.nvim' -- Common utilities
+  use 'wbthomason/packer.nvim' -- Package manager
+  use 'nvim-lua/plenary.nvim' -- Common utilities
 
   -- LSP and highlighting
-	use 'neovim/nvim-lspconfig' -- LSP
-	use 'williamboman/mason.nvim' -- LSP package autoinstall
+  use 'neovim/nvim-lspconfig' -- LSP
+  use 'williamboman/mason.nvim' -- LSP package autoinstall
   use 'williamboman/mason-lspconfig.nvim'
-	use 'glepnir/lspsaga.nvim' -- LSP UIs
-	use 'jose-elias-alvarez/null-ls.nvim' -- Inject LSP diagnostics
+  use 'glepnir/lspsaga.nvim' -- LSP UIs
+  use 'jose-elias-alvarez/null-ls.nvim' -- Inject LSP diagnostics
   use {
     'nvim-treesitter/nvim-treesitter', 
     run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
   } -- Highlighting
 
   -- Auto completion
-	use 'ms-jpq/coq_nvim' -- Fast as FUCK completion
+  use 'ms-jpq/coq_nvim' -- Fast as FUCK completion
 
   -- Finger efficiency
   use 'tpope/vim-surround'
