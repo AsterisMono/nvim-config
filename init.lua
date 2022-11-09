@@ -4,3 +4,4 @@ vim.g.loaded_netrwPlugin = 1
 
 require('asterismono.base')
 require('asterismono.plugins')
+require('asterismono.maps')
