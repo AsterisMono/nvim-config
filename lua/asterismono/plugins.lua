@@ -15,7 +15,13 @@ require('packer').startup(function(use)
   } -- Highlighting
 
   -- Auto completion
-  use 'ms-jpq/coq_nvim' -- Fast as FUCK completion
+  -- use 'ms-jpq/coq_nvim' -- Fast as FUCK completion
+  -- use 'ms-jpq/coq.artifacts'
+  -- use 'ms-jpq/coq.thirdparty'
+  use 'hrsh7th/nvim-cmp'
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'saadparwaiz1/cmp_luasnip'
+  use 'L3MON4D3/LuaSnip'
 
   -- Finger efficiency
   use 'tpope/vim-surround'
@@ -23,11 +29,11 @@ require('packer').startup(function(use)
   use 'vim-scripts/ReplaceWithRegister'
   use 'tpope/vim-commentary'
   use 'phaazon/hop.nvim'
-  
+ 
   -- Smarter editor
   use 'windwp/nvim-autopairs' -- Auto pair brackets
   use 'windwp/nvim-ts-autotag' -- Auto close HTML tags in TS
-  use 'mattn/emmet-vim' -- Smart HTML completion
+  use 'aca/emmet-ls' -- Smart HTML completion
   use 'jghauser/mkdir.nvim' -- Auto mkdir
 
   -- Telescope
