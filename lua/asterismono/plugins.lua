@@ -31,6 +31,7 @@ require('packer').startup(function(use)
   use 'windwp/nvim-autopairs' -- Auto pair brackets
   use 'aca/emmet-ls' -- Smart HTML completion
   use 'jghauser/mkdir.nvim' -- Auto mkdir
+  use 'AckslD/nvim-neoclip.lua' -- Smart clipboard
 
   -- Telescope
   use 'nvim-telescope/telescope.nvim'
@@ -46,7 +47,6 @@ require('packer').startup(function(use)
 
   -- Development tools
   use 'manzeloth/live-server'
-  use 'dinhhuy258/git.nvim'
 
   -- Miscellaneous
   use 'wakatime/vim-wakatime' -- Coding time stats
