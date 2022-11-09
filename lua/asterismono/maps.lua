@@ -5,3 +5,5 @@ keymap.set('n', 'cw', 'ciw')
 
 keymap.set('n', 'te', ':tabedit')
 keymap.set('n', '<Space>', '<C-W>w')
+
+keymap.set('n', '<leader>s', '<cmd>write<CR>')
