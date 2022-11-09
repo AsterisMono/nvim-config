@@ -29,7 +29,6 @@ require('packer').startup(function(use)
 
   -- Smarter editor
   use 'windwp/nvim-autopairs' -- Auto pair brackets
-  use 'windwp/nvim-ts-autotag' -- Auto close HTML tags in TS
   use 'aca/emmet-ls' -- Smart HTML completion
   use 'jghauser/mkdir.nvim' -- Auto mkdir
 
