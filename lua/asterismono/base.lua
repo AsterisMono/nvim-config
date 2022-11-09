@@ -1,8 +1,10 @@
 vim.cmd("autocmd!")
 
+-- Encoding
 vim.scriptencoding = 'utf-8'
 vim.opt.fileencoding = 'utf-8'
 
+-- Vim options
 vim.wo.number = true
 vim.opt.autoindent = true
 vim.opt.smartindent = true
