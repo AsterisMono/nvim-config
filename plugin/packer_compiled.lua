@@ -74,25 +74,25 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  LuaSnip = {
+    loaded = true,
+    path = "/var/home/cmiki/.local/share/nvim/site/pack/packer/start/LuaSnip",
+    url = "https://github.com/L3MON4D3/LuaSnip"
+  },
   ReplaceWithRegister = {
     loaded = true,
     path = "/var/home/cmiki/.local/share/nvim/site/pack/packer/start/ReplaceWithRegister",
     url = "https://github.com/vim-scripts/ReplaceWithRegister"
   },
-  ["coq.artifacts"] = {
+  ["cmp-nvim-lsp"] = {
     loaded = true,
-    path = "/var/home/cmiki/.local/share/nvim/site/pack/packer/start/coq.artifacts",
-    url = "https://github.com/ms-jpq/coq.artifacts"
+    path = "/var/home/cmiki/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
+    url = "https://github.com/hrsh7th/cmp-nvim-lsp"
   },
-  ["coq.thirdparty"] = {
+  cmp_luasnip = {
     loaded = true,
-    path = "/var/home/cmiki/.local/share/nvim/site/pack/packer/start/coq.thirdparty",
-    url = "https://github.com/ms-jpq/coq.thirdparty"
-  },
-  coq_nvim = {
-    loaded = true,
-    path = "/var/home/cmiki/.local/share/nvim/site/pack/packer/start/coq_nvim",
-    url = "https://github.com/ms-jpq/coq_nvim"
+    path = "/var/home/cmiki/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
+    url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
   ["emmet-ls"] = {
     loaded = true,
@@ -163,6 +163,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/var/home/cmiki/.local/share/nvim/site/pack/packer/start/nvim-bufferline.lua",
     url = "https://github.com/akinsho/nvim-bufferline.lua"
+  },
+  ["nvim-cmp"] = {
+    loaded = true,
+    path = "/var/home/cmiki/.local/share/nvim/site/pack/packer/start/nvim-cmp",
+    url = "https://github.com/hrsh7th/nvim-cmp"
   },
   ["nvim-colorizer.lua"] = {
     loaded = true,
