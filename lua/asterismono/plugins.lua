@@ -39,7 +39,6 @@ require('packer').startup(function(use)
   use 'akinsho/nvim-bufferline.lua' -- Tabline
   use 'kyazdani42/nvim-web-devicons' -- File icons
   use 'lewis6991/gitsigns.nvim' -- Git status line
-  use 'chentoast/marks.nvim' -- Vim marks visualized
   use 'norcalli/nvim-colorizer.lua' -- Color code highlighter
 
   -- Color schemes
