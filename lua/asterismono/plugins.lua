@@ -46,6 +46,7 @@ require('packer').startup(function(use)
   use 'norcalli/nvim-colorizer.lua' -- Color code highlighter
   use 'nvim-tree/nvim-tree.lua' -- Tree-style file explorer
   use 'nvim-lualine/lualine.nvim' -- Status line
+  use 'kdheepak/lazygit.nvim' -- Lazygit interface
 
   -- Color schemes
   use 'sainnhe/everforest'
