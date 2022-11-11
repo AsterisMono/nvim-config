@@ -174,6 +174,11 @@ _G.packer_plugins = {
     path = "/var/home/cmiki/.local/share/nvim/site/pack/packer/start/nvim-neoclip.lua",
     url = "https://github.com/AckslD/nvim-neoclip.lua"
   },
+  ["nvim-tree.lua"] = {
+    loaded = true,
+    path = "/var/home/cmiki/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
+    url = "https://github.com/nvim-tree/nvim-tree.lua"
+  },
   ["nvim-treesitter"] = {
     loaded = true,
     path = "/var/home/cmiki/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
@@ -213,6 +218,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/var/home/cmiki/.local/share/nvim/site/pack/packer/start/vim-surround",
     url = "https://github.com/tpope/vim-surround"
+  },
+  ["vim-visual-multi"] = {
+    loaded = true,
+    path = "/var/home/cmiki/.local/share/nvim/site/pack/packer/start/vim-visual-multi",
+    url = "https://github.com/mg979/vim-visual-multi"
   },
   ["vim-wakatime"] = {
     loaded = true,

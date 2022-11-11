@@ -1,6 +1,4 @@
-local status, null_ls = pcall(require, "null-ls")
-if (not status) then return end
-
+local null_ls = require("null-ls")
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 local lsp_formatting = function(bufnr)
@@ -13,7 +11,6 @@ local lsp_formatting = function(bufnr)
 end
 
 null_ls.setup {
-  debug = true,
   sources = {
     null_ls.builtins.formatting.prettierd,
     null_ls.builtins.diagnostics.eslint_d.with({

@@ -26,12 +26,14 @@ require('packer').startup(function(use)
   use 'vim-scripts/ReplaceWithRegister'
   use 'tpope/vim-commentary'
   use 'phaazon/hop.nvim'
+  use 'wellle/targets.vim'
 
   -- Smarter editor
   use 'windwp/nvim-autopairs' -- Auto pair brackets
   use 'aca/emmet-ls' -- Smart HTML completion
   use 'jghauser/mkdir.nvim' -- Auto mkdir
   use 'AckslD/nvim-neoclip.lua' -- Smart clipboard
+  use 'mg979/vim-visual-multi' -- Multi cursor
 
   -- Telescope
   use 'nvim-telescope/telescope.nvim'
