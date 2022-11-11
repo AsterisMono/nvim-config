@@ -124,6 +124,11 @@ _G.packer_plugins = {
     path = "/var/home/cmiki/.local/share/nvim/site/pack/packer/start/lspsaga.nvim",
     url = "https://github.com/glepnir/lspsaga.nvim"
   },
+  ["lualine.nvim"] = {
+    loaded = true,
+    path = "/var/home/cmiki/.local/share/nvim/site/pack/packer/start/lualine.nvim",
+    url = "https://github.com/nvim-lualine/lualine.nvim"
+  },
   ["mason-lspconfig.nvim"] = {
     loaded = true,
     path = "/var/home/cmiki/.local/share/nvim/site/pack/packer/start/mason-lspconfig.nvim",
@@ -199,6 +204,11 @@ _G.packer_plugins = {
     path = "/var/home/cmiki/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
+  ["targets.vim"] = {
+    loaded = true,
+    path = "/var/home/cmiki/.local/share/nvim/site/pack/packer/start/targets.vim",
+    url = "https://github.com/wellle/targets.vim"
+  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/var/home/cmiki/.local/share/nvim/site/pack/packer/start/telescope.nvim",
@@ -208,6 +218,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/var/home/cmiki/.local/share/nvim/site/pack/packer/start/vim-commentary",
     url = "https://github.com/tpope/vim-commentary"
+  },
+  ["vim-convert-color-to"] = {
+    loaded = true,
+    path = "/var/home/cmiki/.local/share/nvim/site/pack/packer/start/vim-convert-color-to",
+    url = "https://github.com/amadeus/vim-convert-color-to"
   },
   ["vim-sneak"] = {
     loaded = true,

@@ -45,6 +45,7 @@ require('packer').startup(function(use)
   use 'lewis6991/gitsigns.nvim' -- Git status line
   use 'norcalli/nvim-colorizer.lua' -- Color code highlighter
   use 'nvim-tree/nvim-tree.lua' -- Tree-style file explorer
+  use 'nvim-lualine/lualine.nvim' -- Status line
 
   -- Color schemes
   use 'sainnhe/everforest'
