@@ -1,6 +1,7 @@
 local luasnip = require 'luasnip'
 local cmp = require 'cmp'
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+local lspkind = require('lspkind')
 
 cmp.setup {
   snippet = {
@@ -44,6 +45,13 @@ cmp.setup {
     { name = 'luasnip' },
     { name = 'path' },
   },
+  formatting = {
+    format = lspkind.cmp_format({
+      mode = 'symbol',
+      maxwidth = 50,
+      ellipsis_char = '...',
+    })
+  }
 }
 
 -- Auto insert bracket after method snippets
