@@ -8,4 +8,6 @@ keymap.set('n', '<Space>', '<C-w>w')
 
 keymap.set('n', '<leader>s', '<cmd>write<CR>')
 
-keymap.set('n', '<leader>c', '<cmd>noh<CR>')
+keymap.set('n', '<leader>h', '<cmd>noh<CR>')
+
+keymap.set('n', '<leader>c', '<cmd>ConvertColorTo rgba<CR>')

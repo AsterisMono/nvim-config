@@ -34,6 +34,7 @@ require('packer').startup(function(use)
   use 'jghauser/mkdir.nvim' -- Auto mkdir
   use 'AckslD/nvim-neoclip.lua' -- Smart clipboard
   use 'mg979/vim-visual-multi' -- Multi cursor
+  use 'amadeus/vim-convert-color-to' -- Color code converter
 
   -- Telescope
   use 'nvim-telescope/telescope.nvim'
