@@ -36,3 +36,6 @@ vim.opt.pumblend = 5
 -- Themes and colorschemes
 vim.opt.background = 'dark'
 vim.cmd('colorscheme everforest')
+
+-- Auto save on focus lost
+vim.cmd('autocmd FocusLost * :wa')
