@@ -9,6 +9,7 @@ require('packer').startup(function(use)
   use 'williamboman/mason-lspconfig.nvim'
   use 'glepnir/lspsaga.nvim' -- LSP UIs
   use 'jose-elias-alvarez/null-ls.nvim' -- Inject LSP diagnostics
+  use 'ray-x/lsp_signature.nvim' -- Function signature and document hover
   use {
     'nvim-treesitter/nvim-treesitter',
     run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
