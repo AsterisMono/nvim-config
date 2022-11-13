@@ -4,7 +4,7 @@ vim.g.loaded_netrwPlugin = 1
 
 -- Preload lsp_signature
 require "lsp_signature".setup(
-  require('asterismono.plugin-rc.lsp_signature')
+  require('asterismono.plugin-rc.lsp_signature-rc')
 )
 
 require('asterismono.base')
