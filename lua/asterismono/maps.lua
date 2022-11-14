@@ -9,7 +9,7 @@ keymap.set('n', 'te', ':tabedit')
 keymap.set('n', '<Space>', '<C-w>w')
 
 -- Save session
-keymap.set('n', '<leader>ss', '<cmd>mksession session.vim<CR>')
+keymap.set('n', '<leader>ss', '<cmd>mksession! session.vim<CR>')
 
 -- Utility
 keymap.set('n', '<leader>h', '<cmd>noh<CR>')
