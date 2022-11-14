@@ -38,6 +38,7 @@ require('packer').startup(function(use)
   use 'AckslD/nvim-neoclip.lua' -- Smart clipboard
   use 'mg979/vim-visual-multi' -- Multi cursor
   use 'amadeus/vim-convert-color-to' -- Color code converter
+  use 'yamatsum/nvim-cursorline' -- Word underline
 
   -- Telescope
   use 'nvim-telescope/telescope.nvim'

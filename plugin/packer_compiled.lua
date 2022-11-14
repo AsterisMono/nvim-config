@@ -194,6 +194,11 @@ _G.packer_plugins = {
     path = "/var/home/cmiki/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua",
     url = "https://github.com/norcalli/nvim-colorizer.lua"
   },
+  ["nvim-cursorline"] = {
+    loaded = true,
+    path = "/var/home/cmiki/.local/share/nvim/site/pack/packer/start/nvim-cursorline",
+    url = "https://github.com/yamatsum/nvim-cursorline"
+  },
   ["nvim-lspconfig"] = {
     loaded = true,
     path = "/var/home/cmiki/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
