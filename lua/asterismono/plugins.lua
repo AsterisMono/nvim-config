@@ -40,6 +40,7 @@ require('packer').startup(function(use)
   use 'mg979/vim-visual-multi' -- Multi cursor
   use 'amadeus/vim-convert-color-to' -- Color code converter
   use 'yamatsum/nvim-cursorline' -- Word underline
+  use 'linty-org/key-menu.nvim' -- Key suggestion
 
   -- Telescope
   use 'nvim-telescope/telescope.nvim'

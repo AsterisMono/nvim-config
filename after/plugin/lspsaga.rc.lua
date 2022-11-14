@@ -7,25 +7,25 @@ saga.init_lsp_saga()
 -- if there is no implement it will hide
 -- when you use action in finder like open vsplit then you can
 -- use <C-t> to jump back
-keymap("n", "<leader>f", "<cmd>Lspsaga lsp_finder<CR>", { silent = true })
+keymap("n", "<leader>f", "<cmd>Lspsaga lsp_finder<CR>", { silent = true, desc='LSP Finder'})
 
 -- Code action
 -- keymap({"n","v"}, "<leader>c", "<cmd>Lspsaga code_action<CR>", { silent = true })
 
 -- Rename
-keymap("n", "<leader>r", "<cmd>Lspsaga rename<CR>", { silent = true })
+keymap("n", "<leader>r", "<cmd>Lspsaga rename<CR>", { silent = true, desc='Rename'})
 
 -- Peek Definition
 -- you can edit the definition file in this flaotwindow
 -- also support open/vsplit/etc operation check definition_action_keys
 -- support tagstack C-t jump back
-keymap("n", "<leader>d", "<cmd>Lspsaga peek_definition<CR>", { silent = true })
+keymap("n", "<leader>d", "<cmd>Lspsaga peek_definition<CR>", { silent = true, desc='Peek definition'})
 
 -- Show line diagnostics
-keymap("n", "<leader>e", "<cmd>Lspsaga show_line_diagnostics<CR>", { silent = true })
+keymap("n", "<leader>e", "<cmd>Lspsaga show_line_diagnostics<CR>", { silent = true, desc='Show line diagnostics'})
 
 -- Show cursor diagnostic
-keymap("n", "<leader>e", "<cmd>Lspsaga show_cursor_diagnostics<CR>", { silent = true })
+keymap("n", "<leader>e", "<cmd>Lspsaga show_cursor_diagnostics<CR>", { silent = true, desc='Show cursor diagnostics'})
 
 -- Diagnsotic jump can use `<c-o>` to jump back
 keymap("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { silent = true })
@@ -40,7 +40,7 @@ keymap("n", "]E", function()
 end, { silent = true })
 
 -- Outline
-keymap("n","<leader>o", "<cmd>LSoutlineToggle<CR>",{ silent = true })
+keymap("n","<leader>o", "<cmd>LSoutlineToggle<CR>",{ silent = true, desc='Toggle outline'})
 
 -- Hover Doc
 keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>", { silent = true })
