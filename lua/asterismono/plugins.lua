@@ -54,6 +54,7 @@ require('packer').startup(function(use)
   use 'nvim-tree/nvim-tree.lua' -- Tree-style file explorer
   use 'nvim-lualine/lualine.nvim' -- Status line
   use 'kdheepak/lazygit.nvim' -- Lazygit interface
+  use 'lukas-reineke/indent-blankline.nvim' -- Indent lines
 
   -- Color schemes
   use 'sainnhe/everforest'

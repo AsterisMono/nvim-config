@@ -15,9 +15,9 @@ keymap.set('n', '<leader>ss', '<cmd>mksession! session.vim<CR>', {desc='Save Ses
 keymap.set('n', '<leader>h', '<cmd>noh<CR>', {desc='Clear highlight'})
 
 -- Plugins
-require 'key-menu'.set('n','<leader>c', {desc='Color code'})
+require 'key-menu'.set('n', '<leader>c', {desc='Color code'})
 keymap.set('n', '<leader>cr', '<cmd>ConvertColorTo rgba<CR>', {desc='Convert to rgba'})
 keymap.set('n', '<leader>ch', '<cmd>ConvertColorTo hex<CR>', {desc='Convert to hex'})
 
-require 'key-menu'.set('n','<leader>l', {desc='Liveserver'})
+require 'key-menu'.set('n', '<leader>l', {desc='Liveserver'})
 keymap.set('n', '<leader>ls', '<cmd>LiveServer start<CR>', {desc='Start liveserver'})
