@@ -29,6 +29,7 @@ require('packer').startup(function(use)
   use 'tpope/vim-commentary'
   use 'phaazon/hop.nvim'
   use 'wellle/targets.vim'
+  use 'chentoast/marks.nvim'
 
   -- Smarter editor
   use 'windwp/nvim-autopairs' -- Auto pair brackets

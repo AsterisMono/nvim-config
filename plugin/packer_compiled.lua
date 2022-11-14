@@ -129,6 +129,11 @@ _G.packer_plugins = {
     path = "/var/home/cmiki/.local/share/nvim/site/pack/packer/start/live-server",
     url = "https://github.com/manzeloth/live-server"
   },
+  ["lsp_signature.nvim"] = {
+    loaded = true,
+    path = "/var/home/cmiki/.local/share/nvim/site/pack/packer/start/lsp_signature.nvim",
+    url = "https://github.com/ray-x/lsp_signature.nvim"
+  },
   ["lspkind.nvim"] = {
     loaded = true,
     path = "/var/home/cmiki/.local/share/nvim/site/pack/packer/start/lspkind.nvim",
@@ -143,6 +148,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/var/home/cmiki/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
+  },
+  ["marks.nvim"] = {
+    loaded = true,
+    path = "/var/home/cmiki/.local/share/nvim/site/pack/packer/start/marks.nvim",
+    url = "https://github.com/chentoast/marks.nvim"
   },
   ["mason-lspconfig.nvim"] = {
     loaded = true,
