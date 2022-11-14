@@ -30,6 +30,7 @@ require('packer').startup(function(use)
   use 'phaazon/hop.nvim'
   use 'wellle/targets.vim'
   use 'chentoast/marks.nvim'
+  use 'mizlan/iswap.nvim'
 
   -- Smarter editor
   use 'windwp/nvim-autopairs' -- Auto pair brackets
