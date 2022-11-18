@@ -50,7 +50,6 @@ require('packer').startup(function(use)
   -- UI components
   use_with_config 'akinsho/nvim-bufferline.lua' -- Tabline
   use_with_config 'kyazdani42/nvim-web-devicons' -- File icons
-  use 'onsails/lspkind.nvim' -- Auto complete icons
   use_with_config 'lewis6991/gitsigns.nvim' -- Git status line
   use_with_config 'norcalli/nvim-colorizer.lua' -- Color code highlighter
   use_with_config 'nvim-tree/nvim-tree.lua' -- Tree-style file explorer
