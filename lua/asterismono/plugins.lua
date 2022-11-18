@@ -3,13 +3,6 @@ require('packer').startup(function(use)
   use 'wbthomason/packer.nvim' -- Package manager
   use 'nvim-lua/plenary.nvim' -- Common utilities
 
-  -- LSP and highlighting
-  -- use 'neovim/nvim-lspconfig' -- LSP
-  -- use 'williamboman/mason.nvim' -- LSP package autoinstall
-  -- use 'williamboman/mason-lspconfig.nvim'
-  -- use 'glepnir/lspsaga.nvim' -- LSP UIs
-  -- use 'jose-elias-alvarez/null-ls.nvim' -- Inject LSP diagnostics
-  -- use 'ray-x/lsp_signature.nvim' -- Function signature and document hover
   use {
     'nvim-treesitter/nvim-treesitter',
     run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
@@ -17,14 +10,6 @@ require('packer').startup(function(use)
       require('asterismono.plugin-rc.nvim-treesitter-rc')
     end
   } -- Highlighting
-
-  -- Auto completion
-  -- use 'hrsh7th/nvim-cmp'
-  -- use 'hrsh7th/cmp-nvim-lsp'
-  -- use 'hrsh7th/cmp-path'
-  -- use 'saadparwaiz1/cmp_luasnip'
-  -- use 'L3MON4D3/LuaSnip'
-  -- use 'aca/emmet-ls' -- Smart HTML completion
 
   -- Coc framework
   use { 'neoclide/coc.nvim', branch = 'release' }
