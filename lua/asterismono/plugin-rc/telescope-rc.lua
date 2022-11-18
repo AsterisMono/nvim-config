@@ -22,3 +22,4 @@ vim.keymap.set('n', '<leader>e', '<cmd>Telescope coc diagnostics<CR>', { desc = 
 vim.keymap.set('n', '<leader>sy', '<cmd>Telescope coc document_symbols<CR>', { desc = 'Document Symbols' })
 vim.keymap.set('n', '<leader>ca', '<cmd>Telescope coc code_actions<CR>', { desc = 'Code Actions' })
 vim.keymap.set('n', '<leader>fr', '<cmd>Telescope coc references<CR>', { desc = 'Find References' })
+vim.keymap.set('n', '<leader>fd', '<cmd>Telescope coc definitions<CR>', { desc = 'Find Definitions' })
