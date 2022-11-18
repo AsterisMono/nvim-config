@@ -37,7 +37,6 @@ require('packer').startup(function(use)
   -- Smarter editor
   use_with_config 'windwp/nvim-autopairs' -- Auto pair brackets
   use 'jghauser/mkdir.nvim' -- Auto mkdir
-  use_with_config 'AckslD/nvim-neoclip.lua' -- Smart clipboard
   use_with_config 'mg979/vim-visual-multi' -- Multi cursor
   use 'amadeus/vim-convert-color-to' -- Color code converter
   use_with_config 'yamatsum/nvim-cursorline' -- Word underline
@@ -45,6 +44,8 @@ require('packer').startup(function(use)
 
   -- Telescope
   use_with_config 'nvim-telescope/telescope.nvim'
+  use_with_config 'AckslD/nvim-neoclip.lua' -- Smart clipboard
+  use 'fannheyward/telescope-coc.nvim' -- Coc integration
 
   -- UI components
   use_with_config 'akinsho/nvim-bufferline.lua' -- Tabline
