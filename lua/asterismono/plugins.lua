@@ -29,7 +29,6 @@ require('packer').startup(function(use)
   use_with_config 'justinmk/vim-sneak'
   use 'vim-scripts/ReplaceWithRegister'
   use 'tpope/vim-commentary'
-  -- use { 'phaazon/hop.nvim', config = function() require('asterismono.plugin-rc.hop-rc') end }
   use_with_config 'phaazon/hop.nvim'
   use 'wellle/targets.vim'
   use_with_config 'chentoast/marks.nvim'
