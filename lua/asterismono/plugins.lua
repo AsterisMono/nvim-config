@@ -1,8 +1,8 @@
 require('packer').startup(function(use)
 
   local use_with_config = function(plugin)
-    local repo = plugin:match("/([^/]+)")
-    local config_module = 'asterismono.plugin-rc.' .. string.gsub(repo, '%.', '-') .. '-rc'
+    local repo_cut = plugin:match("/([^/]+)"):match("([^.]+)[.]?")
+    local config_module = 'asterismono.plugin-rc.' .. string.gsub(repo_cut, '%.', '-') .. '-rc'
     local config_function = load("return function() require('" .. config_module .. "') end")()
     return use {
       plugin, config = config_function
@@ -22,44 +22,41 @@ require('packer').startup(function(use)
   } -- Highlighting
 
   -- Coc framework
-  use { 'neoclide/coc.nvim', branch = 'release', config = function()
-    require('asterismono.plugin-rc.coc-nvim-rc')
-  end }
+  use { 'neoclide/coc.nvim', branch = 'release', config = function() require('asterismono.plugin-rc.coc-nvim-rc') end }
 
   -- Finger efficiency
   use 'tpope/vim-surround'
-  use { 'justinmk/vim-sneak', config = function() require('asterismono.plugin-rc.vim-sneak-rc') end }
+  use_with_config 'justinmk/vim-sneak'
   use 'vim-scripts/ReplaceWithRegister'
   use 'tpope/vim-commentary'
   -- use { 'phaazon/hop.nvim', config = function() require('asterismono.plugin-rc.hop-rc') end }
-  use_with_config('phaazon/hop.nvim')
+  use_with_config 'phaazon/hop.nvim'
   use 'wellle/targets.vim'
-  use { 'chentoast/marks.nvim', config = function() require('asterismono.plugin-rc.marks-nvim-rc') end }
-  use { 'mizlan/iswap.nvim', config = function() require('asterismono.plugin-rc.iswap-rc') end }
+  use_with_config 'chentoast/marks.nvim'
+  use_with_config 'mizlan/iswap.nvim'
 
   -- Smarter editor
-  use { 'windwp/nvim-autopairs', config = function() require('asterismono.plugin-rc.nvim-autopairs') end } -- Auto pair brackets
+  use_with_config 'windwp/nvim-autopairs' -- Auto pair brackets
   use 'jghauser/mkdir.nvim' -- Auto mkdir
-  use { 'AckslD/nvim-neoclip.lua', config = function() require('asterismono.plugin-rc.nvim-neoclip-rc') end } -- Smart clipboard
-  use { 'mg979/vim-visual-multi', config = function() require('asterismono.plugin-rc.vim-visual-multi-rc') end } -- Multi cursor
+  use_with_config 'AckslD/nvim-neoclip.lua' -- Smart clipboard
+  use_with_config 'mg979/vim-visual-multi' -- Multi cursor
   use 'amadeus/vim-convert-color-to' -- Color code converter
-  use { 'yamatsum/nvim-cursorline', config = function() require('asterismono.plugin-rc.nvim-cursorline-rc') end } -- Word underline
-  use { 'linty-org/key-menu.nvim', config = function() require('asterismono.plugin-rc.key-menu-rc') end } -- Key suggestion
+  use_with_config 'yamatsum/nvim-cursorline' -- Word underline
+  use_with_config 'linty-org/key-menu.nvim' -- Key suggestion
 
   -- Telescope
-  use { 'nvim-telescope/telescope.nvim', config = function() require('asterismono.plugin-rc.telescope-rc') end }
+  use_with_config 'nvim-telescope/telescope.nvim'
 
   -- UI components
-  use { 'akinsho/nvim-bufferline.lua', config = function() require('asterismono.plugin-rc.bufferline-rc') end } -- Tabline
-  use { 'kyazdani42/nvim-web-devicons', config = function() require('asterismono.plugin-rc.nvim-web-devicons-rc') end } -- File icons
+  use_with_config 'akinsho/nvim-bufferline.lua' -- Tabline
+  use_with_config 'kyazdani42/nvim-web-devicons' -- File icons
   use 'onsails/lspkind.nvim' -- Auto complete icons
-  use { 'lewis6991/gitsigns.nvim', config = function() require('asterismono.plugin-rc.gitsigns-rc') end } -- Git status line
-  use { 'norcalli/nvim-colorizer.lua', config = function() require('asterismono.plugin-rc.nvim-colorizer-rc') end } -- Color code highlighter
-  use { 'nvim-tree/nvim-tree.lua', config = function() require('asterismono.plugin-rc.nvim-tree-rc') end } -- Tree-style file explorer
-  use { 'nvim-lualine/lualine.nvim', config = function() require('asterismono.plugin-rc.lualine-rc') end } -- Status line
-  use { 'kdheepak/lazygit.nvim', config = function() require('asterismono.plugin-rc.lazygit-rc') end } -- Lazygit interface
-  use { 'lukas-reineke/indent-blankline.nvim',
-    config = function() require('asterismono.plugin-rc.indent-blankline-rc') end } -- Indent lines
+  use_with_config 'lewis6991/gitsigns.nvim' -- Git status line
+  use_with_config 'norcalli/nvim-colorizer.lua' -- Color code highlighter
+  use_with_config 'nvim-tree/nvim-tree.lua' -- Tree-style file explorer
+  use_with_config 'nvim-lualine/lualine.nvim' -- Status line
+  use_with_config 'kdheepak/lazygit.nvim' -- Lazygit interface
+  use_with_config 'lukas-reineke/indent-blankline.nvim' -- Indent lines
 
   -- Color schemes
   use 'sainnhe/everforest'
