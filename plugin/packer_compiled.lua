@@ -80,6 +80,7 @@ _G.packer_plugins = {
     url = "https://github.com/vim-scripts/ReplaceWithRegister"
   },
   ["coc.nvim"] = {
+    config = { "\27LJ\2\nA\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0&asterismono.plugin-rc.coc-nvim-rc\frequire\0" },
     loaded = true,
     path = "/var/home/cmiki/.local/share/nvim/site/pack/packer/start/coc.nvim",
     url = "https://github.com/neoclide/coc.nvim"
@@ -96,7 +97,7 @@ _G.packer_plugins = {
     url = "https://github.com/lewis6991/gitsigns.nvim"
   },
   ["hop.nvim"] = {
-    config = { "\27LJ\2\n<\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0!asterismono.plugin-rc.hop-rc\frequire\0" },
+    config = { "\27LJ\2\nA\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0&asterismono.plugin-rc.hop-nvim-rc\frequire\0" },
     loaded = true,
     path = "/var/home/cmiki/.local/share/nvim/site/pack/packer/start/hop.nvim",
     url = "https://github.com/phaazon/hop.nvim"
@@ -243,6 +244,7 @@ _G.packer_plugins = {
     url = "https://github.com/tpope/vim-surround"
   },
   ["vim-visual-multi"] = {
+    config = { "\27LJ\2\nI\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0.asterismono.plugin-rc.vim-visual-multi-rc\frequire\0" },
     loaded = true,
     path = "/var/home/cmiki/.local/share/nvim/site/pack/packer/start/vim-visual-multi",
     url = "https://github.com/mg979/vim-visual-multi"
@@ -259,34 +261,34 @@ time([[Defining packer_plugins]], false)
 time([[Config for nvim-neoclip.lua]], true)
 try_loadstring("\27LJ\2\nE\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0*asterismono.plugin-rc.nvim-neoclip-rc\frequire\0", "config", "nvim-neoclip.lua")
 time([[Config for nvim-neoclip.lua]], false)
--- Config for: marks.nvim
-time([[Config for marks.nvim]], true)
-try_loadstring("\27LJ\2\nC\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0(asterismono.plugin-rc.marks-nvim-rc\frequire\0", "config", "marks.nvim")
-time([[Config for marks.nvim]], false)
--- Config for: nvim-tree.lua
-time([[Config for nvim-tree.lua]], true)
-try_loadstring("\27LJ\2\nB\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0'asterismono.plugin-rc.nvim-tree-rc\frequire\0", "config", "nvim-tree.lua")
-time([[Config for nvim-tree.lua]], false)
 -- Config for: telescope.nvim
 time([[Config for telescope.nvim]], true)
 try_loadstring("\27LJ\2\nB\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0'asterismono.plugin-rc.telescope-rc\frequire\0", "config", "telescope.nvim")
 time([[Config for telescope.nvim]], false)
--- Config for: nvim-treesitter
-time([[Config for nvim-treesitter]], true)
-try_loadstring("\27LJ\2\nH\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0-asterismono.plugin-rc.nvim-treesitter-rc\frequire\0", "config", "nvim-treesitter")
-time([[Config for nvim-treesitter]], false)
--- Config for: lualine.nvim
-time([[Config for lualine.nvim]], true)
-try_loadstring("\27LJ\2\n@\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0%asterismono.plugin-rc.lualine-rc\frequire\0", "config", "lualine.nvim")
-time([[Config for lualine.nvim]], false)
+-- Config for: nvim-tree.lua
+time([[Config for nvim-tree.lua]], true)
+try_loadstring("\27LJ\2\nB\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0'asterismono.plugin-rc.nvim-tree-rc\frequire\0", "config", "nvim-tree.lua")
+time([[Config for nvim-tree.lua]], false)
+-- Config for: vim-sneak
+time([[Config for vim-sneak]], true)
+try_loadstring("\27LJ\2\nB\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0'asterismono.plugin-rc.vim-sneak-rc\frequire\0", "config", "vim-sneak")
+time([[Config for vim-sneak]], false)
+-- Config for: vim-visual-multi
+time([[Config for vim-visual-multi]], true)
+try_loadstring("\27LJ\2\nI\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0.asterismono.plugin-rc.vim-visual-multi-rc\frequire\0", "config", "vim-visual-multi")
+time([[Config for vim-visual-multi]], false)
 -- Config for: nvim-bufferline.lua
 time([[Config for nvim-bufferline.lua]], true)
 try_loadstring("\27LJ\2\nC\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0(asterismono.plugin-rc.bufferline-rc\frequire\0", "config", "nvim-bufferline.lua")
 time([[Config for nvim-bufferline.lua]], false)
--- Config for: lazygit.nvim
-time([[Config for lazygit.nvim]], true)
-try_loadstring("\27LJ\2\n@\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0%asterismono.plugin-rc.lazygit-rc\frequire\0", "config", "lazygit.nvim")
-time([[Config for lazygit.nvim]], false)
+-- Config for: lualine.nvim
+time([[Config for lualine.nvim]], true)
+try_loadstring("\27LJ\2\n@\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0%asterismono.plugin-rc.lualine-rc\frequire\0", "config", "lualine.nvim")
+time([[Config for lualine.nvim]], false)
+-- Config for: iswap.nvim
+time([[Config for iswap.nvim]], true)
+try_loadstring("\27LJ\2\n>\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0#asterismono.plugin-rc.iswap-rc\frequire\0", "config", "iswap.nvim")
+time([[Config for iswap.nvim]], false)
 -- Config for: nvim-web-devicons
 time([[Config for nvim-web-devicons]], true)
 try_loadstring("\27LJ\2\nJ\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0/asterismono.plugin-rc.nvim-web-devicons-rc\frequire\0", "config", "nvim-web-devicons")
@@ -295,38 +297,46 @@ time([[Config for nvim-web-devicons]], false)
 time([[Config for nvim-autopairs]], true)
 try_loadstring("\27LJ\2\nD\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0)asterismono.plugin-rc.nvim-autopairs\frequire\0", "config", "nvim-autopairs")
 time([[Config for nvim-autopairs]], false)
--- Config for: vim-sneak
-time([[Config for vim-sneak]], true)
-try_loadstring("\27LJ\2\nB\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0'asterismono.plugin-rc.vim-sneak-rc\frequire\0", "config", "vim-sneak")
-time([[Config for vim-sneak]], false)
--- Config for: gitsigns.nvim
-time([[Config for gitsigns.nvim]], true)
-try_loadstring("\27LJ\2\nA\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0&asterismono.plugin-rc.gitsigns-rc\frequire\0", "config", "gitsigns.nvim")
-time([[Config for gitsigns.nvim]], false)
 -- Config for: indent-blankline.nvim
 time([[Config for indent-blankline.nvim]], true)
 try_loadstring("\27LJ\2\nI\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0.asterismono.plugin-rc.indent-blankline-rc\frequire\0", "config", "indent-blankline.nvim")
 time([[Config for indent-blankline.nvim]], false)
--- Config for: nvim-colorizer.lua
-time([[Config for nvim-colorizer.lua]], true)
-try_loadstring("\27LJ\2\nG\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0,asterismono.plugin-rc.nvim-colorizer-rc\frequire\0", "config", "nvim-colorizer.lua")
-time([[Config for nvim-colorizer.lua]], false)
--- Config for: iswap.nvim
-time([[Config for iswap.nvim]], true)
-try_loadstring("\27LJ\2\n>\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0#asterismono.plugin-rc.iswap-rc\frequire\0", "config", "iswap.nvim")
-time([[Config for iswap.nvim]], false)
--- Config for: hop.nvim
-time([[Config for hop.nvim]], true)
-try_loadstring("\27LJ\2\n<\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0!asterismono.plugin-rc.hop-rc\frequire\0", "config", "hop.nvim")
-time([[Config for hop.nvim]], false)
--- Config for: key-menu.nvim
-time([[Config for key-menu.nvim]], true)
-try_loadstring("\27LJ\2\nA\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0&asterismono.plugin-rc.key-menu-rc\frequire\0", "config", "key-menu.nvim")
-time([[Config for key-menu.nvim]], false)
 -- Config for: nvim-cursorline
 time([[Config for nvim-cursorline]], true)
 try_loadstring("\27LJ\2\nH\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0-asterismono.plugin-rc.nvim-cursorline-rc\frequire\0", "config", "nvim-cursorline")
 time([[Config for nvim-cursorline]], false)
+-- Config for: coc.nvim
+time([[Config for coc.nvim]], true)
+try_loadstring("\27LJ\2\nA\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0&asterismono.plugin-rc.coc-nvim-rc\frequire\0", "config", "coc.nvim")
+time([[Config for coc.nvim]], false)
+-- Config for: hop.nvim
+time([[Config for hop.nvim]], true)
+try_loadstring("\27LJ\2\nA\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0&asterismono.plugin-rc.hop-nvim-rc\frequire\0", "config", "hop.nvim")
+time([[Config for hop.nvim]], false)
+-- Config for: gitsigns.nvim
+time([[Config for gitsigns.nvim]], true)
+try_loadstring("\27LJ\2\nA\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0&asterismono.plugin-rc.gitsigns-rc\frequire\0", "config", "gitsigns.nvim")
+time([[Config for gitsigns.nvim]], false)
+-- Config for: key-menu.nvim
+time([[Config for key-menu.nvim]], true)
+try_loadstring("\27LJ\2\nA\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0&asterismono.plugin-rc.key-menu-rc\frequire\0", "config", "key-menu.nvim")
+time([[Config for key-menu.nvim]], false)
+-- Config for: nvim-treesitter
+time([[Config for nvim-treesitter]], true)
+try_loadstring("\27LJ\2\nH\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0-asterismono.plugin-rc.nvim-treesitter-rc\frequire\0", "config", "nvim-treesitter")
+time([[Config for nvim-treesitter]], false)
+-- Config for: nvim-colorizer.lua
+time([[Config for nvim-colorizer.lua]], true)
+try_loadstring("\27LJ\2\nG\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0,asterismono.plugin-rc.nvim-colorizer-rc\frequire\0", "config", "nvim-colorizer.lua")
+time([[Config for nvim-colorizer.lua]], false)
+-- Config for: marks.nvim
+time([[Config for marks.nvim]], true)
+try_loadstring("\27LJ\2\nC\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0(asterismono.plugin-rc.marks-nvim-rc\frequire\0", "config", "marks.nvim")
+time([[Config for marks.nvim]], false)
+-- Config for: lazygit.nvim
+time([[Config for lazygit.nvim]], true)
+try_loadstring("\27LJ\2\n@\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0%asterismono.plugin-rc.lazygit-rc\frequire\0", "config", "lazygit.nvim")
+time([[Config for lazygit.nvim]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

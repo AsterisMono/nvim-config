@@ -1,4 +1,14 @@
 require('packer').startup(function(use)
+
+  local use_with_config = function(plugin)
+    local repo = plugin:match("/([^/]+)")
+    local config_module = 'asterismono.plugin-rc.' .. string.gsub(repo, '%.', '-') .. '-rc'
+    local config_function = load("return function() require('" .. config_module .. "') end")()
+    return use {
+      plugin, config = config_function
+    }
+  end
+
   -- Utility
   use 'wbthomason/packer.nvim' -- Package manager
   use 'nvim-lua/plenary.nvim' -- Common utilities
@@ -12,14 +22,17 @@ require('packer').startup(function(use)
   } -- Highlighting
 
   -- Coc framework
-  use { 'neoclide/coc.nvim', branch = 'release' }
+  use { 'neoclide/coc.nvim', branch = 'release', config = function()
+    require('asterismono.plugin-rc.coc-nvim-rc')
+  end }
 
   -- Finger efficiency
   use 'tpope/vim-surround'
   use { 'justinmk/vim-sneak', config = function() require('asterismono.plugin-rc.vim-sneak-rc') end }
   use 'vim-scripts/ReplaceWithRegister'
   use 'tpope/vim-commentary'
-  use { 'phaazon/hop.nvim', config = function() require('asterismono.plugin-rc.hop-rc') end }
+  -- use { 'phaazon/hop.nvim', config = function() require('asterismono.plugin-rc.hop-rc') end }
+  use_with_config('phaazon/hop.nvim')
   use 'wellle/targets.vim'
   use { 'chentoast/marks.nvim', config = function() require('asterismono.plugin-rc.marks-nvim-rc') end }
   use { 'mizlan/iswap.nvim', config = function() require('asterismono.plugin-rc.iswap-rc') end }
@@ -28,7 +41,7 @@ require('packer').startup(function(use)
   use { 'windwp/nvim-autopairs', config = function() require('asterismono.plugin-rc.nvim-autopairs') end } -- Auto pair brackets
   use 'jghauser/mkdir.nvim' -- Auto mkdir
   use { 'AckslD/nvim-neoclip.lua', config = function() require('asterismono.plugin-rc.nvim-neoclip-rc') end } -- Smart clipboard
-  use 'mg979/vim-visual-multi' -- Multi cursor
+  use { 'mg979/vim-visual-multi', config = function() require('asterismono.plugin-rc.vim-visual-multi-rc') end } -- Multi cursor
   use 'amadeus/vim-convert-color-to' -- Color code converter
   use { 'yamatsum/nvim-cursorline', config = function() require('asterismono.plugin-rc.nvim-cursorline-rc') end } -- Word underline
   use { 'linty-org/key-menu.nvim', config = function() require('asterismono.plugin-rc.key-menu-rc') end } -- Key suggestion
