@@ -35,7 +35,7 @@ require('packer').startup(function(use)
   use { 'phaazon/hop.nvim', config = require('asterismono.plugin-rc.gitsigns-rc') }
   use 'wellle/targets.vim'
   use { 'chentoast/marks.nvim', config = require('asterismono.plugin-rc.marks-nvim-rc') }
-  use { 'mizlan/iswap.nvim', config = require('asterismono.plugin-rc.iswap-rc') }
+  -- use { 'mizlan/iswap.nvim', config = require('asterismono.plugin-rc.iswap-rc') }
 
   -- Smarter editor
   use { 'windwp/nvim-autopairs', config = require('asterismono.plugin-rc.nvim-autopairs') } -- Auto pair brackets
