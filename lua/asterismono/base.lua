@@ -1,12 +1,5 @@
 vim.cmd("autocmd!")
 
--- Neovide specific settings
-vim.cmd [[
-  if exists("g:neovide")
-    let g:neovide_scale_factor = 0.8
-  endif
-]]
-
 -- Encoding
 vim.scriptencoding = 'utf-8'
 vim.opt.fileencoding = 'utf-8'

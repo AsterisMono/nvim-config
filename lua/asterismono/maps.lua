@@ -9,6 +9,7 @@ keymap.set('n', '<leader>ss', '<cmd>mksession! session.vim<CR>', { desc = 'Save 
 
 -- Utility
 keymap.set('n', '<leader>h', '<cmd>noh<CR>', { desc = 'Clear highlight' })
+keymap.set('n', '<C-s>', '<cmd>write<CR>')
 
 -- Plugins
 require 'key-menu'.set('n', '<leader>c', { desc = 'Colors and code actions' })
