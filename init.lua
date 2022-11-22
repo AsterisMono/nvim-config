@@ -30,11 +30,3 @@ local packer_bootstrap = ensure_packer()
 require('asterismono.plugins')
 require('asterismono.base')
 require('asterismono.maps')
-
--- Windows Powershell
-vim.opt.shellcmdflag = '-NoLogo -NoProfile -NonInteractive -ExecutionPolicy RemoteSigned -Command'
-vim.opt.shellxquote = ''
-vim.opt.shellquote = ''
-vim.opt.shellredir = '2>&1 | Out-File -Encoding UTF8 %s'
-vim.opt.shellpipe = '2>&1 | Out-File -Encoding UTF8 %s'
-vim.opt.shell = 'powershell.exe'
