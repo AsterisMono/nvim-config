@@ -11,6 +11,7 @@ vim.g.loaded_netrwPlugin = 1
 vim.cmd [[
   if exists("g:neovide")
     let g:neovide_scale_factor = 0.8
+    set shellcmdflag=-c
   endif
 ]]
 
