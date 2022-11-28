@@ -47,7 +47,7 @@ require('packer').startup(function(use)
   use_with_config 'nvim-telescope/telescope.nvim'
   use_with_config 'AckslD/nvim-neoclip.lua' -- Smart clipboard
   use 'fannheyward/telescope-coc.nvim' -- Coc integration
-  -- use_with_config 'rmagatti/session-lens'
+  use_with_config 'rmagatti/session-lens'
 
   -- UI components
   use_with_config 'akinsho/nvim-bufferline.lua' -- Tabline

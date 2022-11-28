@@ -17,6 +17,7 @@ vim.keymap.set('n', '\'f', builtin.find_files, { desc = 'Find files' })
 vim.keymap.set('n', '\'r', builtin.live_grep, { desc = 'Live grep' })
 vim.keymap.set('n', '\'b', builtin.buffers, { desc = 'Buffers' })
 vim.keymap.set('n', '\'y', '<cmd>Telescope neoclip<CR>', { desc = 'Registers' })
+vim.keymap.set('n', '\'s', '<cmd>Telescope session-lens search_session<CR>', { desc = 'Sessions' })
 vim.keymap.set('n', '<leader>m', builtin.marks, { desc = 'Marks' })
 
 vim.keymap.set('n', '<leader>e', '<cmd>Telescope coc diagnostics<CR>', { desc = 'Diagnostics' })
