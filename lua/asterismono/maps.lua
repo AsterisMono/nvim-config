@@ -5,7 +5,7 @@ keymap.set('n', 'te', ':tabedit')
 keymap.set('n', '<Space>', '<C-w>w')
 
 -- Save session
-keymap.set('n', '<leader>ss', '<cmd>mksession! session.vim<CR>', { desc = 'Save Session' })
+keymap.set('n', '<leader>ss', '<cmd>SaveSession<CR>', { desc = 'Save Session' })
 
 -- Utility
 keymap.set('n', '<leader>h', '<cmd>noh<CR>', { desc = 'Clear highlight' })
