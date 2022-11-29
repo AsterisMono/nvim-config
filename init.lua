@@ -15,6 +15,11 @@ vim.cmd [[
   endif
 ]]
 
+-- Windows
+vim.cmd [[
+  set shellcmdflag=-c
+]]
+
 local ensure_packer = function()
   local fn = vim.fn
   local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
