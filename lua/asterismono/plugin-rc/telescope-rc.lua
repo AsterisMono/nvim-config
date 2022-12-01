@@ -12,6 +12,8 @@ telescope.setup({
 telescope.load_extension('coc')
 telescope.load_extension('neoclip')
 
+vim.keymap.set('n', '\'\'', '<cmd>Telescope file_browser<CR>', { desc = 'File Browser' })
+
 -- require 'key-menu'.set('n', '\'', { desc = 'Telescope' })
 vim.keymap.set('n', '\'f', builtin.find_files, { desc = 'Find files' })
 vim.keymap.set('n', '\'r', builtin.live_grep, { desc = 'Live grep' })

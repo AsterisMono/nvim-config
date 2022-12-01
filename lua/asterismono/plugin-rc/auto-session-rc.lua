@@ -6,5 +6,5 @@ auto_session.setup {
   auto_session_create_enabled = true,
   auto_session_enable_last_session = true,
   auto_restore_enabled = true,
-  pre_save_cmds = { "lua require'nvim-tree'.setup()", "tabdo NvimTreeClose" }
+  -- pre_save_cmds = { "lua require'nvim-tree'.setup()", "tabdo NvimTreeClose" }
 }
