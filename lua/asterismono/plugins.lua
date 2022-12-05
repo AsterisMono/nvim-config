@@ -29,6 +29,7 @@ require('packer').startup(function(use)
   use 'wellle/targets.vim'
   use_with_config 'chentoast/marks.nvim'
   use_with_config 'mizlan/iswap.nvim'
+  use 'tpope/vim-commentary'
 
   -- Color schemes
   use 'sainnhe/everforest'
