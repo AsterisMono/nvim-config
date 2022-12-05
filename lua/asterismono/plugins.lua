@@ -41,13 +41,12 @@ require('packer').startup(function(use)
   use 'amadeus/vim-convert-color-to' -- Color code converter
   use_with_config 'yamatsum/nvim-cursorline' -- Word underline
   use_with_config 'linty-org/key-menu.nvim' -- Key suggestion
-  use_with_config 'rmagatti/auto-session' -- Session management
+  use_with_config 'Shatur/neovim-session-manager' -- Session manager
 
   -- Telescope
   use_with_config 'nvim-telescope/telescope.nvim'
   use_with_config 'AckslD/nvim-neoclip.lua' -- Smart clipboard
   use 'fannheyward/telescope-coc.nvim' -- Coc integration
-  use_with_config 'rmagatti/session-lens'
 
   -- UI components
   use_with_config 'akinsho/nvim-bufferline.lua' -- Tabline
