@@ -1,20 +1,28 @@
 local keymap = vim.keymap
 
--- Multi tab and window editing
-keymap.set('n', 'te', ':tabedit')
-keymap.set('n', '<Space>', '<C-w>w')
+-- WARNING: This is the VSCode version of keymap config.
 
--- Save session
-keymap.set('n', '<leader>ss', '<cmd>SaveSession<CR>', { desc = 'Save Session' })
+local function notify(cmd)
+  return string.format("<cmd>call VSCodeNotify('%s')<CR>", cmd)
+end
+
+-- Multi tab and window editing
+keymap.set('n', '<Space>', '<C-w>w')
 
 -- Utility
 keymap.set('n', '<leader>h', '<cmd>noh<CR>', { desc = 'Clear highlight' })
 keymap.set('n', '<C-s>', '<cmd>write<CR>')
 
--- Plugins
-require 'key-menu'.set('n', '<leader>c', { desc = 'Colors and code actions' })
-keymap.set('n', '<leader>cr', '<cmd>ConvertColorTo rgba<CR>', { desc = 'Convert to rgba' })
-keymap.set('n', '<leader>ch', '<cmd>ConvertColorTo hex<CR>', { desc = 'Convert to hex' })
+-- Telescope replica
+-- Use Ctrl-Q to return to active editor
+keymap.set('n', '\'f', notify 'workbench.action.quickOpen')
+keymap.set('n', '\'r', notify 'workbench.action.findInFiles')
+keymap.set('n', '\'\'', notify 'workbench.view.explorer')
+keymap.set('n', '\'x', notify 'workbench.action.closeSidebar')
 
-require 'key-menu'.set('n', '<leader>l', { desc = 'Liveserver' })
-keymap.set('n', '<leader>ls', '<cmd>LiveServer start<CR>', { desc = 'Start liveserver' })
+-- Live-server
+keymap.set('n', '<leader>ls', notify 'extension.liveServer.goOnline')
+
+-- Peek definition and find reference
+keymap.set('n', '<leader>pd', notify 'editor.action.peekDefinition')
+keymap.set('n', '<leader>fr', notify 'references-view.findReferences')
