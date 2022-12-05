@@ -12,6 +12,7 @@ require('packer').startup(function(use)
   -- Utility
   use 'wbthomason/packer.nvim' -- Package manager
   use 'nvim-lua/plenary.nvim' -- Common utilities
+  use 'kkharji/sqlite.lua' -- SQLite support
 
   use {
     'nvim-treesitter/nvim-treesitter',
@@ -46,6 +47,7 @@ require('packer').startup(function(use)
   -- Telescope
   use_with_config 'nvim-telescope/telescope.nvim'
   use_with_config 'AckslD/nvim-neoclip.lua' -- Smart clipboard
+  use_with_config 'nvim-telescope/telescope-frecency.nvim' -- MRU
   use 'fannheyward/telescope-coc.nvim' -- Coc integration
 
   -- UI components
