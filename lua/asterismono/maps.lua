@@ -26,3 +26,6 @@ keymap.set('n', '<leader>ls', notify 'extension.liveServer.goOnline')
 -- Peek definition and find reference
 keymap.set('n', '<leader>pd', notify 'editor.action.peekDefinition')
 keymap.set('n', '<leader>fr', notify 'references-view.findReferences')
+
+-- Recent sessions
+keymap.set('n', '<leader>ss', notify 'workbench.action.openRecent')
