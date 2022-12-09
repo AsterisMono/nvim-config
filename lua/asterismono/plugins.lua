@@ -39,7 +39,7 @@ require('packer').startup(function(use)
   use_with_config 'windwp/nvim-autopairs' -- Auto pair brackets
   use 'jghauser/mkdir.nvim' -- Auto mkdir
   use_with_config 'mg979/vim-visual-multi' -- Multi cursor
-  use 'amadeus/vim-convert-color-to' -- Color code converter
+  use_with_config 'amadeus/vim-convert-color-to' -- Color code converter
   use_with_config 'yamatsum/nvim-cursorline' -- Word underline
   use_with_config 'linty-org/key-menu.nvim' -- Key suggestion
   use_with_config 'Shatur/neovim-session-manager' -- Session manager
@@ -56,7 +56,6 @@ require('packer').startup(function(use)
   use_with_config 'lewis6991/gitsigns.nvim' -- Git status line
   use_with_config 'norcalli/nvim-colorizer.lua' -- Color code highlighter
   use_with_config 'nvim-telescope/telescope-file-browser.nvim' -- Telescope File Browser
-  -- use_with_config 'nvim-tree/nvim-tree.lua' -- Tree-style file explorer
   use_with_config 'nvim-lualine/lualine.nvim' -- Status line
   use_with_config 'kdheepak/lazygit.nvim' -- Lazygit interface
   use_with_config 'lukas-reineke/indent-blankline.nvim' -- Indent lines
@@ -65,7 +64,7 @@ require('packer').startup(function(use)
   use 'sainnhe/everforest'
 
   -- Development tools
-  use 'manzeloth/live-server'
+  use_with_config 'manzeloth/live-server'
 
   -- Miscellaneous
   use 'wakatime/vim-wakatime' -- Coding time stats
