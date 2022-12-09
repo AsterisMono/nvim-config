@@ -59,6 +59,7 @@ require('packer').startup(function(use)
   use_with_config 'nvim-lualine/lualine.nvim' -- Status line
   use_with_config 'kdheepak/lazygit.nvim' -- Lazygit interface
   use_with_config 'lukas-reineke/indent-blankline.nvim' -- Indent lines
+  use_with_config 'akinsho/toggleterm.nvim'
 
   -- Color schemes
   use 'sainnhe/everforest'
