@@ -19,6 +19,7 @@ vim.keymap.set('n', '\'f', builtin.find_files, { desc = 'Find files' })
 vim.keymap.set('n', '\'r', builtin.live_grep, { desc = 'Live grep' })
 vim.keymap.set('n', '\'b', '<cmd>Telescope buffers initial_mode=normal<CR>', { desc = 'Buffers' })
 vim.keymap.set('n', '\'y', '<cmd>Telescope neoclip initial_mode=normal<CR>', { desc = 'Registers' })
+vim.keymap.set('n', '\'p', '<cmd>Telescope projects initial_mode=normal<CR>', { desc = 'Projects' })
 vim.keymap.set('n', '<leader>mm', builtin.marks, { desc = 'Marks' })
 
 vim.keymap.set('n', '<leader>e', '<cmd>Telescope coc diagnostics initial_mode=normal<CR>', { desc = 'Diagnostics' })

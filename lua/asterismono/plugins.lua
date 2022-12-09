@@ -42,6 +42,7 @@ require('packer').startup(function(use)
   use_with_config 'amadeus/vim-convert-color-to' -- Color code converter
   use_with_config 'yamatsum/nvim-cursorline' -- Word underline
   use_with_config 'linty-org/key-menu.nvim' -- Key suggestion
+  use_with_config 'ahmedkhalf/project.nvim' -- Project management
 
   -- Telescope
   use_with_config 'nvim-telescope/telescope.nvim'
