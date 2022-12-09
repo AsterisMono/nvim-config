@@ -54,11 +54,12 @@ require('packer').startup(function(use)
   use_with_config 'kyazdani42/nvim-web-devicons' -- File icons
   use_with_config 'lewis6991/gitsigns.nvim' -- Git status line
   use_with_config 'norcalli/nvim-colorizer.lua' -- Color code highlighter
-  use_with_config 'nvim-telescope/telescope-file-browser.nvim' -- Telescope File Browser
+  -- use_with_config 'nvim-telescope/telescope-file-browser.nvim' -- Telescope File Browser
   use_with_config 'nvim-lualine/lualine.nvim' -- Status line
   use_with_config 'kdheepak/lazygit.nvim' -- Lazygit interface
   use_with_config 'lukas-reineke/indent-blankline.nvim' -- Indent lines
   use_with_config 'akinsho/toggleterm.nvim'
+  use_with_config 'nvim-tree/nvim-tree.lua'
 
   -- Color schemes
   use 'sainnhe/everforest'

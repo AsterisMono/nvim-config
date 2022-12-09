@@ -12,7 +12,7 @@ telescope.setup({
 telescope.load_extension('coc')
 telescope.load_extension('neoclip')
 
-vim.keymap.set('n', '\'\'', '<cmd>Telescope file_browser initial_mode=normal<CR>', { desc = 'File Browser' })
+-- vim.keymap.set('n', '\'\'', '<cmd>Telescope file_browser initial_mode=normal<CR>', { desc = 'File Browser' })
 
 -- require 'key-menu'.set('n', '\'', { desc = 'Telescope' })
 vim.keymap.set('n', '\'f', builtin.find_files, { desc = 'Find files' })
