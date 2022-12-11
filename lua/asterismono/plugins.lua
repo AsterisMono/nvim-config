@@ -36,7 +36,7 @@ require('packer').startup(function(use)
   use_with_config 'mizlan/iswap.nvim'
 
   -- Smarter editor
-  use 'LunarWatcher/auto-pairs' -- Auto pair brackets
+  use_with_config 'jiangmiao/auto-pairs' -- Auto pair brackets
   use 'jghauser/mkdir.nvim' -- Auto mkdir
   use_with_config 'mg979/vim-visual-multi' -- Multi cursor
   use_with_config 'amadeus/vim-convert-color-to' -- Color code converter

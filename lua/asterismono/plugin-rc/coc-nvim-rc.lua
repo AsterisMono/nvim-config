@@ -17,4 +17,4 @@ vim.keymap.set('n', '<leader>qf', '<Plug>(coc-fix-current)', { silent = true, de
 vim.keymap.set('n', '<leader>ac', '<Plug>(coc-codeaction)', { silent = true, desc = "Code Actions" })
 
 vim.g.coc_global_extensions = { 'coc-tsserver', 'coc-json', 'coc-html', 'coc-css', 'coc-emmet', 'coc-prettier',
-  'coc-eslint', 'coc-sumneko-lua' }
+  'coc-eslint', 'coc-sumneko-lua', 'coc-html-css-support' }
