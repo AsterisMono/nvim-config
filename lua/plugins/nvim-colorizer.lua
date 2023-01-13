@@ -1,5 +1,5 @@
 return {
   'norcalli/nvim-colorizer.lua',
-  event = 'VeryLazy',
+  event = 'BufReadPost',
   config = true
 }
