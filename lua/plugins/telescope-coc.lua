@@ -9,7 +9,6 @@ return {
     { '<leader>fd', '<cmd>Telescope coc definitions initial_mode=normal<CR>', { desc = 'Find Definitions' } },
   },
   config = function()
-    vim.cmd('CocStart')
     require('telescope').load_extension('coc')
   end
 }
