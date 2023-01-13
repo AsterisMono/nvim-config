@@ -2,37 +2,20 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
--- Preload lsp_signature
--- require "lsp_signature".setup(
---   require('asterismono.plugin-rc.lsp_signature-rc')
--- )
-
--- Neovide specific settings
-vim.cmd [[
-  if exists("g:neovide")
-    let g:neovide_scale_factor = 0.8
-    set shellcmdflag=-c
-  endif
-]]
-
--- Windows
-vim.cmd [[
-  set shellcmdflag=-c
-]]
-
-local ensure_packer = function()
-  local fn = vim.fn
-  local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
-  if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
-    vim.cmd [[packadd packer.nvim]]
-    return true
-  end
-  return false
+-- Bootstrap lazy
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
+vim.opt.rtp:prepend(lazypath)
 
-local packer_bootstrap = ensure_packer()
-
-require('asterismono.plugins')
-require('asterismono.base')
-require('asterismono.maps')
+require('base')
+require('maps')
+require('lazy').setup('plugins')
