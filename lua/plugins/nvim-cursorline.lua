@@ -1,6 +1,6 @@
 return {
   'yamatsum/nvim-cursorline',
-  event = 'BufReadPost',
+  event = { 'BufReadPre' , 'BufNew' },
   opts = {
     cursorline = {
       enable = false,

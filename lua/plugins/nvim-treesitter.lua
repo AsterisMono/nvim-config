@@ -1,6 +1,6 @@
 return {
   "nvim-treesitter/nvim-treesitter",
-  event = 'BufReadPost',
+  event = { 'BufReadPre' , 'BufNew' },
   opts = {
     sync_install = false,
     ensure_installed = {

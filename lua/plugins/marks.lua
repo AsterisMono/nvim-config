@@ -1,6 +1,6 @@
 return {
   'chentoast/marks.nvim',
-  event = 'BufReadPre',
+  event = { 'BufReadPre' , 'BufNew' },
   opts = {
     default_mappings = true,
   },

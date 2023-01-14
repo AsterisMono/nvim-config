@@ -4,7 +4,8 @@ local silent_opts = { silent = true }
 return {
   'neoclide/coc.nvim',
   branch = 'release',
-  event = 'BufReadPre',
+  event = { 'BufReadPre' , 'BufNew' },
+  lazy = false,
   cmd = 'CocStart',
   keys = {
     -- Diagnostic
