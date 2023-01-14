@@ -7,3 +7,4 @@ keymap.set('n', '<Space>', '<C-w>w')
 -- Utility
 keymap.set('n', '<leader>h', '<cmd>noh<CR>', { desc = 'Clear highlight' })
 keymap.set('n', '<C-s>', '<cmd>write<CR>')
+keymap.set('n', '<leader>fo', 'gg=G<C-o>')
