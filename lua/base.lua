@@ -25,6 +25,7 @@ vim.opt.tabstop = 2
 vim.opt.backspace = { 'start', 'eol', 'indent' }
 vim.opt.path:append { '**' }
 vim.opt.wildignore:append { '*/node_modules/*' }
+vim.opt.undofile = true
 
 -- Highlights
 vim.opt.cursorline = true
