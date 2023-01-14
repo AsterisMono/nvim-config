@@ -22,8 +22,8 @@ return {
     -- Complete with tab
     vim.keymap.set('i', '<Tab>', 'pumvisible() ? coc#_select_confirm() : "\\<Tab>"', opts)
     -- Complete with Enter
-    vim.keymap.set('i', '<CR>', 'pumvisible() ? coc#pum#confirm() : "\\<CR>"', opts)
+    vim.keymap.set('i', '<CR>', 'pumvisible() ? coc#_select_confirm() : "<C-g>u<CR><c-r>=coc#on_enter()<CR>"', opts)
     vim.g.coc_global_extensions = { 'coc-tsserver', 'coc-json', 'coc-html', 'coc-css', 'coc-emmet', 'coc-prettier',
-      'coc-eslint', 'coc-sumneko-lua', 'coc-html-css-support' }
+      'coc-eslint', 'coc-sumneko-lua', 'coc-html-css-support', 'coc-pairs' }
   end
 }
