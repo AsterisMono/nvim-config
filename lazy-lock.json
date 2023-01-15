@@ -1,6 +1,5 @@
 {
   "ReplaceWithRegister": { "branch": "master", "commit": "832efc23111d19591d495dc72286de2fb0b09345" },
-  "auto-pairs": { "branch": "master", "commit": "39f06b873a8449af8ff6a3eee716d3da14d63a76" },
   "coc.nvim": { "branch": "release", "commit": "95b43f67147391cf2c69e550bd001b742781d226" },
   "everforest": { "branch": "master", "commit": "62408f6cb189606bc4b16832ada29be3ae33515f" },
   "gitsigns.nvim": { "branch": "main", "commit": "addd6e174a85fc1c4007ab0b65d77e6555b417bf" },
