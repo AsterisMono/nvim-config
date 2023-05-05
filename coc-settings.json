@@ -1,8 +1,0 @@
-{
-  "coc.preferences.formatOnSave": false,
-  "coc.preferences.formatOnType": true,
-  "diagnostic.errorSign": "",
-  "diagnostic.warningSign": "",
-  "diagnostic.infoSign": "",
-  "Lua.telemetry.enable": false
-}
