@@ -8,6 +8,7 @@ local opts = {
 -- Utility keymaps
 keymap.set('n', '<leader>h', '<cmd>noh<CR>', { desc = 'Clear highlight' }, opts)
 keymap.set('n', '<C-s>', '<cmd>write<CR>', opts)
+keymap.set('n', '<C-x>', '<cmd>wqa<CR>', opts)
 
 -- Better window navigation
 vim.keymap.set('n', '<C-h>', '<C-w>h', opts)
