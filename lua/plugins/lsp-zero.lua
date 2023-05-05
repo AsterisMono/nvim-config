@@ -20,9 +20,11 @@ return {
   },
   config = function()
     local lsp = require('lsp-zero').preset({})
+
     lsp.on_attach(function(client, bufnr)
       lsp.default_keymaps({ buffer = bufnr })
     end)
+
     -- Disable LSP semanticTokensProvider after nvim 9.0
     -- Treesitter at home:
     lsp.set_server_config({
@@ -30,7 +32,15 @@ return {
         client.server_capabilities.semanticTokensProvider = nil
       end,
     })
-    require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+
+    lsp.format_on_save({
+      servers = {
+        ['lua_ls'] = {'lua'},
+      }
+    })
+
+    require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls()) -- Integrate nvim lua apis
+
     lsp.setup()
 
     -- nvim-cmp config
