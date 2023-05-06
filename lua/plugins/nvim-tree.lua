@@ -15,7 +15,7 @@ return {
     }
   },
   keys = {
-    { '\'\'', '<cmd>NvimTreeToggle<CR>', { desc = 'Toggle Tree' } },
+    { '\'\'',       '<cmd>NvimTreeToggle<CR>',   { desc = 'Toggle Tree' } },
     { '<leader>ff', '<cmd>NvimTreeFindFile<CR>', { desc = 'Find file in tree' } },
   }
 }
