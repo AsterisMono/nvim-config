@@ -1,6 +1,6 @@
 return {
   "nvim-treesitter/nvim-treesitter",
-  event = { 'BufReadPre' , 'BufNew' },
+  event = { 'BufReadPre', 'BufNew' },
   opts = {
     sync_install = false,
     ensure_installed = {
@@ -11,7 +11,9 @@ return {
       "lua",
       "yaml",
       "javascript",
-      "typescript"
+      "typescript",
+      "rust",
+      "python"
     },
     highlight = {
       enable = true,
