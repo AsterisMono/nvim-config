@@ -42,12 +42,13 @@ return {
         ['svelte'] = { 'svelte' },
         ['html'] = { 'html' },
         ['css'] = { 'cssls' },
-        ['json'] = { 'jsonls' }
+        ['json'] = { 'jsonls' },
+        ['py'] = { 'pyright' }
       }
     })
 
     -- As we are in NixOS, We need to manualy tell lsp-zero about available lsps
-    lsp.setup_servers({ 'nil_ls', 'lua_ls', 'tsserver', 'svelte', 'html', 'cssls', 'jsonls' })
+    lsp.setup_servers({ 'nil_ls', 'lua_ls', 'tsserver', 'svelte', 'html', 'cssls', 'jsonls', 'pyright' })
 
     require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls()) -- Integrate nvim lua apis
 
