@@ -35,13 +35,19 @@ return {
 
     lsp.format_on_save({
       servers = {
-        ['lua_ls'] = {'lua'},
-        ['nil_ls'] = {'nix'},
+        ['lua_ls'] = { 'lua' },
+        ['nil_ls'] = { 'nix' },
+        ['javascript'] = { 'tsserver' },
+        ['typescript'] = { 'tsserver' },
+        ['svelte'] = { 'svelte' },
+        ['html'] = { 'html' },
+        ['css'] = { 'cssls' },
+        ['json'] = { 'jsonls' }
       }
     })
-    
+
     -- As we are in NixOS, We need to manualy tell lsp-zero about available lsps
-    lsp.setup_servers({'nil_ls', 'lua_ls'})
+    lsp.setup_servers({ 'nil_ls', 'lua_ls', 'tsserver', 'svelte', 'html', 'cssls', 'jsonls' })
 
     require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls()) -- Integrate nvim lua apis
 
@@ -58,10 +64,10 @@ return {
         completeopt = 'menu,menuone,noinsert'
       },
       formatting = {
-        fields = {'abbr', 'kind', 'menu'},
+        fields = { 'abbr', 'kind', 'menu' },
         format = require('lspkind').cmp_format({
-          mode = 'symbol', -- show only symbol annotations
-          maxwidth = 50, -- prevent the popup from showing more than provided characters
+          mode = 'symbol',       -- show only symbol annotations
+          maxwidth = 50,         -- prevent the popup from showing more than provided characters
           ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead
         })
       }
