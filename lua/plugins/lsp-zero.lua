@@ -1,6 +1,7 @@
 return {
   'VonHeikemen/lsp-zero.nvim',
   branch = 'v2.x',
+  lazy = false,
   dependencies = {
     -- LSP Support
     { 'neovim/nvim-lspconfig' }, -- Required
@@ -33,21 +34,6 @@ return {
       end,
     })
 
-    lsp.format_on_save({
-      servers = {
-        ['lua_ls'] = { 'lua' },
-        ['nil_ls'] = { 'nix' },
-        ['javascript'] = { 'tsserver' },
-        ['typescript'] = { 'tsserver' },
-        ['svelte'] = { 'svelte' },
-        ['html'] = { 'html' },
-        ['css'] = { 'cssls' },
-        ['json'] = { 'jsonls' },
-        ['py'] = { 'pyright' },
-        ['go'] = { 'gopls' },
-      }
-    })
-
     -- As we are in NixOS, We need to manualy tell lsp-zero about available lsps
     lsp.setup_servers({ 'nil_ls', 'lua_ls', 'tsserver', 'svelte', 'html', 'cssls', 'jsonls', 'pyright', 'gopls' })
 
@@ -75,4 +61,16 @@ return {
       }
     })
   end,
+  keys = {
+    { '<leader>ff', '<cmd>LspZeroFormat<CR>', desc = 'Format buffer' },
+    {
+      '<leader>qf',
+      function()
+        vim.lsp.buf.format({ async = false })
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<esc>", true, false, true), 'x', true)
+      end,
+      desc = 'Format selected',
+      mode = "v",
+    },
+  }
 }
