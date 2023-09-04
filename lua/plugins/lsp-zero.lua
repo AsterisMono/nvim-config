@@ -59,9 +59,8 @@ return {
     })
   end,
   keys = {
-    { '<leader>ff', '<cmd>LspZeroFormat<CR>', desc = 'Format buffer' },
     {
-      '<leader>qf',
+      '=',
       function()
         vim.lsp.buf.format({ async = false })
         vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<esc>", true, false, true), 'x', true)

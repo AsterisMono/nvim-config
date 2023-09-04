@@ -9,7 +9,6 @@ return {
       "css",
       "html",
       "lua",
-      "yaml",
       "javascript",
       "typescript"
     },
