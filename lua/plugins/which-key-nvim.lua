@@ -11,5 +11,6 @@ return {
     wk.register({ l = { name = "LSP Actions" } }, { prefix = "<leader>" })
     wk.register({ g = { name = "Git" } }, { prefix = "<leader>" })
     wk.register({ c = { name = "Convert Colors" } }, { prefix = "<leader>" })
+    wk.register({ x = { name = "Trouble" } }, { prefix = "<leader>" })
   end
 }
