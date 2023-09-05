@@ -32,6 +32,16 @@ return {
       lsp.default_keymaps({ buffer = bufnr })
     end)
 
+    lsp.ensure_installed({
+      'tsserver',
+      'eslint',
+      'lua_ls',
+      'emmet_ls',
+      'jsonls',
+      'cssls',
+      'html'
+    })
+
     -- Disable LSP semanticTokensProvider after nvim 9.0
     -- Treesitter at home:
     lsp.set_server_config({
