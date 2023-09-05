@@ -6,7 +6,7 @@ return {
   keys = {
     { '\'f', '<cmd>Telescope find_files<CR>'                  , desc = 'Find files' },
     { '\'r', '<cmd>Telescope live_grep<CR>'                   , desc = 'Live grep' },
-    { '\'b', '<cmd>Telescope buffers initial_mode=normal<CR>' , desc = 'Buffers' },
+    { '\'b', '<cmd>Telescope buffers'                         , desc = 'Buffers' },
     { '\'e', '<cmd>Telescope resume initial_mode=normal<CR>'  , desc = 'Resume' },
   },
   opts = {
