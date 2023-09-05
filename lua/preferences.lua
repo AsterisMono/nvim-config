@@ -52,3 +52,11 @@ vim.opt.background = 'dark'
 
 -- Auto save on focus lost
 vim.cmd('autocmd FocusLost * :wa')
+
+-- Yank highlight
+vim.cmd [[
+  augroup highlight_yank
+    autocmd!
+    au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=150}
+  augroup END
+]]
