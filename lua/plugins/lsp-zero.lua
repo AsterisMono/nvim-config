@@ -15,12 +15,18 @@ return {
 
     -- Autocompletion
     { 'hrsh7th/nvim-cmp' },     -- Required
+    { 'hrsh7th/cmp-buffer' },   -- Recommended
+    { 'hrsh7th/cmp-path' },     -- Recommended
     { 'hrsh7th/cmp-nvim-lsp' }, -- Required
+    { 'saadparwaiz1/cmp_luasnip' }, -- Recommended
+    { "rafamadriz/friendly-snippets" }, -- Snippets
     { 'L3MON4D3/LuaSnip' },     -- Required
     { 'onsails/lspkind.nvim' }, -- Beautify
   },
   config = function()
-    local lsp = require('lsp-zero').preset({})
+    local lsp = require('lsp-zero').preset({
+      name = 'recommended'
+    })
 
     lsp.on_attach(function(client, bufnr)
       lsp.default_keymaps({ buffer = bufnr })
@@ -40,9 +46,14 @@ return {
 
     -- nvim-cmp config
     local cmp = require('cmp')
+    local cmp_action = require('lsp-zero').cmp_action()
+    require('luasnip.loaders.from_vscode').lazy_load()
+
     cmp.setup({
       mapping = {
         ['<Tab>'] = cmp.mapping.confirm({ select = true }),
+        ['<C-f>'] = cmp_action.luasnip_jump_forward(),
+        ['<C-b>'] = cmp_action.luasnip_jump_backward(),
       },
       preselect = 'item',
       completion = {

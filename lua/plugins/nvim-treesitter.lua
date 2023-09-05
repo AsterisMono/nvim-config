@@ -10,7 +10,9 @@ return {
       "html",
       "lua",
       "javascript",
-      "typescript"
+      "typescript",
+      "markdown",
+      "markdown_inline"
     },
     highlight = {
       enable = true,
