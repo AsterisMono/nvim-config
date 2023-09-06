@@ -3,4 +3,7 @@
   "coc.preferences.formatOnType": true,
   "tsserver.useLocalTsdk": true,
   "tsserver.locale": "zh-CN",
+  "diagnostic.errorSign": "",
+  "diagnostic.warningSign": "",
+  "diagnostic.infoSign": "",
 }

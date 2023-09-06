@@ -67,3 +67,6 @@ vim.cmd [[
   sign define DiagnosticSignInfo text=  linehl= texthl=DiagnosticSignInfo numhl= 
   sign define DiagnosticSignHint text=💡  linehl= texthl=DiagnosticSignHint numhl= 
 ]]
+
+-- Force open signcolumn to avoid jumping
+vim.opt.signcolumn = "yes"

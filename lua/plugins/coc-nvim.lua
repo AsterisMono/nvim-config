@@ -41,13 +41,13 @@ return {
 
     local float_opts = {silent = true, nowait = true, expr = true}
     -- FIXME: Not behaving correctly with neoscroll
-    -- vim.keymap.set("n", "<C-f>", 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-f>"', float_opts)
-    -- vim.keymap.set("n", "<C-b>", 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-b>"', float_opts)
-    -- vim.keymap.set("i", "<C-f>",
-    --        'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(1)<cr>" : "<Right>"', float_opts)
+    vim.keymap.set("n", "<PageDn>", 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-f>"', float_opts)
+    vim.keymap.set("n", "<PageUp>", 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-b>"', float_opts)
+    vim.keymap.set("i", "<C-f>",
+           'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(1)<cr>" : "<Right>"', float_opts)
 
-    -- vim.keymap.set("i", "<C-b>",
-    --        'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(0)<cr>" : "<Left>"', float_opts)
+    vim.keymap.set("i", "<C-b>",
+           'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(0)<cr>" : "<Left>"', float_opts)
     -- vim.keymap.set("v", "<C-f>", 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-f>"', float_opts)
     -- vim.keymap.set("v", "<C-b>", 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-b>"', float_opts)
     
