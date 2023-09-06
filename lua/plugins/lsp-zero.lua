@@ -14,14 +14,14 @@ return {
     { 'williamboman/mason-lspconfig.nvim' },
 
     -- Autocompletion
-    { 'hrsh7th/nvim-cmp' },     -- Required
-    { 'hrsh7th/cmp-buffer' },   -- Recommended
-    { 'hrsh7th/cmp-path' },     -- Recommended
-    { 'hrsh7th/cmp-nvim-lsp' }, -- Required
-    { 'saadparwaiz1/cmp_luasnip' }, -- Recommended
+    { 'hrsh7th/nvim-cmp' },             -- Required
+    { 'hrsh7th/cmp-buffer' },           -- Recommended
+    { 'hrsh7th/cmp-path' },             -- Recommended
+    { 'hrsh7th/cmp-nvim-lsp' },         -- Required
+    { 'saadparwaiz1/cmp_luasnip' },     -- Recommended
     { "rafamadriz/friendly-snippets" }, -- Snippets
-    { 'L3MON4D3/LuaSnip' },     -- Required
-    { 'onsails/lspkind.nvim' }, -- Beautify
+    { 'L3MON4D3/LuaSnip' },             -- Required
+    { 'onsails/lspkind.nvim' },         -- Beautify
   },
   config = function()
     local lsp = require('lsp-zero').preset({
@@ -76,7 +76,7 @@ return {
           maxwidth = 50,         -- prevent the popup from showing more than provided characters
           ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead
         })
-      }
+      },
     })
 
     -- I want to insert `(` after select function or method item

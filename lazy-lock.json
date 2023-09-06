@@ -42,6 +42,7 @@
   "rest.nvim": { "branch": "main", "commit": "22673c848768ff25517154a5aebfebc0c77d0b4f" },
   "targets.vim": { "branch": "master", "commit": "642d3a4ce306264b05ea3219920b13ea80931767" },
   "telescope.nvim": { "branch": "master", "commit": "6b79d7a6a45adc1508a7afee5bc973173ec22f59" },
+  "transparent.nvim": { "branch": "main", "commit": "3af6232c8d39d51062702e875ff6407c1eeb0391" },
   "trouble.nvim": { "branch": "main", "commit": "3f85d8ed30e97ceeddbbcf80224245d347053711" },
   "vim-commentary": { "branch": "master", "commit": "e87cd90dc09c2a203e13af9704bd0ef79303d755" },
   "vim-convert-color-to": { "branch": "master", "commit": "5eb519e33e697606dcace57009e7308761261b46" },
