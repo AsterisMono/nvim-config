@@ -1,5 +1,5 @@
 return {
   'windwp/nvim-autopairs',
-  event = "LspAttach",
+  event = "VeryLazy",
   opts = {} -- this is equalent to setup({}) function
 }

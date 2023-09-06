@@ -11,6 +11,7 @@ return {
   end,
   keys = {
     { "<leader>sw", function() require('mini.sessions').write(vim.fn.input("Session name: ", "")) end, desc = "Write session" },
-    { "<leader>ss", function() require('mini.sessions').select() end, desc = "Select session" }
+    { "<leader>ss", function() require('mini.sessions').select() end, desc = "Select session" },
+    { "<leader>sd", function() require('mini.starter').open() end, desc = "Dashboard" }
   }
 }

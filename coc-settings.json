@@ -1,0 +1,5 @@
+{
+  "diagnostic.virtualText": true, 
+  "tsserver.useLocalTsdk": true,
+  "tsserver.locale": "zh-CN",
+}
