@@ -3,8 +3,9 @@ return {
   branch = 'release',
   config = function()
     local opts = { silent = true, noremap = true, expr = true, replace_keycodes = false }
-    -- Completion and diagnostic
+    -- Completion, Enter hijack and diagnostics
     vim.keymap.set('i', '<Tab>', 'pumvisible() ? coc#_select_confirm() : "\\<Tab>"', opts)
+    vim.keymap.set("i", "<cr>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], opts)
     vim.keymap.set('n', '[e', '<Plug>(coc-diagnostic-prev)')
     vim.keymap.set('n', ']e', '<Plug>(coc-diagnostic-next)')
 
@@ -39,19 +40,20 @@ return {
     vim.keymap.set("x", "=", "<Plug>(coc-format-selected)", { silent = true })
 
     local float_opts = {silent = true, nowait = true, expr = true}
-    vim.keymap.set("n", "<C-f>", 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-f>"', float_opts)
-    vim.keymap.set("n", "<C-b>", 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-b>"', float_opts)
-    vim.keymap.set("i", "<C-f>",
-           'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(1)<cr>" : "<Right>"', float_opts)
+    -- FIXME: Not behaving correctly with neoscroll
+    -- vim.keymap.set("n", "<C-f>", 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-f>"', float_opts)
+    -- vim.keymap.set("n", "<C-b>", 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-b>"', float_opts)
+    -- vim.keymap.set("i", "<C-f>",
+    --        'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(1)<cr>" : "<Right>"', float_opts)
 
-    vim.keymap.set("i", "<C-b>",
-           'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(0)<cr>" : "<Left>"', float_opts)
-    vim.keymap.set("v", "<C-f>", 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-f>"', float_opts)
-    vim.keymap.set("v", "<C-b>", 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-b>"', float_opts)
-
+    -- vim.keymap.set("i", "<C-b>",
+    --        'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(0)<cr>" : "<Left>"', float_opts)
+    -- vim.keymap.set("v", "<C-f>", 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-f>"', float_opts)
+    -- vim.keymap.set("v", "<C-b>", 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-b>"', float_opts)
+    
     -- Pre-installed extensions
     vim.g.coc_global_extensions = { 'coc-tsserver', 'coc-json', 'coc-html', 'coc-css', 'coc-emmet', 'coc-prettier',
-      'coc-eslint', 'coc-sumneko-lua', 'coc-html-css-support'}
+      'coc-eslint', 'coc-sumneko-lua', 'coc-html-css-support', 'coc-pairs'}
   end
 }
 

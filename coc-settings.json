@@ -1,5 +1,6 @@
 {
   "diagnostic.virtualText": true, 
+  "coc.preferences.formatOnType": true,
   "tsserver.useLocalTsdk": true,
   "tsserver.locale": "zh-CN",
 }
