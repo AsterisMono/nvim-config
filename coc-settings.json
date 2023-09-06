@@ -7,4 +7,6 @@
   "diagnostic.warningSign": "",
   "diagnostic.infoSign": "",
   "snippets.ultisnips.pythonPrompt": false,
+  "list.nextKeymap": "<C-n>",
+  "list.previousKeymap": "<C-p>",
 }
