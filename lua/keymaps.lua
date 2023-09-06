@@ -10,11 +10,15 @@ keymap.set('n', '<leader>h', '<cmd>noh<CR>', { desc = 'Clear highlight' }, opts)
 keymap.set('n', '<C-s>', '<cmd>write<CR>', opts)
 keymap.set('n', '<C-x>', '<cmd>wqa<CR>', opts)
 
--- Better window navigation
-vim.keymap.set('n', '<C-h>', '<C-w>h', opts)
-vim.keymap.set('n', '<C-j>', '<C-w>j', opts)
-vim.keymap.set('n', '<C-k>', '<C-w>k', opts)
-vim.keymap.set('n', '<C-l>', '<C-w>l', opts)
+-- Better window navigation with Alt key
+vim.keymap.set('n', '<A-h>', '<C-w>h', opts)
+-- vim.keymap.set('n', '<C-j>', '<C-w>j', opts)
+-- vim.keymap.set('n', '<C-k>', '<C-w>k', opts)
+vim.keymap.set('n', '<A-l>', '<C-w>l', opts)
+vim.keymap.set('n', '<A-w>', '<C-w>w', opts)
+vim.keymap.set('n', '<A-v>', '<C-w>v', opts)
+vim.keymap.set('n', '<A-q>', '<C-w>q', opts)
+vim.keymap.set('n', '<A-s>', '<C-w>s', opts)
 
 -- Resize windows with arrows
 -- delta: 2 lines
