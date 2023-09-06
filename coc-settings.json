@@ -6,4 +6,5 @@
   "diagnostic.errorSign": "",
   "diagnostic.warningSign": "",
   "diagnostic.infoSign": "",
+  "snippets.ultisnips.pythonPrompt": false,
 }
