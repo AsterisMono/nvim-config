@@ -8,12 +8,8 @@ return {
       "json",
       "css",
       "html",
-      "lua",
       "javascript",
       "typescript",
-      "markdown",
-      "markdown_inline",
-      "http",
     },
     highlight = {
       enable = true,

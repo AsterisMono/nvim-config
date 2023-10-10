@@ -51,7 +51,7 @@ vim.opt.pumblend = 5         -- Popup menu transparency
 vim.opt.background = 'dark'
 
 -- Auto save on focus lost
-vim.cmd('autocmd FocusLost * :wa')
+-- vim.cmd('autocmd FocusLost * :wa')
 
 -- Yank highlight
 vim.cmd [[
@@ -61,12 +61,12 @@ vim.cmd [[
   augroup END
 ]]
 
-vim.cmd [[ 
-  sign define DiagnosticSignError text=  linehl= texthl=DiagnosticSignError numhl=
-  sign define DiagnosticSignWarn text= linehl= texthl=DiagnosticSignWarn numhl= 
-  sign define DiagnosticSignInfo text=  linehl= texthl=DiagnosticSignInfo numhl= 
-  sign define DiagnosticSignHint text=💡  linehl= texthl=DiagnosticSignHint numhl= 
-]]
+-- vim.cmd [[ 
+--   sign define DiagnosticSignError text=  linehl= texthl=DiagnosticSignError numhl=
+--   sign define DiagnosticSignWarn text= linehl= texthl=DiagnosticSignWarn numhl= 
+--   sign define DiagnosticSignInfo text=  linehl= texthl=DiagnosticSignInfo numhl= 
+--   sign define DiagnosticSignHint text=💡  linehl= texthl=DiagnosticSignHint numhl= 
+-- ]]
 
 -- Force open signcolumn to avoid jumping
-vim.opt.signcolumn = "yes"
+-- vim.opt.signcolumn = "yes"
