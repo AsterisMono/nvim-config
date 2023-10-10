@@ -1,6 +1,7 @@
 {
   "ReplaceWithRegister": { "branch": "master", "commit": "832efc23111d19591d495dc72286de2fb0b09345" },
   "hop.nvim": { "branch": "master", "commit": "03f0434869f1f38868618198b5f4f2ab6d39aef2" },
+  "im-select.nvim": { "branch": "master", "commit": "8cf35fae61dd777a453541e765b8a375270ae356" },
   "lazy.nvim": { "branch": "main", "commit": "0d9989d46cd2ae624858b94e529ee3e9d07773fd" },
   "nvim-treesitter": { "branch": "master", "commit": "9d637b7ae8fa17cea8600e91d1145e2095c2a15d" },
   "nvim-treesitter-textobjects": { "branch": "master", "commit": "bd103502252027434ec42f628d2dbf54821d4ce6" },
