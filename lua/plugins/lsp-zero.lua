@@ -24,23 +24,11 @@ return {
     { 'onsails/lspkind.nvim' }, -- Beautify
   },
   config = function()
-    local lsp = require('lsp-zero').preset({
-      name = 'recommended'
-    })
+    local lsp = require('lsp-zero').preset("system-lsp")
 
     lsp.on_attach(function(client, bufnr)
       lsp.default_keymaps({ buffer = bufnr })
     end)
-
-    lsp.ensure_installed({
-      'tsserver',
-      'eslint',
-      'lua_ls',
-      'emmet_ls',
-      'jsonls',
-      'cssls',
-      'html'
-    })
 
     -- Disable LSP semanticTokensProvider after nvim 9.0
     -- Treesitter at home:
@@ -49,6 +37,16 @@ return {
         client.server_capabilities.semanticTokensProvider = nil
       end,
     })
+
+    lsp.format_on_save({
+      servers = {
+        ['lua_ls'] = {'lua'},
+        ['nil_ls'] = {'nix'},
+      }
+    })
+
+    -- As we are in NixOS, We need to manualy tell lsp-zero about available lsps
+    lsp.setup_servers({'nil_ls', 'lua_ls'})
 
     require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls()) -- Integrate nvim lua apis
 
