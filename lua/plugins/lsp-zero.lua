@@ -1,6 +1,6 @@
 return {
   'VonHeikemen/lsp-zero.nvim',
-  branch = 'v2.x',
+  branch = 'v3.x',
   lazy = false,
   dependencies = {
     -- LSP Support
@@ -14,45 +14,53 @@ return {
     { 'williamboman/mason-lspconfig.nvim' },
 
     -- Autocompletion
-    { 'hrsh7th/nvim-cmp' },     -- Required
-    { 'hrsh7th/cmp-buffer' },   -- Recommended
-    { 'hrsh7th/cmp-path' },     -- Recommended
-    { 'hrsh7th/cmp-nvim-lsp' }, -- Required
-    { 'saadparwaiz1/cmp_luasnip' }, -- Recommended
+    { 'hrsh7th/nvim-cmp' },             -- Required
+    { 'hrsh7th/cmp-buffer' },           -- Recommended
+    { 'hrsh7th/cmp-path' },             -- Recommended
+    { 'hrsh7th/cmp-nvim-lsp' },         -- Required
+    { 'saadparwaiz1/cmp_luasnip' },     -- Recommended
     { "rafamadriz/friendly-snippets" }, -- Snippets
-    { 'L3MON4D3/LuaSnip' },     -- Required
-    { 'onsails/lspkind.nvim' }, -- Beautify
+    { 'L3MON4D3/LuaSnip' },             -- Required
+    { 'onsails/lspkind.nvim' },         -- Beautify
   },
   config = function()
-    local lsp = require('lsp-zero').preset({
-      name = 'recommended'
-    })
+    local lsp_zero = require('lsp-zero')
 
-    lsp.on_attach(function(client, bufnr)
-      lsp.default_keymaps({ buffer = bufnr })
+    lsp_zero.on_attach(function(client, bufnr)
+      lsp_zero.default_keymaps({
+        buffer = bufnr,
+        exclude = { 'gr' },
+        preserve_mappings = false
+      })
     end)
 
-    lsp.ensure_installed({
-      'tsserver',
-      'eslint',
-      'lua_ls',
-      'emmet_ls',
-      'jsonls',
-      'cssls',
-      'html'
+    require('mason').setup({})
+    require('mason-lspconfig').setup({
+      ensure_installed = {
+        'tsserver',
+        'eslint',
+        'lua_ls',
+        'emmet_ls',
+        'jsonls',
+        'cssls',
+        'html'
+      },
+      handlers = {
+        lsp_zero.default_setup,
+        lua_ls = function()
+          local lua_opts = lsp_zero.nvim_lua_ls()
+          require('lspconfig').lua_ls.setup(lua_opts)
+        end,
+      }
     })
 
     -- Disable LSP semanticTokensProvider after nvim 9.0
     -- Treesitter at home:
-    lsp.set_server_config({
+    lsp_zero.set_server_config({
       on_init = function(client)
         client.server_capabilities.semanticTokensProvider = nil
       end,
     })
-
-    require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls()) -- Integrate nvim lua apis
-
-    lsp.setup()
 
     -- nvim-cmp config
     local cmp = require('cmp')
