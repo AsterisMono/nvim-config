@@ -20,7 +20,7 @@ return {
     { 'onsails/lspkind.nvim' }, -- Beautify
   },
   config = function()
-    local lsp = require('lsp-zero').preset("system-lsp")
+    local lsp = require('lsp-zero').preset({})
 
     lsp.on_attach(function(client, bufnr)
       lsp.default_keymaps({ buffer = bufnr })
@@ -35,7 +35,7 @@ return {
     })
 
     -- As we are in NixOS, We need to manualy tell lsp-zero about available lsps
-    lsp.setup_servers({ 'nil_ls', 'lua_ls', 'tsserver', 'svelte', 'html', 'cssls', 'jsonls', 'pyright', 'gopls' })
+    -- lsp.setup_servers({ 'nil_ls', 'lua_ls', 'tsserver', 'svelte', 'html', 'cssls', 'jsonls', 'pyright', 'gopls' })
 
     require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls()) -- Integrate nvim lua apis
 
