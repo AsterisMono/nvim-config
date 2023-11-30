@@ -4,16 +4,18 @@ return {
   cmd = 'Telescope',
   version = false,
   keys = {
-    { '\'f', '<cmd>Telescope find_files<CR>'                  , desc = 'Find files' },
-    { '\'r', '<cmd>Telescope live_grep<CR>'                   , desc = 'Live grep' },
-    { '\'b', '<cmd>Telescope buffers<CR>'                     , desc = 'Buffers' },
-    { '\'e', '<cmd>Telescope resume initial_mode=normal<CR>'  , desc = 'Resume' },
+    { '\'f', '<cmd>Telescope find_files<CR>',                 desc = 'Find files' },
+    { '\'r', '<cmd>Telescope live_grep<CR>',                  desc = 'Live grep' },
+    { '\'b', '<cmd>Telescope buffers<CR>',                    desc = 'Buffers' },
+    { '\'s', '<cmd>Telescope possession list<CR>',            desc = 'Sessions' },
+    { '\'e', '<cmd>Telescope resume initial_mode=normal<CR>', desc = 'Resume' },
   },
   opts = {
 
   },
   config = function(_, opts)
     local telescope = require('telescope')
+    telescope.load_extension('possession')
     telescope.setup(opts)
   end
 }
