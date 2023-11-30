@@ -4,6 +4,7 @@ return {
   version = false,
   config = function(_, opts)
     require('mini.sessions').setup({
+      autoread = true,
       autowrite = true,
       verbose = { read = false, write = true, delete = true }
     })
