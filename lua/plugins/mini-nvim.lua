@@ -1,5 +1,5 @@
 return {
-  'echasnovski/mini.nvim', 
+  'echasnovski/mini.nvim',
   lazy = false,
   version = false,
   config = function(_, opts)
