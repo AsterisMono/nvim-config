@@ -7,7 +7,6 @@ return {
     { '\'f', '<cmd>Telescope find_files<CR>',                 desc = 'Find files' },
     { '\'r', '<cmd>Telescope live_grep<CR>',                  desc = 'Live grep' },
     { '\'b', '<cmd>Telescope buffers<CR>',                    desc = 'Buffers' },
-    { '\'s', '<cmd>Telescope possession list<CR>',            desc = 'Sessions' },
     { '\'e', '<cmd>Telescope resume initial_mode=normal<CR>', desc = 'Resume' },
   },
   opts = {
