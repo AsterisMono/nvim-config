@@ -15,7 +15,6 @@ return {
   },
   config = function(_, opts)
     local telescope = require('telescope')
-    telescope.load_extension('possession')
     telescope.setup(opts)
   end
 }
