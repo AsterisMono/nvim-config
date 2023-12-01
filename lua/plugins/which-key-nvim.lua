@@ -15,5 +15,6 @@ return {
     wk.register({ n = { name = "NPM Packages" } }, { prefix = "<leader>" })
     wk.register({ s = { name = "Sessions" } }, { prefix = "<leader>" })
     wk.register({ r = { name = "Rest Requests" } }, { prefix = "<leader>" })
+    wk.register({ b = { name = "Buffers" } }, { prefix = "<leader>" })
   end
 }
