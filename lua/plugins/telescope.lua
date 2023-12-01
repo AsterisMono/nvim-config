@@ -10,11 +10,20 @@ return {
     { '\'b', '<cmd>Telescope buffers<CR>',                    desc = 'Buffers' },
     { '\'e', '<cmd>Telescope resume initial_mode=normal<CR>', desc = 'Resume' },
   },
-  opts = {
-
-  },
-  config = function(_, opts)
+  config = function()
     local telescope = require('telescope')
-    telescope.setup(opts)
+    telescope.setup({
+      defaults = {
+        mappings = {
+          n = {
+            ['q'] = require('telescope.actions').close,
+          },
+          i = {
+            ['<C-q>'] = require('telescope.actions').close,
+          },
+        }
+      }
+
+    })
   end
 }
