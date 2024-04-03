@@ -1,6 +1,6 @@
 return {
   "nvim-treesitter/nvim-treesitter",
-  event = { 'BufReadPre' , 'BufNew' },
+  event = { 'BufReadPre', 'BufNew' },
   opts = {
     sync_install = false,
     ensure_installed = {
@@ -13,7 +13,7 @@ return {
       "typescript",
       "markdown",
       "markdown_inline",
-      "http",
+      "rust"
     },
     highlight = {
       enable = true,
