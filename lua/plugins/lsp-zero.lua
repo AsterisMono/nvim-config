@@ -41,7 +41,8 @@ return {
       },
       servers = {
         ['null-ls'] = { 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'html', 'css', 'json' },
-        ['lua_ls'] = { 'lua' }
+        ['lua_ls'] = { 'lua' },
+        ['rust_analyzer'] = { 'rust' },
       }
     })
 
@@ -54,7 +55,8 @@ return {
         'emmet_ls',
         'jsonls',
         'cssls',
-        'html'
+        'html',
+        'rust_analyzer',
       },
       handlers = {
         lsp_zero.default_setup,
