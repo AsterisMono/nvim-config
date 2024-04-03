@@ -47,6 +47,9 @@ vim.opt.winblend = 0         -- Transparency
 vim.opt.wildoptions = 'pum'  -- Show popup menu
 vim.opt.pumblend = 5         -- Popup menu transparency
 
+-- Recommended session options for auto-session
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+
 -- Themes and colorschemes
 vim.opt.background = 'dark'
 
