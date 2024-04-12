@@ -1,11 +1,12 @@
 return {
   'nvimtools/none-ls.nvim',
   event = 'VeryLazy',
-  config = function ()
+  config = function()
     local null_ls = require("null-ls")
     null_ls.setup({
       sources = {
-        null_ls.builtins.diagnostics.eslint,
+        -- require("none-ls.diagnostics.eslint_d"), -- Use eslint-lsp defined in mason
+        -- require("none-ls.code_actions.eslint_d"),
         null_ls.builtins.formatting.prettierd
       }
     })

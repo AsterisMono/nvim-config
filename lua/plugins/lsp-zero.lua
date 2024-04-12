@@ -56,6 +56,7 @@ return {
         'jsonls',
         'cssls',
         'html',
+        'prettierd',
         'rust_analyzer',
       },
       handlers = {
