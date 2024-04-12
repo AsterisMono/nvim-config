@@ -34,17 +34,17 @@ return {
       })
     end)
 
-    lsp_zero.format_on_save({
-      format_opts = {
-        async = false,
-        timeout_ms = 10000,
-      },
-      servers = {
-        ['null-ls'] = { 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'html', 'css', 'json' },
-        ['lua_ls'] = { 'lua' },
-        ['rust_analyzer'] = { 'rust' },
-      }
-    })
+    -- lsp_zero.format_on_save({
+    --   format_opts = {
+    --     async = false,
+    --     timeout_ms = 10000,
+    --   },
+    --   servers = {
+    --     ['null-ls'] = { 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'html', 'css', 'json' },
+    --     ['lua_ls'] = { 'lua' },
+    --     ['rust_analyzer'] = { 'rust' },
+    --   }
+    -- })
 
     require('mason').setup({})
     require('mason-lspconfig').setup({
