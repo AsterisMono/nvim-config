@@ -6,7 +6,7 @@ return {
     -- Disable virtual_text since it's redundant due to lsp_lines.
     vim.diagnostic.config({
       virtual_text = false,
-      virtual_lines = false,
+      virtual_lines = true,
     })
     vim.keymap.set("", "<Leader>ll", require("lsp_lines").toggle, { desc = "Toggle lsp_lines" })
   end
