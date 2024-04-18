@@ -9,8 +9,12 @@ vim.g.mapleader = " "
 -- Utility keymaps
 keymap.set('n', '<leader>h', '<cmd>noh<CR>', { desc = 'Clear highlight' }, opts)
 keymap.set('n', '<C-s>', '<cmd>write<CR>', opts)
-keymap.set('n', '<C-x>', '<cmd>wqa<CR>', opts)
-keymap.set('n', '<C-q>', '<cmd>wqa<CR>', opts)
+local safe_exit = function()
+  vim.cmd('wa')
+  vim.cmd('q')
+end
+keymap.set('n', '<C-x>', safe_exit, opts)
+keymap.set('n', '<C-q>', '<cmd>wq<CR>', opts)
 
 -- Better window navigation
 vim.keymap.set('n', '<C-h>', '<C-w>h', opts)
