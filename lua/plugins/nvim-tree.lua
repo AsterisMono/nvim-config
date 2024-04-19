@@ -6,7 +6,7 @@ return {
     respect_buf_cwd = true,
     actions = {
       open_file = {
-        quit_on_open = false,
+        quit_on_open = true,
       }
     },
     update_focused_file = {
