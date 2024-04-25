@@ -1,6 +1,7 @@
 {
   "LuaSnip": { "branch": "master", "commit": "8f3d3465ba5c7ade0a8adb41eca5736f291a3fa8" },
   "ReplaceWithRegister": { "branch": "master", "commit": "832efc23111d19591d495dc72286de2fb0b09345" },
+  "aerial.nvim": { "branch": "master", "commit": "83a79f39b709c20be4c830d241379fa85ef21a7c" },
   "auto-session": { "branch": "main", "commit": "9e0a169b6fce8791278abbd110717b921afe634d" },
   "blame.nvim": { "branch": "main", "commit": "dedbcdce857f708c63f261287ac7491a893912d0" },
   "bufterm.nvim": { "branch": "main", "commit": "7aae848dff66a24425b4dcaf0567c4620edf45be" },
