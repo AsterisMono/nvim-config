@@ -1,13 +1,20 @@
+local enabled = false
+local toggle = function()
+  enabled = not enabled
+  vim.diagnostic.config({
+    virtual_text = not enabled,
+    virtual_lines = enabled,
+  })
+end
 return {
   url = "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
   event = 'LspAttach',
   config = function()
     require("lsp_lines").setup()
-    -- Disable virtual_text since it's redundant due to lsp_lines.
     vim.diagnostic.config({
-      virtual_text = false,
-      virtual_lines = true,
+      virtual_text = true,
+      virtual_lines = false,
     })
-    vim.keymap.set("", "<Leader>ll", require("lsp_lines").toggle, { desc = "Toggle lsp_lines" })
+    vim.keymap.set("", "<Leader>ll", toggle, { desc = "Toggle lsp_lines" })
   end
 }
