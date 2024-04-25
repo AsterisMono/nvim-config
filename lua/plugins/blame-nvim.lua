@@ -1,6 +1,7 @@
 return {
   "FabijanZulj/blame.nvim",
+  opts = {},
   keys = {
-    { '<leader>gb', '<cmd>ToggleBlame virtual<CR>', desc = 'Git Blame' },
+    { '<leader>gb', '<cmd>BlameToggle virtual<CR>', desc = 'Git Blame' },
   }
 }
