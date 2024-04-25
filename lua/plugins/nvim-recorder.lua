@@ -1,5 +1,6 @@
 return {
   "chrisgrieser/nvim-recorder",
+  event = "VeryLazy",
   opts = {}
   -- Manual
   --
