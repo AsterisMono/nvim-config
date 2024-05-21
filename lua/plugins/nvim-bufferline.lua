@@ -14,7 +14,6 @@ return {
   end,
   config = function()
     require("bufferline").setup {
-      highlights = require("catppuccin.groups.integrations.bufferline").get(),
       options = {
         always_show_bufferline = false,
         show_buffer_close_icons = false,
