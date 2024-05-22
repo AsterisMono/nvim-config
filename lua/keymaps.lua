@@ -7,7 +7,7 @@ local opts = {
 
 vim.g.mapleader = " "
 -- Utility keymaps
-keymap.set('n', '<leader>h', '<cmd>noh<CR>', { desc = 'Clear highlight' }, opts)
+keymap.set('n', '<leader>h', '<cmd>noh<CR>', { desc = 'Clear highlight' })
 keymap.set('n', '<C-s>', '<cmd>write<CR>', opts)
 local safe_exit = function()
   vim.cmd('wa')
