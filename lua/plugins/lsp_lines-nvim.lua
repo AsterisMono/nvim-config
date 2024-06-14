@@ -15,6 +15,6 @@ return {
       virtual_text = true,
       virtual_lines = false,
     })
-    vim.keymap.set("", "<Leader>ll", toggle, { desc = "Toggle lsp_lines" })
+    vim.keymap.set("n", "<Leader>ll", toggle, { desc = "Toggle lsp_lines" })
   end
 }
