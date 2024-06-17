@@ -10,7 +10,8 @@ return {
     -- bh, bl: close buffer to the left/right, bo: close all but current buffer
     vim.keymap.set('n', '<leader>bl', '<cmd>BufferLineCloseRight<CR>', { desc = 'Close to the right' })
     vim.keymap.set('n', '<leader>bh', '<cmd>BufferLineCloseLeft<CR>', { desc = 'Close to the left' })
-    vim.keymap.set('n', '<leader>bo', '<cmd>BufferLineGroupClose ungrouped<CR>', { desc = 'Close unpinned others' })
+    vim.keymap.set('n', '<leader>bo', '<cmd>BufferLineCloseOthers<CR>', { desc = 'Close others' })
+    vim.keymap.set('n', '<leader>bP', '<cmd>BufferLineGroupClose ungrouped<CR>', { desc = 'Close unpinned' })
   end,
   config = function()
     require("bufferline").setup {
