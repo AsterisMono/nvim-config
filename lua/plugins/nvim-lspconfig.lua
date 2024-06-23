@@ -55,6 +55,8 @@ return {
       }
     })
 
+    require('lspconfig').nil_ls.setup({})
+
     -- Disable LSP semanticTokensProvider after nvim 9.0
     -- Treesitter at home:
     lsp_zero.set_server_config({
