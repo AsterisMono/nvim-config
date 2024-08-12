@@ -16,7 +16,7 @@ return {
       "rust"
     },
     highlight = {
-      enable = true,
+      enable = not vim.g.vscode,
       additional_vim_regex_highlighting = false,
     },
     incremental_selection = {

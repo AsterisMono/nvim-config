@@ -1,5 +1,6 @@
 return {
   'neovim/nvim-lspconfig',
+  cond = not vim.g.vscode,
   cmd = { 'LspInfo', 'LspInstall', 'LspStart' },
   event = { 'BufReadPre', 'BufNewFile' },
   dependencies = {

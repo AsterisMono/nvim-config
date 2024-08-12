@@ -19,6 +19,7 @@ local inline_chat_popup_options = {
 return {
   {
     "CopilotC-Nvim/CopilotChat.nvim",
+    cond = not vim.g.vscode,
     branch = "canary",
     dependencies = {
       { "github/copilot.vim" },

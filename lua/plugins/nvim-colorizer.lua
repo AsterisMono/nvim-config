@@ -1,5 +1,6 @@
 return {
   'norcalli/nvim-colorizer.lua',
-  event = { 'BufReadPre' , 'BufNew' },
+  cond = not vim.g.vscode,
+  event = { 'BufReadPre', 'BufNew' },
   config = true
 }

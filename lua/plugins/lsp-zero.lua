@@ -1,5 +1,6 @@
 return {
   'VonHeikemen/lsp-zero.nvim',
+  cond = not vim.g.vscode,
   branch = 'v3.x',
   lazy = true,
   config = false,

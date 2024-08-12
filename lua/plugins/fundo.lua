@@ -1,7 +1,8 @@
 return {
   {
     'kevinhwang91/nvim-fundo',
-    build = function ()
+    cond = not vim.g.vscode,
+    build = function()
       require('fundo').install()
     end,
     config = true,

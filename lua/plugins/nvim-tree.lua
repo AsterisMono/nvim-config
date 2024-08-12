@@ -1,5 +1,6 @@
 return {
   'nvim-tree/nvim-tree.lua',
+  cond = not vim.g.vscode,
   opts = {
     hijack_cursor = true,
     sync_root_with_cwd = true,

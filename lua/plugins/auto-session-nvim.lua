@@ -1,5 +1,6 @@
 return {
   'rmagatti/auto-session',
+  cond = not vim.g.vscode,
   lazy = false,
   config = function()
     local autocmd = vim.api.nvim_create_autocmd

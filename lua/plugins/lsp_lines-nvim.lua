@@ -8,6 +8,7 @@ local toggle = function()
 end
 return {
   url = "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+  cond = not vim.g.vscode,
   event = 'LspAttach',
   config = function()
     require("lsp_lines").setup()

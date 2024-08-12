@@ -1,5 +1,6 @@
 return {
   'stevearc/aerial.nvim',
+  cond = not vim.g.vscode,
   lazy = true,
   opts = {
     highlight_on_hover = true,

@@ -1,5 +1,6 @@
 return {
   'nvimdev/lspsaga.nvim',
+  cond = not vim.g.vscode,
   event = 'LspAttach',
   keys = {
     { '<leader>ld', '<cmd>Lspsaga peek_definition<CR>',     desc = 'Peek Definition' },

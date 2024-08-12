@@ -1,5 +1,6 @@
 return {
   'boltlessengineer/bufterm.nvim',
+  cond = not vim.g.vscode,
   config = function()
     require('bufterm').setup()
     vim.keymap.set('t', '<C-[>', '<C-\\><C-n>')

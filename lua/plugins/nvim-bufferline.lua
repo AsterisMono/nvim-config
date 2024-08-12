@@ -1,5 +1,6 @@
 return {
   'akinsho/nvim-bufferline.lua',
+  cond = not vim.g.vscode,
   event = { "UIEnter" },
   init = function()
     vim.keymap.set('n', '<S-l>', '<cmd>BufferLineCycleNext<CR>')
