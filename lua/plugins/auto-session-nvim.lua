@@ -3,17 +3,22 @@ return {
   cond = not vim.g.vscode,
   lazy = false,
   config = function()
-    local autocmd = vim.api.nvim_create_autocmd
-    -- Preserve nvimTree state
-    autocmd({ "BufEnter" }, {
-      pattern = "NvimTree*",
+    vim.api.nvim_create_autocmd({ "VimEnter" }, {
       callback = function()
-        local api = require "nvim-tree.api"
-        local view = require "nvim-tree.view"
+        vim.defer_fn(function()
+          local api = require("nvim-tree.api")
+          local view = require("nvim-tree.view")
 
-        if not view.is_visible() then
-          api.tree.open()
-        end
+          for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+            local name = vim.api.nvim_buf_get_name(buf)
+            if name:match("NvimTree*") then
+              if not view.is_visible() then
+                api.tree.toggle({ focus = false, find_file = true })
+              end
+              break
+            end
+          end
+        end, 1) -- Jank defer to give lazy time to init the plugin, just 1 works for me increase as needed
       end,
     })
     require("auto-session").setup {
