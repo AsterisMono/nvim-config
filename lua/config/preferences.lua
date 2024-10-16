@@ -77,7 +77,3 @@ vim.cmd([[
   sign define DiagnosticSignInfo text=  linehl= texthl=DiagnosticSignInfo numhl=
   sign define DiagnosticSignHint text=💡  linehl= texthl=DiagnosticSignHint numhl=
 ]])
-
-vim.cmd([[
-  set shell=/opt/homebrew/bin/fish
-]])
