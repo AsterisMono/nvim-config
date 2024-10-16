@@ -53,6 +53,7 @@ vim.opt.termguicolors = true -- True color support
 vim.opt.winblend = 0 -- Transparency
 vim.opt.wildoptions = "pum" -- Show popup menu
 vim.opt.pumblend = 5 -- Popup menu transparency
+vim.opt.signcolumn = "yes" -- Prevent gutter from moving
 
 -- Recommended session options for auto-session
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
