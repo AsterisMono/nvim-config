@@ -88,6 +88,18 @@ return {
 
 			lspconfig.lua_ls.setup({})
 			lspconfig.nixd.setup({})
+
+			lspconfig.biome.setup({})
+
+			-- Enable ESLint and apply auto lint-fix on save.
+			lspconfig.eslint.setup({
+				on_attach = function(client, bufnr)
+					vim.api.nvim_create_autocmd("BufWritePre", {
+						buffer = bufnr,
+						command = "EslintFixAll",
+					})
+				end,
+			})
 		end,
 	},
 }

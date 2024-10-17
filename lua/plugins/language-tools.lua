@@ -39,4 +39,25 @@ return {
 			})
 		end,
 	},
+	-- Code linter (not in use)
+	-- nvim-lint only provides linting injection (no code actions).
+	-- See `lspconfig.lua` for linting injected into LSP
+	-- {
+	-- 	"mfussenegger/nvim-lint",
+	-- 	event = { "BufReadPre", "BufNewFile" },
+	-- 	config = function()
+	-- 		require("lint").linters_by_ft = {
+	-- 			typescript = { "biomejs" },
+	-- 			javascript = { "biomejs" },
+	-- 			typescriptreact = { "biomejs" },
+	-- 			javascriptreact = { "biomejs" },
+	-- 		}
+	-- 		vim.api.nvim_create_autocmd({ "InsertLeave", "BufReadPost" }, {
+	-- 			pattern = "*",
+	-- 			callback = function()
+	-- 				require("lint").try_lint()
+	-- 			end,
+	-- 		})
+	-- 	end,
+	-- },
 }
