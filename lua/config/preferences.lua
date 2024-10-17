@@ -4,6 +4,9 @@ vim.cmd("autocmd!")
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
+-- Setup keymaps
+require("config.keymaps")
+
 -- Disable netrw for nvim-tree
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
