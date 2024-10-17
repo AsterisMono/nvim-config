@@ -10,7 +10,7 @@ return {
 				client.server_capabilities.documentRangeFormattingProvider = false
 			end,
 			settings = {
-				tsserver_locale = "zh_cn",
+				tsserver_locale = "zh-cn",
 			},
 		},
 	},
