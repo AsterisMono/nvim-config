@@ -14,6 +14,7 @@ return {
 			{ "hrsh7th/cmp-buffer" },
 			{ "hrsh7th/cmp-path" },
 			{ "hrsh7th/cmp-cmdline" },
+			{ "hrsh7th/cmp-nvim-lsp" },
 		},
 		config = function()
 			local cmp = require("cmp")
@@ -52,9 +53,6 @@ return {
 		"neovim/nvim-lspconfig",
 		cmd = "LspInfo",
 		event = { "BufReadPre", "BufNewFile" },
-		dependencies = {
-			{ "hrsh7th/cmp-nvim-lsp" },
-		},
 		init = function()
 			-- Reserve a space in the gutter
 			-- This will avoid an annoying layout shift in the screen
@@ -86,10 +84,10 @@ return {
 					vim.keymap.set("n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
 				end,
 			})
+			local lspconfig = require("lspconfig")
 
-			require("lspconfig").lua_ls.setup({})
-			require("lspconfig").nixd.setup({})
-			-- Do not configure typescript; use typescript-tools
+			lspconfig.lua_ls.setup({})
+			lspconfig.nixd.setup({})
 		end,
 	},
 }
