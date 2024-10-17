@@ -125,4 +125,12 @@ return {
 			wk.add({ "<leader>b", group = "Buffers" })
 		end,
 	},
+	-- Git blame
+	{
+		"FabijanZulj/blame.nvim",
+		opts = {},
+		keys = {
+			{ "<leader>gb", "<cmd>BlameToggle virtual<CR>", desc = "Git Blame" },
+		},
+	},
 }
