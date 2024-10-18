@@ -60,4 +60,77 @@ return {
 	-- 		})
 	-- 	end,
 	-- },
+	{
+		"nvim-treesitter/nvim-treesitter",
+		event = { "BufReadPre", "BufNew" },
+		opts = {
+			sync_install = false,
+			ensure_installed = {
+				"tsx",
+				"json",
+				"css",
+				"html",
+				"lua",
+				"javascript",
+				"typescript",
+				"markdown",
+				"markdown_inline",
+				"rust",
+			},
+			highlight = {
+				enable = not vim.g.vscode,
+				additional_vim_regex_highlighting = false,
+			},
+			incremental_selection = {
+				enable = true,
+				keymaps = {
+					init_selection = "<CR>",
+					node_incremental = "<CR>",
+					node_decremental = "<BS>",
+				},
+			},
+		},
+		config = function(opts)
+			require("nvim-treesitter.configs").setup(opts)
+		end,
+	},
+	{
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		event = { "BufReadPre", "BufNew" },
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+		},
+		config = function()
+			require("nvim-treesitter.configs").setup({
+				textobjects = {
+					select = {
+						enable = true,
+						lookahead = true, -- Auto jump forward for match textobj
+						keymaps = {
+							["af"] = "@function.outer",
+							["if"] = "@function.inner",
+						},
+						selection_modes = {
+							["@function.outer"] = "v", -- charwise selection for functions
+						},
+						include_surrounding_whitespace = true,
+					},
+					move = {
+						enable = true,
+						set_jumps = true,
+						goto_next_start = {
+							["]f"] = "@function.outer",
+							["]c"] = "@class.outer",
+							["]]"] = "@block.outer",
+						},
+						goto_previous_start = {
+							["[f"] = "@function.outer",
+							["[c"] = "@class.outer",
+							["[["] = "@block.outer",
+						},
+					},
+				},
+			})
+		end,
+	},
 }
