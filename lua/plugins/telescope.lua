@@ -1,7 +1,5 @@
 return {
 	"nvim-telescope/telescope.nvim",
-	cond = not vim.g.vscode,
-	event = "VeryLazy",
 	cmd = "Telescope",
 	version = false,
 	keys = {
@@ -11,19 +9,16 @@ return {
 		{ "'b", "<cmd>Telescope buffers<CR>", desc = "Buffers" },
 		{ "'e", "<cmd>Telescope resume initial_mode=normal<CR>", desc = "Resume" },
 	},
-	config = function()
-		local telescope = require("telescope")
-		telescope.setup({
-			defaults = {
-				mappings = {
-					n = {
-						["q"] = require("telescope.actions").close,
-					},
-					i = {
-						["<C-q>"] = require("telescope.actions").close,
-					},
+	opts = {
+		defaults = {
+			mappings = {
+				n = {
+					["q"] = require("telescope.actions").close,
+				},
+				i = {
+					["<C-q>"] = require("telescope.actions").close,
 				},
 			},
-		})
-	end,
+		},
+	},
 }
