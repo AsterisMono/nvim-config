@@ -62,46 +62,36 @@ return {
 	-- },
 	{
 		"nvim-treesitter/nvim-treesitter",
+		build = ":TSUpdate",
 		event = { "BufReadPre", "BufNew" },
-		opts = {
-			sync_install = false,
-			ensure_installed = {
-				"tsx",
-				"json",
-				"css",
-				"html",
-				"lua",
-				"javascript",
-				"typescript",
-				"markdown",
-				"markdown_inline",
-				"rust",
-			},
-			highlight = {
-				enable = not vim.g.vscode,
-				additional_vim_regex_highlighting = false,
-			},
-			incremental_selection = {
-				enable = true,
-				keymaps = {
-					init_selection = "<CR>",
-					node_incremental = "<CR>",
-					node_decremental = "<BS>",
-				},
-			},
-		},
-		config = function(opts)
-			require("nvim-treesitter.configs").setup(opts)
-		end,
-	},
-	{
-		"nvim-treesitter/nvim-treesitter-textobjects",
-		event = { "BufReadPre", "BufNew" },
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter",
-		},
+		dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
 		config = function()
 			require("nvim-treesitter.configs").setup({
+				sync_install = false,
+				ensure_installed = {
+					"tsx",
+					"json",
+					"css",
+					"html",
+					"lua",
+					"javascript",
+					"typescript",
+					"markdown",
+					"markdown_inline",
+					"rust",
+				},
+				highlight = {
+					enable = true,
+					additional_vim_regex_highlighting = false,
+				},
+				incremental_selection = {
+					enable = true,
+					keymaps = {
+						init_selection = "<CR>",
+						node_incremental = "<CR>",
+						node_decremental = "<BS>",
+					},
+				},
 				textobjects = {
 					select = {
 						enable = true,
