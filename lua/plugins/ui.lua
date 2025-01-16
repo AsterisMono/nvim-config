@@ -1,4 +1,4 @@
-function generate_bufferline_mappings()
+local function generate_bufferline_mappings()
 	local mappings = {}
 	for i = 1, 9 do
 		table.insert(mappings, {
