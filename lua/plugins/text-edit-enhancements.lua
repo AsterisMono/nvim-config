@@ -99,4 +99,13 @@ return {
 		-- nvim-ts-autotag is efficient in choosing when it needs to load
 		opts = {},
 	},
+	{
+		"saifulapm/commasemi.nvim",
+		lazy = false,
+		opts = {
+			leader = "<localleader>",
+			keymaps = true,
+			commands = true,
+		},
+	},
 }

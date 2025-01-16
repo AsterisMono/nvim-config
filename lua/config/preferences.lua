@@ -2,7 +2,7 @@ vim.cmd("autocmd!")
 
 -- Set leader keys
 vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
+vim.g.maplocalleader = ","
 
 -- Setup keymaps
 require("config.keymaps")
