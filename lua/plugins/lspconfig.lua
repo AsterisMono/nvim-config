@@ -8,15 +8,24 @@ return {
 			{ "hrsh7th/cmp-path" },
 			{ "hrsh7th/cmp-cmdline" },
 			{ "hrsh7th/cmp-nvim-lsp" },
+			{ "onsails/lspkind.nvim" },
 		},
 		config = function()
 			local cmp = require("cmp")
+			local lspkind = require("lspkind")
+			local tailwind = require("tailwind-tools.cmp")
 
 			cmp.setup({
 				sources = {
 					{ name = "nvim_lsp" },
 					{ name = "buffer" },
 					{ name = "path" },
+				},
+				formatting = {
+					format = lspkind.cmp_format({
+						mode = "text",
+						before = tailwind.lspkind_format,
+					}),
 				},
 				mapping = cmp.mapping.preset.insert({
 					["<CR>"] = cmp.mapping.confirm({ select = true }),
@@ -40,7 +49,6 @@ return {
 			})
 		end,
 	},
-
 	-- LSP
 	{
 		"neovim/nvim-lspconfig",
