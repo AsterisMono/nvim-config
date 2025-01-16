@@ -81,17 +81,54 @@ return {
 
 			lspconfig.lua_ls.setup({})
 			lspconfig.nixd.setup({})
+			lspconfig.tailwindcss.setup({
+				cmd = { "npx", "tailwindcss-language-server", "--stdio" },
+			})
 
-			lspconfig.biome.setup({})
+			-- vscode-langservers-extracted
+			lspconfig.jsonls.setup({})
+			lspconfig.cssls.setup({})
+			lspconfig.html.setup({})
 
-			-- Enable ESLint and apply auto lint-fix on save.
+			-- Enable ESLint. LSP format is handled by Conform.nvim.
 			lspconfig.eslint.setup({
-				on_attach = function(client, bufnr)
-					vim.api.nvim_create_autocmd("BufWritePre", {
-						buffer = bufnr,
-						command = "EslintFixAll",
-					})
-				end,
+				filetypes = {
+					"javascript",
+					"javascriptreact",
+					"typescript",
+					"typescriptreact",
+					"vue",
+					"html",
+					"markdown",
+					"json",
+					"jsonc",
+					"yaml",
+					"toml",
+					"xml",
+					"gql",
+					"graphql",
+					"astro",
+					"svelte",
+					"css",
+					"less",
+					"scss",
+					"pcss",
+					"postcss",
+				},
+				settings = {
+					rulesCustomizations = {
+						{ rule = "style/*", severity = "off", fixable = true },
+						{ rule = "format/*", severity = "off", fixable = true },
+						{ rule = "*-indent", severity = "off", fixable = true },
+						{ rule = "*-spacing", severity = "off", fixable = true },
+						{ rule = "*-spaces", severity = "off", fixable = true },
+						{ rule = "*-order", severity = "off", fixable = true },
+						{ rule = "*-dangle", severity = "off", fixable = true },
+						{ rule = "*-newline", severity = "off", fixable = true },
+						{ rule = "*quotes", severity = "off", fixable = true },
+						{ rule = "*semi", severity = "off", fixable = true },
+					},
+				},
 			})
 		end,
 	},
