@@ -91,4 +91,10 @@ return {
 			vim.keymap.set("n", "<c-n>", "<Plug>(YankyNextEntry)")
 		end,
 	},
+	{
+		"windwp/nvim-ts-autotag",
+		-- lazy loading is not particularly necessary for this plugin.
+		-- nvim-ts-autotag is efficient in choosing when it needs to load
+		opts = {},
+	},
 }
