@@ -20,7 +20,7 @@ return {
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		opts = {
 			options = {
-				theme = "solarized",
+				theme = "ayu",
 				component_separators = { left = "|", right = "|" },
 				section_separators = { left = "", right = "" },
 			},
