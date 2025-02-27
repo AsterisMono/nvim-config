@@ -120,4 +120,10 @@ return {
 			server = { override = false },
 		}, -- your configuration
 	},
+	-- rust
+	{
+		"mrcjkb/rustaceanvim",
+		version = "^5",
+		lazy = false,
+	},
 }
