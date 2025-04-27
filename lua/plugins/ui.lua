@@ -45,9 +45,10 @@ return {
 		end,
 		keys = generate_bufferline_mappings(),
 		config = function()
-			local highlights = require("rose-pine.plugins.bufferline")
-			require("bufferline").setup({
+			local bufferline = require("bufferline")
+			bufferline.setup({
 				options = {
+					style_preset = bufferline.style_preset.minimal,
 					numbers = function(opts)
 						return string.format("%s", opts.ordinal)
 					end,
@@ -61,7 +62,6 @@ return {
 						return " " .. icon .. count
 					end,
 				},
-				highlights = highlights,
 			})
 		end,
 	},

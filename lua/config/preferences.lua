@@ -14,6 +14,9 @@ vim.g.loaded_netrwPlugin = 1
 vim.scriptencoding = "utf-8"
 vim.opt.fileencoding = "utf-8"
 
+-- Disable fillchars
+vim.opt.fillchars = "eob: "
+
 -- Vim options
 vim.opt.number = true -- Show line numbers
 vim.opt.relativenumber = true -- Show relative line numbers
@@ -62,7 +65,7 @@ vim.opt.signcolumn = "yes" -- Prevent gutter from moving
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 -- Themes and colorschemes
-vim.opt.background = "dark"
+vim.opt.background = "light"
 
 -- Auto save on focus lost
 vim.cmd("autocmd FocusLost * :wa")
