@@ -20,7 +20,7 @@ return {
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		opts = {
 			options = {
-				theme = "solarized",
+				theme = "rose-pine",
 				component_separators = { left = "|", right = "|" },
 				section_separators = { left = "", right = "" },
 			},
@@ -30,7 +30,7 @@ return {
 	-- Top: buffer line
 	{
 		"akinsho/nvim-bufferline.lua",
-		event = "UIEnter",
+		event = "ColorScheme",
 		init = function()
 			vim.keymap.set("n", "<S-l>", "<cmd>BufferLineCycleNext<CR>")
 			vim.keymap.set("n", "<S-h>", "<cmd>BufferLineCyclePrev<CR>")
@@ -43,23 +43,27 @@ return {
 			vim.keymap.set("n", "<leader>bo", "<cmd>BufferLineCloseOthers<CR>", { desc = "Close others" })
 			vim.keymap.set("n", "<leader>bP", "<cmd>BufferLineGroupClose ungrouped<CR>", { desc = "Close unpinned" })
 		end,
-		opts = {
-			options = {
-				numbers = function(opts)
-					return string.format("%s", opts.ordinal)
-				end,
-				always_show_bufferline = false,
-				show_buffer_close_icons = false,
-				show_close_icon = false,
-				diagnostics = "nvim_lsp",
-				color_icons = true,
-				diagnostics_indicator = function(count, level)
-					local icon = level:match("error") and " " or " "
-					return " " .. icon .. count
-				end,
-			},
-		},
 		keys = generate_bufferline_mappings(),
+		config = function()
+			local highlights = require("rose-pine.plugins.bufferline")
+			require("bufferline").setup({
+				options = {
+					numbers = function(opts)
+						return string.format("%s", opts.ordinal)
+					end,
+					always_show_bufferline = false,
+					show_buffer_close_icons = false,
+					show_close_icon = false,
+					diagnostics = "nvim_lsp",
+					color_icons = true,
+					diagnostics_indicator = function(count, level)
+						local icon = level:match("error") and " " or " "
+						return " " .. icon .. count
+					end,
+				},
+				highlights = highlights,
+			})
+		end,
 	},
 	-- Dressing: nvim UI enhancements
 	{

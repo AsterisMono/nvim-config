@@ -1,18 +1,8 @@
 return {
-	"maxmx03/solarized.nvim",
+	"rose-pine/neovim",
 	lazy = false,
 	priority = 1000,
-	---@type solarized.config
-	opts = {
-		error_lens = {
-			text = true,
-			symbol = true,
-		},
-	},
 	config = function(_, opts)
-		vim.o.termguicolors = true
-		vim.o.background = "light"
-		require("solarized").setup(opts)
-		vim.cmd.colorscheme("solarized")
+		vim.cmd.colorscheme("rose-pine-dawn")
 	end,
 }
