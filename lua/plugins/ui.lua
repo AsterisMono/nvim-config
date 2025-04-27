@@ -149,12 +149,14 @@ return {
 	{
 		"akinsho/toggleterm.nvim",
 		version = "*",
-		opts = {
-			open_mapping = "<C-`>",
-			insert_mappings = true,
-			terminal_mappings = true,
-		},
 		init = function()
+			local highlights = require("rose-pine.plugins.toggleterm")
+			require("toggleterm").setup({
+				open_mapping = "<C-`>",
+				insert_mappings = true,
+				terminal_mappings = true,
+				highlights = highlights,
+			})
 			function _G.set_terminal_keymaps()
 				local opts = { buffer = 0 }
 				vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], opts)
