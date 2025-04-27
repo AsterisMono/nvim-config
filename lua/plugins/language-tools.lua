@@ -32,7 +32,7 @@ return {
 				json = { "prettier", lsp_format = "first" },
 				html = { "prettier", lsp_format = "first" },
 				lua = { "stylua" },
-				nix = { "nixpkgs_fmt" },
+				nix = { "nixfmt" },
 			},
 			format_on_save = { timeout_ms = 500 },
 		},
