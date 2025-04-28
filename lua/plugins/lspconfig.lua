@@ -1,137 +1,152 @@
 return {
 	-- Autocompletion
 	{
-		"hrsh7th/nvim-cmp",
-		event = "InsertEnter",
-		dependencies = {
-			{ "hrsh7th/cmp-buffer" },
-			{ "hrsh7th/cmp-path" },
-			{ "hrsh7th/cmp-cmdline" },
-			{ "hrsh7th/cmp-nvim-lsp" },
-			{ "onsails/lspkind.nvim" },
-		},
-		config = function()
-			local cmp = require("cmp")
-			local lspkind = require("lspkind")
-			local tailwind = require("tailwind-tools.cmp")
+		"saghen/blink.cmp",
+		dependencies = { "rafamadriz/friendly-snippets" },
+		version = "1.*",
+		build = "nix run .#build-plugin",
 
-			cmp.setup({
-				sources = {
-					{ name = "nvim_lsp" },
-					{ name = "buffer" },
-					{ name = "path" },
-				},
-				formatting = {
-					format = lspkind.cmp_format({
-						mode = "text",
-						before = tailwind.lspkind_format,
-					}),
-				},
-				mapping = cmp.mapping.preset.insert({
-					["<CR>"] = cmp.mapping.confirm({ select = true }),
-					["<Tab>"] = cmp.mapping.confirm({ select = true }),
-					["<C-Space>"] = cmp.mapping.complete(),
-					["<C-p>"] = cmp.mapping.select_prev_item({ behavior = "select" }),
-					["<C-n>"] = cmp.mapping.select_next_item({ behavior = "select" }),
-					["<C-u>"] = cmp.mapping.scroll_docs(-4),
-					["<C-d>"] = cmp.mapping.scroll_docs(4),
-				}),
-				snippet = {
-					expand = function(args)
-						vim.snippet.expand(args.body)
+		---@module 'blink.cmp'
+		---@type blink.cmp.Config
+		opts = {
+			-- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
+			-- 'super-tab' for mappings similar to vscode (tab to accept)
+			-- 'enter' for enter to accept
+			-- 'none' for no mappings
+			--
+			-- All presets have the following mappings:
+			-- C-space: Open menu or open docs if already open
+			-- C-n/C-p or Up/Down: Select next/previous item
+			-- C-e: Hide menu
+			-- C-k: Toggle signature help (if signature.enabled = true)
+			--
+			-- See :h blink-cmp-config-keymap for defining your own keymap
+			keymap = {
+				preset = "super-tab",
+				["<C-e>"] = { "show_documentation", "hide_documentation" },
+				["<CR>"] = {
+					function(cmp)
+						if cmp.snippet_active() then
+							return cmp.accept()
+						else
+							return cmp.select_and_accept()
+						end
 					end,
+					"snippet_forward",
+					"fallback",
 				},
-				-- Pre select first item
-				preselect = "item",
-				completion = {
-					completeopt = "menu,menuone,noinsert",
-				},
-			})
-		end,
+			},
+
+			signature = { enabled = true },
+
+			appearance = {
+				-- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+				-- Adjusts spacing to ensure icons are aligned
+				nerd_font_variant = "mono",
+			},
+
+			-- (Default) Only show the documentation popup when manually triggered
+			completion = {
+				documentation = { auto_show = false },
+			},
+
+			-- Default list of enabled providers defined so that you can extend it
+			-- elsewhere in your config, without redefining it, due to `opts_extend`
+			sources = {
+				default = { "lsp", "path", "snippets", "buffer" },
+			},
+
+			-- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
+			-- You may use a lua implementation instead by using `implementation = "lua"` or fallback to the lua implementation,
+			-- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
+			--
+			-- See the fuzzy documentation for more information
+			fuzzy = { implementation = "prefer_rust_with_warning" },
+		},
+		opts_extend = { "sources.default" },
 	},
 	-- LSP
 	{
 		"neovim/nvim-lspconfig",
 		cmd = "LspInfo",
 		event = { "BufReadPre", "BufNewFile" },
-		config = function()
-			local lsp_defaults = require("lspconfig").util.default_config
+		opts = {
+			servers = {
+				lua_ls = {},
+				nixd = {},
+				tailwindcss = {
+					cmd = { "npx", "tailwindcss-language-server", "--stdio" },
+				},
+				jsonls = {},
+				cssls = {},
+				html = {},
+				eslint = {
+					filetypes = {
+						"javascript",
+						"javascriptreact",
+						"typescript",
+						"typescriptreact",
+						"vue",
+						"html",
+						"markdown",
+						"json",
+						"jsonc",
+						"yaml",
+						"toml",
+						"xml",
+						"gql",
+						"graphql",
+						"astro",
+						"svelte",
+						"css",
+						"less",
+						"scss",
+						"pcss",
+						"postcss",
+					},
+					settings = {
+						rulesCustomizations = {
+							{ rule = "style/*", severity = "off", fixable = true },
+							{ rule = "format/*", severity = "off", fixable = true },
+							{ rule = "*-indent", severity = "off", fixable = true },
+							{ rule = "*-spacing", severity = "off", fixable = true },
+							{ rule = "*-spaces", severity = "off", fixable = true },
+							{ rule = "*-order", severity = "off", fixable = true },
+							{ rule = "*-dangle", severity = "off", fixable = true },
+							{ rule = "*-newline", severity = "off", fixable = true },
+							{ rule = "*quotes", severity = "off", fixable = true },
+							{ rule = "*semi", severity = "off", fixable = true },
+						},
+					},
+				},
+			},
+		},
+		config = function(_, opts)
+			local lspconfig = require("lspconfig")
 
-			-- Add cmp_nvim_lsp capabilities settings to lspconfig
-			-- This should be executed before you configure any language server
-			lsp_defaults.capabilities =
-				vim.tbl_deep_extend("force", lsp_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
-
+			for server, config in pairs(opts.servers) do
+				-- passing config.capabilities to blink.cmp merges with the capabilities in your
+				-- `opts[server].capabilities, if you've defined it
+				config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
+				lspconfig[server].setup(config)
+			end
 			-- LspAttach is where you enable features that only work
 			-- if there is a language server active in the file
 			vim.api.nvim_create_autocmd("LspAttach", {
 				desc = "LSP actions",
 				callback = function(event)
-					local opts = { buffer = event.buf }
+					local keymap_opts = { buffer = event.buf }
 
-					vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
-					vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
-					vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
-					vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
-					vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
-					vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
-					vim.keymap.set("n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
-					vim.keymap.set("n", "<leader>lR", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
-					vim.keymap.set("n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
+					vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", keymap_opts)
+					vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", keymap_opts)
+					vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", keymap_opts)
+					vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", keymap_opts)
+					vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", keymap_opts)
+					vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", keymap_opts)
+					vim.keymap.set("n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", keymap_opts)
+					vim.keymap.set("n", "<leader>lR", "<cmd>lua vim.lsp.buf.references()<cr>", keymap_opts)
+					vim.keymap.set("n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", keymap_opts)
 				end,
-			})
-			local lspconfig = require("lspconfig")
-
-			lspconfig.lua_ls.setup({})
-			lspconfig.nixd.setup({})
-			lspconfig.tailwindcss.setup({
-				cmd = { "npx", "tailwindcss-language-server", "--stdio" },
-			})
-
-			-- vscode-langservers-extracted
-			lspconfig.jsonls.setup({})
-			lspconfig.cssls.setup({})
-			lspconfig.html.setup({})
-
-			-- Enable ESLint. LSP format is handled by Conform.nvim.
-			lspconfig.eslint.setup({
-				filetypes = {
-					"javascript",
-					"javascriptreact",
-					"typescript",
-					"typescriptreact",
-					"vue",
-					"html",
-					"markdown",
-					"json",
-					"jsonc",
-					"yaml",
-					"toml",
-					"xml",
-					"gql",
-					"graphql",
-					"astro",
-					"svelte",
-					"css",
-					"less",
-					"scss",
-					"pcss",
-					"postcss",
-				},
-				settings = {
-					rulesCustomizations = {
-						{ rule = "style/*", severity = "off", fixable = true },
-						{ rule = "format/*", severity = "off", fixable = true },
-						{ rule = "*-indent", severity = "off", fixable = true },
-						{ rule = "*-spacing", severity = "off", fixable = true },
-						{ rule = "*-spaces", severity = "off", fixable = true },
-						{ rule = "*-order", severity = "off", fixable = true },
-						{ rule = "*-dangle", severity = "off", fixable = true },
-						{ rule = "*-newline", severity = "off", fixable = true },
-						{ rule = "*quotes", severity = "off", fixable = true },
-						{ rule = "*semi", severity = "off", fixable = true },
-					},
-				},
 			})
 		end,
 	},
