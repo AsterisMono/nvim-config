@@ -41,7 +41,12 @@ return {
 				},
 			},
 
-			signature = { enabled = true },
+			signature = {
+				enabled = true,
+				window = {
+					show_documentation = true,
+				},
+			},
 
 			appearance = {
 				-- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
@@ -51,7 +56,13 @@ return {
 
 			-- (Default) Only show the documentation popup when manually triggered
 			completion = {
-				documentation = { auto_show = false },
+				-- Show documentation when selecting a completion item
+				documentation = { auto_show = true, auto_show_delay_ms = 500 },
+				list = {
+					selection = {
+						auto_insert = false,
+					},
+				},
 			},
 
 			-- Default list of enabled providers defined so that you can extend it
@@ -68,6 +79,22 @@ return {
 			fuzzy = { implementation = "prefer_rust_with_warning" },
 		},
 		opts_extend = { "sources.default" },
+		config = function(_, opts)
+			local cmp = require("blink.cmp")
+			cmp.setup(opts)
+			-- Show signature help after completion
+			vim.api.nvim_create_autocmd("User", {
+				pattern = "BlinkCmpAccept",
+				callback = function(ev)
+					local item = ev.data.item
+					if item.kind == require("blink.cmp.types").CompletionItemKind.Function then
+						vim.defer_fn(function()
+							require("blink.cmp").show_signature()
+						end, 10)
+					end
+				end,
+			})
+		end,
 	},
 	-- LSP
 	{
