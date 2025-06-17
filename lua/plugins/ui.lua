@@ -1,27 +1,3 @@
-local function generate_bufferline_mappings()
-	local mappings = {}
-	for i = 1, 9 do
-		table.insert(mappings, {
-			string.format("<A-%d>", i),
-			function()
-				local bufs = vim.fn.getbufinfo({ buflisted = 1 })
-				local current = vim.api.nvim_get_current_buf()
-				local target = bufs[i] and bufs[i].bufnr
-
-				if target then
-					if target == current then
-						vim.cmd("b#")
-					else
-						require("bufferline").go_to(i, true)
-					end
-				end
-			end,
-			silent = true,
-		})
-	end
-	return mappings
-end
-
 return {
 	-- Bottom: status line
 	{
@@ -36,45 +12,6 @@ return {
 			},
 			extensions = { "nvim-tree" },
 		},
-	},
-	-- Top: buffer line
-	{
-		"akinsho/nvim-bufferline.lua",
-		event = "ColorScheme",
-		init = function()
-			vim.keymap.set("n", "<S-l>", "<cmd>BufferLineCycleNext<CR>")
-			vim.keymap.set("n", "<S-h>", "<cmd>BufferLineCyclePrev<CR>")
-			vim.keymap.set("n", "X", "<cmd>bdelete<CR>", { desc = "Close tab" })
-			vim.keymap.set("n", "<leader>bx", "<cmd>BufferLinePickClose<CR>", { desc = "Pick to close" })
-			vim.keymap.set("n", "<leader>bp", "<cmd>BufferLineTogglePin<CR>", { desc = "Pin buffer" })
-			-- bh, bl: close buffer to the left/right, bo: close all but current buffer
-			vim.keymap.set("n", "<leader>bl", "<cmd>BufferLineCloseRight<CR>", { desc = "Close to the right" })
-			vim.keymap.set("n", "<leader>bh", "<cmd>BufferLineCloseLeft<CR>", { desc = "Close to the left" })
-			vim.keymap.set("n", "<leader>bo", "<cmd>BufferLineCloseOthers<CR>", { desc = "Close others" })
-			vim.keymap.set("n", "<leader>bP", "<cmd>BufferLineGroupClose ungrouped<CR>", { desc = "Close unpinned" })
-			vim.keymap.set("n", "<C-Tab>", "<cmd>b#<CR>", { desc = "Buffer jump" })
-		end,
-		keys = generate_bufferline_mappings(),
-		config = function()
-			local bufferline = require("bufferline")
-			bufferline.setup({
-				options = {
-					style_preset = bufferline.style_preset.minimal,
-					numbers = function(opts)
-						return string.format("%s", opts.ordinal)
-					end,
-					always_show_bufferline = false,
-					show_buffer_close_icons = false,
-					show_close_icon = false,
-					diagnostics = "nvim_lsp",
-					color_icons = true,
-					diagnostics_indicator = function(count, level)
-						local icon = level:match("error") and " " or " "
-						return " " .. icon .. count
-					end,
-				},
-			})
-		end,
 	},
 	-- Dressing: nvim UI enhancements
 	{
