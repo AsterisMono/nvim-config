@@ -19,7 +19,6 @@ vim.opt.fillchars = "eob: "
 
 -- Vim options
 vim.opt.number = true -- Show line numbers
-vim.opt.relativenumber = true -- Show relative line numbers
 vim.opt.autoindent = true -- Auto indent
 vim.opt.smartindent = true -- Smart indent
 
