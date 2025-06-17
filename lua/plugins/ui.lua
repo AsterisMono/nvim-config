@@ -76,6 +76,7 @@ return {
 			wk.add({ "<leader>g", group = "Git" })
 			wk.add({ "<leader>s", group = "Sessions" })
 			wk.add({ "<leader>b", group = "Buffers" })
+			wk.add({ "'g", group = "Telescope Git" })
 		end,
 	},
 	-- Git blame
