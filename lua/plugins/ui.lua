@@ -4,7 +4,17 @@ local function generate_bufferline_mappings()
 		table.insert(mappings, {
 			string.format("<A-%d>", i),
 			function()
-				require("bufferline").go_to(i, true)
+				local bufs = vim.fn.getbufinfo({ buflisted = 1 })
+				local current = vim.api.nvim_get_current_buf()
+				local target = bufs[i] and bufs[i].bufnr
+
+				if target then
+					if target == current then
+						vim.cmd("b#")
+					else
+						require("bufferline").go_to(i, true)
+					end
+				end
 			end,
 			silent = true,
 		})
@@ -42,6 +52,7 @@ return {
 			vim.keymap.set("n", "<leader>bh", "<cmd>BufferLineCloseLeft<CR>", { desc = "Close to the left" })
 			vim.keymap.set("n", "<leader>bo", "<cmd>BufferLineCloseOthers<CR>", { desc = "Close others" })
 			vim.keymap.set("n", "<leader>bP", "<cmd>BufferLineGroupClose ungrouped<CR>", { desc = "Close unpinned" })
+			vim.keymap.set("n", "<C-Tab>", "<cmd>b#<CR>", { desc = "Buffer jump" })
 		end,
 		keys = generate_bufferline_mappings(),
 		config = function()
