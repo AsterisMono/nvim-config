@@ -14,4 +14,25 @@ return {
 		{ "'j", "<cmd>Telescope jumplist<CR>", desc = "Jumplist" },
 		{ "'lr", "<cmd>Telescope lsp_references<CR>", desc = "LSP references" },
 	},
+	config = function()
+		local actions = require("telescope.actions")
+		require("telescope").setup({
+			defaults = {
+				mappings = {
+					i = {
+						["<Esc>"] = actions.close,
+					},
+				},
+			},
+			pickers = {
+				buffers = {
+					mappings = {
+						i = {
+							["<c-d>"] = actions.delete_buffer + actions.move_to_top,
+						},
+					},
+				},
+			},
+		})
+	end,
 }
