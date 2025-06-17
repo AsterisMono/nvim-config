@@ -13,6 +13,9 @@ return {
 		{ "'gs", "<cmd>Telescope git_status<CR>", desc = "Git status" },
 		{ "'j", "<cmd>Telescope jumplist<CR>", desc = "Jumplist" },
 		{ "'lr", "<cmd>Telescope lsp_references<CR>", desc = "LSP references" },
+		{ "'d", "<cmd>Telescope diagnostics<CR>", desc = "Diagnostics" },
+		{ "'D", "<cmd>Telescope diagnostics bufnr=0<CR>", desc = "Buffer diagnostics" },
+		{ "'o", "<cmd>Telescope oldfiles<CR>", desc = "Oldfiles" },
 	},
 	config = function()
 		local actions = require("telescope.actions")
