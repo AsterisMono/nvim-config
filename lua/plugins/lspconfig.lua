@@ -167,16 +167,39 @@ return {
 				desc = "LSP actions",
 				callback = function(event)
 					local keymap_opts = { buffer = event.buf }
+					local function with_desc(desc)
+						return vim.tbl_extend("force", keymap_opts, { desc = desc })
+					end
 
-					vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", keymap_opts)
-					vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", keymap_opts)
-					vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", keymap_opts)
-					vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", keymap_opts)
-					vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", keymap_opts)
-					vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", keymap_opts)
-					vim.keymap.set("n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", keymap_opts)
-					vim.keymap.set("n", "<leader>lR", "<cmd>lua vim.lsp.buf.references()<cr>", keymap_opts)
-					vim.keymap.set("n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", keymap_opts)
+					vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", with_desc("Hover"))
+					vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", with_desc("Go to definition"))
+					vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", with_desc("Go to declaration"))
+					vim.keymap.set(
+						"n",
+						"gi",
+						"<cmd>lua vim.lsp.buf.implementation()<cr>",
+						with_desc("Find implementations")
+					)
+					vim.keymap.set(
+						"n",
+						"go",
+						"<cmd>lua vim.lsp.buf.type_definition()<cr>",
+						with_desc("Go to type definition")
+					)
+					vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", with_desc("Signature help"))
+					vim.keymap.set("n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", with_desc("Rename"))
+					vim.keymap.set(
+						"n",
+						"<leader>lR",
+						"<cmd>lua vim.lsp.buf.references()<cr>",
+						with_desc("Find references")
+					)
+					vim.keymap.set(
+						"n",
+						"<leader>la",
+						"<cmd>lua vim.lsp.buf.code_action()<cr>",
+						with_desc("Code actions")
+					)
 				end,
 			})
 		end,
