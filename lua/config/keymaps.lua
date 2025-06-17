@@ -25,7 +25,3 @@ keymap.set("n", "<C-Up>", ":resize -2<CR>", opts)
 keymap.set("n", "<C-Down>", ":resize +2<CR>", opts)
 keymap.set("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", opts)
-
--- LSP Diagnostics
-keymap.set("n", "[e", vim.diagnostic.goto_prev)
-keymap.set("n", "]e", vim.diagnostic.goto_next)
