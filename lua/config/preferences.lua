@@ -8,8 +8,9 @@ vim.g.maplocalleader = ","
 require("config.keymaps")
 
 -- Disable netrw for nvim-tree
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+-- vim.g.loaded_netrw = 1
+-- vim.g.loaded_netrwPlugin = 1
+
 -- Encoding
 vim.scriptencoding = "utf-8"
 vim.opt.fileencoding = "utf-8"
