@@ -78,7 +78,6 @@ return {
 			wk.add({ "<leader>l", group = "LSP Actions" })
 			wk.add({ "<leader>g", group = "Git" })
 			wk.add({ "<leader>s", group = "Sessions" })
-			wk.add({ "<leader>b", group = "Buffers" })
 			wk.add({ "'g", group = "Telescope Git" })
 			wk.add({ "'l", group = "Telescope LSP" })
 		end,
