@@ -10,7 +10,14 @@ return {
 				component_separators = { left = "|", right = "|" },
 				section_separators = { left = "", right = "" },
 			},
-			extensions = { "nvim-tree" },
+			sections = {
+				lualine_a = { "mode" },
+				lualine_b = { "branch", "diff" },
+				lualine_c = { "filename" },
+				lualine_x = {},
+				lualine_y = {},
+				lualine_z = {},
+			},
 		},
 	},
 	-- Dressing: nvim UI enhancements
