@@ -122,6 +122,15 @@ return {
 		"akinsho/toggleterm.nvim",
 		version = "*",
 		init = function()
+			vim.api.nvim_create_autocmd("ExitPre", {
+				callback = function()
+					for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+						if vim.bo[buf].buftype == "terminal" and vim.api.nvim_buf_is_loaded(buf) then
+							vim.api.nvim_buf_delete(buf, { force = true })
+						end
+					end
+				end,
+			})
 			local highlights = require("rose-pine.plugins.toggleterm")
 			require("toggleterm").setup({
 				open_mapping = "<C-`>",

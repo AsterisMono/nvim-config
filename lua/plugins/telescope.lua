@@ -46,13 +46,25 @@ return {
 					file_browser = {
 						hijack_netrw = true,
 					},
+					just = {
+						action = function(command)
+							vim.cmd('TermExec cmd="' .. command .. '"')
+						end,
+					},
 				},
 			})
 			telescope.load_extension("file_browser")
+			telescope.load_extension("just")
 		end,
 	},
 	{
 		"nvim-telescope/telescope-file-browser.nvim",
 		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+	},
+	{
+		url = "https://codeberg.org/elfahor/telescope-just.nvim",
+		requires = {
+			"nvim-telescope/telescope.nvim",
+		},
 	},
 }
