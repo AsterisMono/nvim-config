@@ -20,8 +20,9 @@ return {
 			{ "'o", "<cmd>Telescope oldfiles<CR>", desc = "Oldfiles" },
 		},
 		config = function()
+			local telescope = require("telescope")
 			local actions = require("telescope.actions")
-			require("telescope").setup({
+			telescope.setup({
 				defaults = {
 					mappings = {
 						i = {
@@ -47,7 +48,7 @@ return {
 					},
 				},
 			})
-			require("telescope").load_extension("file_browser")
+			telescope.load_extension("file_browser")
 		end,
 	},
 	{
