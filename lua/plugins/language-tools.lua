@@ -103,6 +103,7 @@ return {
 	-- tailwind-tools.lua
 	{
 		"luckasRanarison/tailwind-tools.nvim",
+		ft = { "typescriptreact", "javascriptreact", "html" },
 		name = "tailwind-tools",
 		build = ":UpdateRemotePlugins",
 		dependencies = {

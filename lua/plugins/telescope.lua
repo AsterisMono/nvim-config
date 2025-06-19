@@ -18,6 +18,7 @@ return {
 			{ "'d", "<cmd>Telescope diagnostics<CR>", desc = "Diagnostics" },
 			{ "'D", "<cmd>Telescope diagnostics bufnr=0<CR>", desc = "Buffer diagnostics" },
 			{ "'o", "<cmd>Telescope oldfiles<CR>", desc = "Oldfiles" },
+			{ "'J", "<cmd>Telescope just<CR>", desc = "Just" },
 		},
 		config = function()
 			local telescope = require("telescope")
@@ -59,10 +60,12 @@ return {
 	},
 	{
 		"nvim-telescope/telescope-file-browser.nvim",
+		lazy = true,
 		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
 	},
 	{
 		url = "https://codeberg.org/elfahor/telescope-just.nvim",
+		lazy = true,
 		requires = {
 			"nvim-telescope/telescope.nvim",
 		},
