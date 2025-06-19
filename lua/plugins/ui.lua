@@ -94,9 +94,9 @@ return {
 			wk.add({ "<leader>l", group = "LSP Actions" })
 			wk.add({ "<leader>g", group = "Git" })
 			wk.add({ "<leader>s", group = "Sessions" })
+			wk.add({ "<leader>t", group = "Tabs" })
 			wk.add({ "'g", group = "Telescope Git" })
 			wk.add({ "'l", group = "Telescope LSP" })
-			wk.add({ "'t", group = "Tabs" })
 		end,
 	},
 	-- Git blame
