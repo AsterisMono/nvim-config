@@ -84,6 +84,7 @@ return {
 			wk.add({ "<leader>s", group = "Sessions" })
 			wk.add({ "'g", group = "Telescope Git" })
 			wk.add({ "'l", group = "Telescope LSP" })
+			wk.add({ "'t", group = "Tabs" })
 		end,
 	},
 	-- Git blame
@@ -151,6 +152,75 @@ return {
 				vim.keymap.set("t", "<C-w>", [[<C-\><C-n><C-w>]], opts)
 			end
 			vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
+		end,
+	},
+	{
+		"nanozuki/tabby.nvim",
+		init = function()
+			vim.o.showtabline = 2
+		end,
+		config = function()
+			local theme = {
+				fill = "TabLineFill",
+				head = "TabLine",
+				current_tab = "TabLineSel",
+				tab = "TabLine",
+				win = "TabLine",
+				current_win = { style = "bold" },
+				tail = "TabLine",
+			}
+			vim.api.nvim_set_keymap("n", "<leader>tn", ":$tabnew<CR>", { desc = "New tab", noremap = true })
+			vim.api.nvim_set_keymap("n", "<leader>tc", ":tabclose<CR>", { desc = "Close tab", noremap = true })
+			vim.api.nvim_set_keymap("n", "<leader>to", ":tabonly<CR>", { desc = "Close other tabs", noremap = true })
+			-- move current tab to previous position
+			vim.api.nvim_set_keymap("n", "<leader>tmp", ":-tabmove<CR>", { desc = "Move tab to next", noremap = true })
+			-- move current tab to next position
+			vim.api.nvim_set_keymap("n", "<leader>tmn", ":+tabmove<CR>", { desc = "Move tab to prev", noremap = true })
+			for i = 1, 9 do
+				vim.keymap.set("n", "<A-" .. i .. ">", function()
+					vim.cmd(i .. "tabnext")
+				end)
+			end
+			require("tabby").setup({
+				line = function(line)
+					return {
+						{
+							{ " 󱄅 ", hl = theme.head },
+							line.sep("", theme.head, theme.fill),
+						},
+						line.tabs().foreach(function(tab)
+							local hl = tab.is_current() and theme.current_tab or theme.tab
+							return {
+								line.sep("", hl, theme.fill),
+								tab.number(),
+								tab.name(),
+								line.sep("", hl, theme.fill),
+								hl = hl,
+								margin = " ",
+							}
+						end),
+						line.spacer(),
+						line.wins_in_tab(line.api.get_current_tab()).foreach(function(win)
+							local hl = win.is_current() and theme.current_win or theme.win
+							return {
+								line.sep("", theme.win, theme.fill),
+								{
+									win.buf_name(),
+									hl = hl,
+								},
+								line.sep("", theme.win, theme.fill),
+								hl = theme.win,
+								margin = " ",
+							}
+						end),
+						{
+							line.sep("", theme.tail, theme.fill),
+							{ "  ", hl = theme.tail },
+						},
+						hl = theme.fill,
+					}
+				end,
+			})
 		end,
 	},
 }

@@ -62,7 +62,7 @@ vim.opt.pumblend = 5 -- Popup menu transparency
 vim.opt.signcolumn = "yes" -- Prevent gutter from moving
 
 -- Recommended session options for auto-session
-vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions,globals"
 
 -- Themes and colorschemes
 vim.opt.background = "light"
