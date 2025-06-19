@@ -9,11 +9,23 @@ return {
 				theme = "rose-pine",
 				component_separators = { left = "|", right = "|" },
 				section_separators = { left = "", right = "" },
+				globalstatus = true,
 			},
 			sections = {
 				lualine_a = { "mode" },
 				lualine_b = { "branch", "diff" },
 				lualine_c = { "filename" },
+				lualine_x = {
+					{
+						"fileformat",
+						icons_enabled = true,
+						symbols = {
+							unix = "LF",
+							dos = "CRLF",
+							mac = "CR",
+						},
+					},
+				},
 			},
 		},
 	},
@@ -169,6 +181,25 @@ return {
 				current_win = { style = "bold" },
 				tail = "TabLine",
 			}
+			local modified_symbol = ""
+
+			local function buf_modified(buf)
+				if vim.bo[buf].modified then
+					return modified_symbol
+				else
+					return ""
+				end
+			end
+
+			local function tab_modified(tab)
+				local wins = require("tabby.module.api").get_tab_wins(tab)
+				for _, x in pairs(wins) do
+					if vim.bo[vim.api.nvim_win_get_buf(x)].modified then
+						return modified_symbol
+					end
+				end
+				return ""
+			end
 			vim.api.nvim_set_keymap("n", "<leader>tn", ":$tabnew<CR>", { desc = "New tab", noremap = true })
 			vim.api.nvim_set_keymap("n", "<leader>tc", ":tabclose<CR>", { desc = "Close tab", noremap = true })
 			vim.api.nvim_set_keymap("n", "<leader>to", ":tabonly<CR>", { desc = "Close other tabs", noremap = true })
@@ -194,6 +225,7 @@ return {
 								line.sep("", hl, theme.fill),
 								tab.number(),
 								tab.name(),
+								tab_modified(tab.id),
 								line.sep("", hl, theme.fill),
 								hl = hl,
 								margin = " ",
@@ -208,6 +240,7 @@ return {
 									win.buf_name(),
 									hl = hl,
 								},
+								buf_modified(win.buf().id),
 								line.sep("", theme.win, theme.fill),
 								hl = theme.win,
 								margin = " ",
