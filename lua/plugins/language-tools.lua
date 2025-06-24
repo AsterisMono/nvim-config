@@ -33,6 +33,7 @@ return {
 				html = { "prettier", lsp_format = "first" },
 				lua = { "stylua" },
 				nix = { "nixfmt" },
+				rust = { "rustfmt", lsp_format = "fallback" },
 			},
 			format_on_save = { timeout_ms = 500 },
 		},
@@ -116,7 +117,20 @@ return {
 	-- rust
 	{
 		"mrcjkb/rustaceanvim",
-		version = "^5",
+		version = "^6",
 		lazy = false,
+		init = function()
+			vim.g.rustaceanvim = {
+				server = {
+					default_settings = {
+						["rust-analyzer"] = {
+							files = {
+								exclude = { ".direnv", ".devenv", "node_modules" },
+							},
+						},
+					},
+				},
+			}
+		end,
 	},
 }
