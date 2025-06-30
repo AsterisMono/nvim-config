@@ -31,7 +31,7 @@ vim.opt.backup = false -- No backup files
 -- ]]
 vim.opt.showcmd = true -- Show command in bottom bar
 vim.opt.cmdheight = 1 -- Height of the command bar
-vim.opt.laststatus = 2 -- Always display the status line
+vim.opt.laststatus = 3 -- Always display the status line
 vim.opt.expandtab = true -- Use spaces instead of tabs
 vim.opt.scrolloff = 10 -- Lines of context
 vim.opt.shell = "fish" -- Shell to use

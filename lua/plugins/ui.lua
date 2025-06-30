@@ -95,6 +95,7 @@ return {
 			wk.add({ "<leader>g", group = "Git" })
 			wk.add({ "<leader>s", group = "Sessions" })
 			wk.add({ "<leader>t", group = "Tabs" })
+			wk.add({ "<leader>a", group = "Avante" })
 			wk.add({ "'g", group = "Telescope Git" })
 			wk.add({ "'l", group = "Telescope LSP" })
 		end,
@@ -109,11 +110,13 @@ return {
 	},
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
-		ft = { "markdown" },
 		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
 		---@module 'render-markdown'
 		---@type render.md.UserConfig
-		opts = {},
+		opts = {
+			file_types = { "markdown", "Avante" },
+		},
+		ft = { "markdown", "Avante" },
 	},
 	{
 		"kdheepak/lazygit.nvim",

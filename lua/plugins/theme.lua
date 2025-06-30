@@ -25,6 +25,9 @@ return {
 				BlinkCmpDocSeparator = { fg = "subtle", bg = "overlay" },
 				BlinkCmpSignatureHelp = { fg = "subtle", bg = "overlay" },
 				BlinkCmpSignatureBorder = { fg = "overlay", bg = "overlay" },
+
+				DiffText = { fg = "text", bg = "#BDDEEB" },
+				DiffAdd = { fg = "text", bg = "#E9D2D9" },
 			},
 		})
 		vim.cmd.colorscheme("rose-pine")
