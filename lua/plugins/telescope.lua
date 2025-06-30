@@ -5,7 +5,6 @@ return {
 		version = false,
 		keys = {
 			{ "'f", "<cmd>Telescope find_files<CR>", desc = "Find files" },
-			{ "'F", "<cmd>Telescope file_browser<CR>", desc = "File browser" },
 			{ "'r", "<cmd>Telescope live_grep<CR>", desc = "Live grep" },
 			{ "'R", "<cmd>Telescope current_buffer_fuzzy_find<CR>", desc = "Grep in current file" },
 			{ "'b", "<cmd>Telescope buffers<CR>", desc = "Buffers" },
@@ -59,11 +58,6 @@ return {
 			telescope.load_extension("just")
 			telescope.load_extension("telescope-tabs")
 		end,
-	},
-	{
-		"nvim-telescope/telescope-file-browser.nvim",
-		lazy = true,
-		dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
 	},
 	{
 		url = "https://codeberg.org/elfahor/telescope-just.nvim",
