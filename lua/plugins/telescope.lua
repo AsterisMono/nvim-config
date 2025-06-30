@@ -54,7 +54,6 @@ return {
 					},
 				},
 			})
-			telescope.load_extension("file_browser")
 			telescope.load_extension("just")
 			telescope.load_extension("telescope-tabs")
 		end,
