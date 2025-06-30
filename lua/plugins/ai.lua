@@ -20,6 +20,36 @@ return {
 				},
 			},
 		},
+		keys = {
+			{
+				"<leader>aF",
+				function()
+					local avante_add_files = function(files)
+						local sidebar = require("avante").get()
+
+						local open = sidebar:is_open()
+
+						if not open then
+							require("avante.api").ask()
+							sidebar = require("avante").get()
+						end
+
+						for _, filepath in pairs(files) do
+							local relative_path = require("avante.utils").relative_path(filepath)
+							sidebar.file_selector:add_selected_file(relative_path)
+						end
+					end
+					require("yazi").yazi({
+						hooks = {
+							yazi_opened_multiple_files = function(chosen_files, config, state)
+								avante_add_files(chosen_files)
+							end,
+						},
+					})
+				end,
+				desc = "avante: add files via yazi",
+			},
+		},
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"MunifTanjim/nui.nvim",
