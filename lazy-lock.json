@@ -1,7 +1,7 @@
 {
   "ReplaceWithRegister": { "branch": "master", "commit": "832efc23111d19591d495dc72286de2fb0b09345" },
   "auto-session": { "branch": "main", "commit": "fffb13dcbe8731b8650e5bf1caa749a485d20556" },
-  "avante.nvim": { "branch": "main", "commit": "bc96007c76175317d5dada080aef589227f14b6e" },
+  "avante.nvim": { "branch": "main", "commit": "f523710e95bf2837d323005f6eb7300c7e3c4ed0" },
   "blame.nvim": { "branch": "main", "commit": "b87b8c820e4cec06fbbd2f946b7b35c45906ee0c" },
   "blink-cmp-avante": { "branch": "master", "commit": "5cf0854b065073083de72d9a988cff1c4b419148" },
   "blink.cmp": { "branch": "main", "commit": "9bcb14b43852a6f2bfd5ac9ef29cb5cf09b1b39b" },
