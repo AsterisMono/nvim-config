@@ -24,6 +24,7 @@
             stylua
             nixfmt-rfc-style
             lua-language-server
+            just
           ];
         };
       }
