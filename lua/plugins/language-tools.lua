@@ -33,6 +33,8 @@ return {
 				html = { "prettier", lsp_format = "first" },
 				lua = { "stylua" },
 				nix = { "nixfmt" },
+				yaml = { "yamlfmt" },
+				just = { "just" },
 				rust = { "rustfmt", lsp_format = "fallback" },
 			},
 			format_on_save = { timeout_ms = 500 },
