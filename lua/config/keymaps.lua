@@ -31,9 +31,13 @@ keymap.set("n", "<C-k>", "<C-w>k", opts)
 keymap.set("n", "<C-l>", "<C-w>l", opts)
 keymap.set("n", "<C-q>", direction_aware_split, opts)
 
--- Resize windows with arrows
+-- Resize windows with c-arrows
 -- delta: 2 lines
 keymap.set("n", "<C-Up>", ":resize -2<CR>", opts)
 keymap.set("n", "<C-Down>", ":resize +2<CR>", opts)
 keymap.set("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", opts)
+
+-- Move screen around with arrows
+keymap.set("n", "<Up>", "<C-y>", opts)
+keymap.set("n", "<Down>", "<C-e>", opts)
