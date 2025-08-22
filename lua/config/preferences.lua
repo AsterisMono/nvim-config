@@ -89,3 +89,35 @@ vim.diagnostic.config({
 		},
 	},
 })
+
+-- Neovide
+if vim.g.neovide then
+	vim.o.guifont = "FiraCode Nerd Font:h13:style=Retina"
+	vim.g.neovide_opacity = 0.9
+
+	local function set_ime(args)
+		if args.event:match("Enter$") then
+			vim.g.neovide_input_ime = true
+		else
+			vim.g.neovide_input_ime = false
+		end
+	end
+
+	local ime_input = vim.api.nvim_create_augroup("ime_input", { clear = true })
+
+	vim.api.nvim_create_autocmd({ "InsertEnter", "InsertLeave" }, {
+		group = ime_input,
+		pattern = "*",
+		callback = set_ime,
+	})
+
+	vim.api.nvim_create_autocmd({ "CmdlineEnter", "CmdlineLeave" }, {
+		group = ime_input,
+		pattern = "[/\\?]",
+		callback = set_ime,
+	})
+
+	vim.g.neovide_cursor_animation_length = 0
+	vim.g.neovide_cursor_short_animation_length = 0
+	vim.g.neovide_scroll_animation_length = 0.1
+end
