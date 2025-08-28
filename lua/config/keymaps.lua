@@ -41,3 +41,7 @@ keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 -- Move screen around with arrows
 keymap.set("n", "<Up>", "<C-y>", opts)
 keymap.set("n", "<Down>", "<C-e>", opts)
+
+-- Quick pasting
+keymap.set("n", "<C-S-v>", '"+p', opts)
+keymap.set("n", "<C-S-A-v>", 'o<Esc>"+p', opts)
