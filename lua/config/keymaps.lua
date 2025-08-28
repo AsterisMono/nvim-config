@@ -42,6 +42,7 @@ keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 keymap.set("n", "<Up>", "<C-y>", opts)
 keymap.set("n", "<Down>", "<C-e>", opts)
 
--- Quick pasting
+-- Quick copy & pasting
 keymap.set("n", "<C-S-v>", '"+p', opts)
 keymap.set("n", "<C-S-A-v>", 'o<Esc>"+p', opts)
+keymap.set("v", "<C-S-c>", '"+y', opts)
