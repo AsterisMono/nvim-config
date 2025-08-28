@@ -25,7 +25,7 @@ return {
 			end,
 			desc = "Search Session",
 		},
-		{ "<leader>sw", ":SessionSave<CR>", desc = "Save Session" },
-		{ "<leader>sd", ":Autosession delete<CR>", desc = "Delete Session" },
+		{ "<leader>sw", ":AutoSession save<CR>", desc = "Save Session" },
+		{ "<leader>sd", ":AutoSession delete<CR>", desc = "Delete Session" },
 	},
 }
