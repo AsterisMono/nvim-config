@@ -4,10 +4,6 @@ return {
 	priority = 1000,
 	config = function(_, opts)
 		require("rose-pine").setup({
-			styles = {
-				italic = false,
-				transparency = true,
-			},
 			highlight_groups = {
 				CurSearch = { fg = "base", bg = "leaf", inherit = false },
 				Search = { fg = "text", bg = "leaf", blend = 20, inherit = false },
