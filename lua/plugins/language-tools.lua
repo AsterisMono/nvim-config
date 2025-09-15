@@ -25,12 +25,12 @@ return {
 			formatters_by_ft = {
 				-- LSP formatter in ts/js/tsx/jsx is ESLint.
 				-- lsp_format = "first": ESLint, then prettier
-				typescript = { "prettier", lsp_format = "first" },
-				javascript = { "prettier", lsp_format = "first" },
-				typescriptreact = { "prettier", lsp_format = "first" },
-				javascriptreact = { "prettier", lsp_format = "first" },
-				json = { "prettier", lsp_format = "first" },
-				html = { "prettier", lsp_format = "first" },
+				typescript = { "prettier", lsp_format = "prefer" },
+				javascript = { "prettier", lsp_format = "prefer" },
+				typescriptreact = { "prettier", lsp_format = "prefer" },
+				javascriptreact = { "prettier", lsp_format = "prefer" },
+				json = { "prettier", lsp_format = "prefer" },
+				html = { "prettier", lsp_format = "prefer" },
 				lua = { "stylua" },
 				nix = { "nixfmt" },
 				yaml = { "yamlfmt" },
@@ -38,6 +38,9 @@ return {
 				rust = { "rustfmt", lsp_format = "fallback" },
 			},
 			format_on_save = { timeout_ms = 500 },
+			default_format_opts = {
+				lsp_format = "fallback",
+			},
 		},
 		init = function()
 			vim.api.nvim_create_autocmd("BufWritePre", {
