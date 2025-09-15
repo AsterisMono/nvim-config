@@ -1,3 +1,4 @@
+local keyOpts = { noremap = true, silent = true }
 return {
 	-- Bottom: status line
 	{
@@ -168,129 +169,124 @@ return {
 		end,
 	},
 	{
-		"nanozuki/tabby.nvim",
+		"romgrk/barbar.nvim",
+		dependencies = {
+			"lewis6991/gitsigns.nvim", -- OPTIONAL: for git status
+			"nvim-tree/nvim-web-devicons", -- OPTIONAL: for file icons
+		},
 		init = function()
-			vim.o.showtabline = 2
+			vim.g.barbar_auto_setup = false
+			local map = vim.api.nvim_set_keymap
+			-- Move to previous/next
+			map("n", "H", "<Cmd>BufferPrevious<CR>", keyOpts)
+			map("n", "L", "<Cmd>BufferNext<CR>", keyOpts)
+
+			-- Re-order to previous/next
+			map("n", "<A-H>", "<Cmd>BufferMovePrevious<CR>", keyOpts)
+			map("n", "<A-L>", "<Cmd>BufferMoveNext<CR>", keyOpts)
+
+			-- Goto buffer in position...
+			map("n", "<C-1>", "<Cmd>BufferGoto 1<CR>", keyOpts)
+			map("n", "<C-2>", "<Cmd>BufferGoto 2<CR>", keyOpts)
+			map("n", "<C-3>", "<Cmd>BufferGoto 3<CR>", keyOpts)
+			map("n", "<C-4>", "<Cmd>BufferGoto 4<CR>", keyOpts)
+			map("n", "<C-5>", "<Cmd>BufferGoto 5<CR>", keyOpts)
+			map("n", "<C-6>", "<Cmd>BufferGoto 6<CR>", keyOpts)
+			map("n", "<C-7>", "<Cmd>BufferGoto 7<CR>", keyOpts)
+			map("n", "<C-8>", "<Cmd>BufferGoto 8<CR>", keyOpts)
+			map("n", "<C-9>", "<Cmd>BufferGoto 9<CR>", keyOpts)
+			map("n", "<C-0>", "<Cmd>BufferLast<CR>", keyOpts)
+
+			-- Pin/unpin buffer
+			map("n", "<leader>bp", "<Cmd>BufferPin<CR>", keyOpts)
+
+			-- Close buffer
+			map("n", "X", "<Cmd>BufferClose<CR>", keyOpts)
+
+			-- Close commands
+			map("n", "<leader>bo", "<Cmd>BufferCloseAllButCurrentOrPinned<CR>", keyOpts)
+			map("n", "<leader>bO", "<Cmd>BufferCloseAllButCurrent<CR>", keyOpts)
+			map("n", "<leader>bh", "<Cmd>BufferCloseBuffersLeft<CR>", keyOpts)
+			map("n", "<leader>bl", "<Cmd>BufferCloseBuffersRight<CR>", keyOpts)
 		end,
+		opts = {
+			animation = false,
+			icons = {
+				buffer_index = true,
+				button = "",
+				modified = { button = "" },
+			},
+			sidebar_filetypes = {
+				NvimTree = true,
+			},
+		},
+		version = "^1.0.0", -- optional: only update when a new 1.x version is released
+	},
+	{
+		"nvim-tree/nvim-tree.lua",
+		lazy = false,
 		config = function()
-			local theme = {
-				fill = "TabLineFill",
-				head = "TabLine",
-				current_tab = "TabLineSel",
-				tab = "TabLine",
-				win = "TabLine",
-				current_win = { style = "bold" },
-				tail = "TabLine",
-			}
-			local modified_symbol = ""
+			local api = require("nvim-tree.api")
+			local function edit_or_open()
+				local node = api.tree.get_node_under_cursor()
 
-			local function buf_modified(buf)
-				if vim.bo[buf].modified then
-					return modified_symbol
+				if node.nodes ~= nil then
+					-- expand or collapse folder
+					api.node.open.edit()
 				else
-					return ""
+					-- open file
+					api.node.open.edit()
+					-- Close the tree if file was opened
+					api.tree.close()
 				end
 			end
 
-			local function tab_modified(tab)
-				local wins = require("tabby.module.api").get_tab_wins(tab)
-				for _, x in pairs(wins) do
-					if vim.bo[vim.api.nvim_win_get_buf(x)].modified then
-						return modified_symbol
-					end
+			-- open as vsplit on current node
+			local function open_bg()
+				local node = api.tree.get_node_under_cursor()
+
+				if node.nodes ~= nil then
+					-- expand or collapse folder
+					api.node.open.edit()
+				else
+					-- open file to buffer list
+					api.node.open.edit()
 				end
-				return ""
+
+				-- Finally refocus on tree if it was lost
+				api.tree.focus()
 			end
-			vim.api.nvim_set_keymap("n", "<leader>tn", ":$tabnew<CR>", { desc = "New tab", noremap = true })
-			vim.api.nvim_set_keymap("n", "<leader>tc", ":tabclose<CR>", { desc = "Close tab", noremap = true })
-			vim.api.nvim_set_keymap("n", "<leader>to", ":tabonly<CR>", { desc = "Close other tabs", noremap = true })
-			-- move current tab to previous position
-			vim.api.nvim_set_keymap("n", "<leader>tmp", ":-tabmove<CR>", { desc = "Move tab to next", noremap = true })
-			-- move current tab to next position
-			vim.api.nvim_set_keymap("n", "<leader>tmn", ":+tabmove<CR>", { desc = "Move tab to prev", noremap = true })
-			for i = 1, 9 do
-				vim.keymap.set("n", "<A-" .. i .. ">", function()
-					vim.cmd(i .. "tabnext")
-				end)
-			end
-			require("tabby").setup({
-				line = function(line)
-					return {
-						{
-							{ " 󱄅 ", hl = theme.head },
-							line.sep("", theme.head, theme.fill),
-						},
-						line.tabs().foreach(function(tab)
-							local hl = tab.is_current() and theme.current_tab or theme.tab
-							return {
-								line.sep("", hl, theme.fill),
-								tab.number(),
-								tab.name(),
-								tab_modified(tab.id),
-								line.sep("", hl, theme.fill),
-								hl = hl,
-								margin = " ",
-							}
-						end),
-						line.spacer(),
-						line.wins_in_tab(line.api.get_current_tab()).foreach(function(win)
-							local hl = win.is_current() and theme.current_win or theme.win
-							return {
-								line.sep("", theme.win, theme.fill),
-								{
-									win.buf_name(),
-									hl = hl,
-								},
-								buf_modified(win.buf().id),
-								line.sep("", theme.win, theme.fill),
-								hl = theme.win,
-								margin = " ",
-							}
-						end),
-						{
-							line.sep("", theme.tail, theme.fill),
-							{ "  ", hl = theme.tail },
-						},
-						hl = theme.fill,
-					}
+			require("nvim-tree").setup({
+				hijack_cursor = true,
+				sync_root_with_cwd = true,
+				respect_buf_cwd = true,
+				actions = {
+					open_file = {
+						quit_on_open = true,
+					},
+				},
+				on_attach = function(bufnr)
+					local function opts(desc)
+						return {
+							desc = "nvim-tree: " .. desc,
+							buffer = bufnr,
+							noremap = true,
+							silent = true,
+							nowait = true,
+						}
+					end
+					api.config.mappings.default_on_attach(bufnr)
+					-- on_attach
+					vim.keymap.set("n", "l", edit_or_open, opts("Edit Or Open"))
+					vim.keymap.set("n", "L", open_bg, opts("Open in new tab"))
+					vim.keymap.set("n", "h", api.tree.close, opts("Close"))
+					vim.keymap.set("n", "H", api.tree.collapse_all, opts("Collapse All"))
 				end,
 			})
 		end,
-	},
-	{
-		"mikavilpas/yazi.nvim",
-		event = "VeryLazy",
-		dependencies = {
-			{ "nvim-lua/plenary.nvim", lazy = true },
-		},
 		keys = {
-			-- 👇 in this section, choose your own keymappings!
-			{
-				"'F",
-				mode = { "n", "v" },
-				"<cmd>Yazi<cr>",
-				desc = "Open yazi at the current file",
-			},
-			{
-				-- Open in the current working directory
-				"<leader>y",
-				"<cmd>Yazi cwd<cr>",
-				desc = "Yazi",
-			},
+			{ "<C-'>", "<Cmd>NvimTreeToggle<CR>", keyOpts },
+			{ "'F", "<Cmd>NvimTreeFindFile<CR>", keyOpts },
 		},
-		---@type YaziConfig | {}
-		opts = {
-			-- if you want to open yazi instead of netrw, see below for more info
-			open_for_directories = false,
-			keymaps = {
-				show_help = "<f1>",
-			},
-		},
-		-- 👇 if you use `open_for_directories=true`, this is recommended
-		init = function()
-			-- More details: https://github.com/mikavilpas/yazi.nvim/issues/802
-			-- vim.g.loaded_netrw = 1
-			vim.g.loaded_netrwPlugin = 1
-		end,
 	},
 }

@@ -36,6 +36,7 @@ return {
 				yaml = { "yamlfmt" },
 				just = { "just" },
 				rust = { "rustfmt", lsp_format = "fallback" },
+				markdown = { "prettier", "injected" },
 			},
 			format_on_save = { timeout_ms = 500 },
 			default_format_opts = {
