@@ -1,4 +1,6 @@
-local keyOpts = { noremap = true, silent = true }
+local keyOpts = function(desc)
+	return { noremap = true, silent = true, desc = desc }
+end
 return {
 	-- Bottom: status line
 	{
@@ -97,6 +99,8 @@ return {
 			wk.add({ "<leader>s", group = "Sessions" })
 			wk.add({ "<leader>t", group = "Tabs" })
 			wk.add({ "<leader>a", group = "Avante" })
+			wk.add({ "<leader>b", group = "Buffer" })
+			wk.add({ "<leader>f", group = "File-tree" })
 			wk.add({ "'g", group = "Telescope Git" })
 			wk.add({ "'l", group = "Telescope LSP" })
 		end,
@@ -178,36 +182,41 @@ return {
 			vim.g.barbar_auto_setup = false
 			local map = vim.api.nvim_set_keymap
 			-- Move to previous/next
-			map("n", "H", "<Cmd>BufferPrevious<CR>", keyOpts)
-			map("n", "L", "<Cmd>BufferNext<CR>", keyOpts)
+			map("n", "H", "<Cmd>BufferPrevious<CR>", keyOpts("Next buffer"))
+			map("n", "L", "<Cmd>BufferNext<CR>", keyOpts("Prev buffer"))
 
 			-- Re-order to previous/next
-			map("n", "<A-H>", "<Cmd>BufferMovePrevious<CR>", keyOpts)
-			map("n", "<A-L>", "<Cmd>BufferMoveNext<CR>", keyOpts)
+			map("n", "<A-H>", "<Cmd>BufferMovePrevious<CR>", keyOpts("Move buffer to prev"))
+			map("n", "<A-L>", "<Cmd>BufferMoveNext<CR>", keyOpts("Move buffer to next"))
 
 			-- Goto buffer in position...
-			map("n", "<C-1>", "<Cmd>BufferGoto 1<CR>", keyOpts)
-			map("n", "<C-2>", "<Cmd>BufferGoto 2<CR>", keyOpts)
-			map("n", "<C-3>", "<Cmd>BufferGoto 3<CR>", keyOpts)
-			map("n", "<C-4>", "<Cmd>BufferGoto 4<CR>", keyOpts)
-			map("n", "<C-5>", "<Cmd>BufferGoto 5<CR>", keyOpts)
-			map("n", "<C-6>", "<Cmd>BufferGoto 6<CR>", keyOpts)
-			map("n", "<C-7>", "<Cmd>BufferGoto 7<CR>", keyOpts)
-			map("n", "<C-8>", "<Cmd>BufferGoto 8<CR>", keyOpts)
-			map("n", "<C-9>", "<Cmd>BufferGoto 9<CR>", keyOpts)
-			map("n", "<C-0>", "<Cmd>BufferLast<CR>", keyOpts)
+			map("n", "<C-1>", "<Cmd>BufferGoto 1<CR>", keyOpts("Go to buf 1"))
+			map("n", "<C-2>", "<Cmd>BufferGoto 2<CR>", keyOpts("Go to buf 2"))
+			map("n", "<C-3>", "<Cmd>BufferGoto 3<CR>", keyOpts("Go to buf 3"))
+			map("n", "<C-4>", "<Cmd>BufferGoto 4<CR>", keyOpts("Go to buf 4"))
+			map("n", "<C-5>", "<Cmd>BufferGoto 5<CR>", keyOpts("Go to buf 5"))
+			map("n", "<C-6>", "<Cmd>BufferGoto 6<CR>", keyOpts("Go to buf 6"))
+			map("n", "<C-7>", "<Cmd>BufferGoto 7<CR>", keyOpts("Go to buf 7"))
+			map("n", "<C-8>", "<Cmd>BufferGoto 8<CR>", keyOpts("Go to buf 8"))
+			map("n", "<C-9>", "<Cmd>BufferGoto 9<CR>", keyOpts("Go to buf 9"))
+			map("n", "<C-0>", "<Cmd>BufferLast<CR>", keyOpts("Go to last buf"))
 
 			-- Pin/unpin buffer
-			map("n", "<leader>bp", "<Cmd>BufferPin<CR>", keyOpts)
+			map("n", "<leader>bp", "<Cmd>BufferPin<CR>", keyOpts("Pin buffer"))
 
 			-- Close buffer
-			map("n", "X", "<Cmd>BufferClose<CR>", keyOpts)
+			map("n", "X", "<Cmd>BufferClose<CR>", keyOpts("Close buffer"))
 
 			-- Close commands
-			map("n", "<leader>bo", "<Cmd>BufferCloseAllButCurrentOrPinned<CR>", keyOpts)
-			map("n", "<leader>bO", "<Cmd>BufferCloseAllButCurrent<CR>", keyOpts)
-			map("n", "<leader>bh", "<Cmd>BufferCloseBuffersLeft<CR>", keyOpts)
-			map("n", "<leader>bl", "<Cmd>BufferCloseBuffersRight<CR>", keyOpts)
+			map(
+				"n",
+				"<leader>bo",
+				"<Cmd>BufferCloseAllButCurrentOrPinned<CR>",
+				keyOpts("Close other buffer but pinned")
+			)
+			map("n", "<leader>bO", "<Cmd>BufferCloseAllButCurrent<CR>", keyOpts("Close all"))
+			map("n", "<leader>bh", "<Cmd>BufferCloseBuffersLeft<CR>", keyOpts("Close to left"))
+			map("n", "<leader>bl", "<Cmd>BufferCloseBuffersRight<CR>", keyOpts("Close to right"))
 		end,
 		opts = {
 			animation = false,
@@ -225,6 +234,33 @@ return {
 	{
 		"nvim-tree/nvim-tree.lua",
 		lazy = false,
+		init = function()
+			local function find_and_focus(entity)
+				return function()
+					local actions = require("telescope.actions")
+					local action_state = require("telescope.actions.state")
+
+					local function open_nvim_tree(prompt_bufnr, _)
+						actions.select_default:replace(function()
+							local api = require("nvim-tree.api")
+
+							actions.close(prompt_bufnr)
+							local selection = action_state.get_selected_entry()
+							api.tree.open()
+							api.tree.find_file(selection.cwd .. "/" .. selection.value)
+						end)
+						return true
+					end
+
+					require("telescope.builtin").find_files({
+						find_command = { "fd", "--type", entity, "--hidden", "--exclude", ".git/*" },
+						attach_mappings = open_nvim_tree,
+					})
+				end
+			end
+			vim.keymap.set("n", "<leader>fd", find_and_focus("directory"), { desc = "Find directory to focus in tree" })
+			vim.keymap.set("n", "<leader>ff", find_and_focus("file"), { desc = "Find file to focus in tree" })
+		end,
 		config = function()
 			local api = require("nvim-tree.api")
 			local function edit_or_open()
