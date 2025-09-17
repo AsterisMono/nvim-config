@@ -315,14 +315,13 @@ return {
 					-- on_attach
 					vim.keymap.set("n", "l", edit_or_open, opts("Edit Or Open"))
 					vim.keymap.set("n", "L", open_bg, opts("Open in new tab"))
-					vim.keymap.set("n", "h", api.tree.close, opts("Close"))
 					vim.keymap.set("n", "H", api.tree.collapse_all, opts("Collapse All"))
 				end,
 			})
 		end,
 		keys = {
 			{ "<C-'>", "<Cmd>NvimTreeToggle<CR>", keyOpts },
-			{ "'F", "<Cmd>NvimTreeFindFile<CR>", keyOpts },
+			{ "<C-S-'>", "<Cmd>NvimTreeFindFile<CR>", keyOpts },
 		},
 	},
 	{
