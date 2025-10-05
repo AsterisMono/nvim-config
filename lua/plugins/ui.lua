@@ -144,35 +144,6 @@ return {
 		},
 	},
 	{
-		"akinsho/toggleterm.nvim",
-		version = "*",
-		init = function()
-			vim.api.nvim_create_autocmd("ExitPre", {
-				callback = function()
-					for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-						if vim.bo[buf].buftype == "terminal" and vim.api.nvim_buf_is_loaded(buf) then
-							vim.api.nvim_buf_delete(buf, { force = true })
-						end
-					end
-				end,
-			})
-			require("toggleterm").setup({
-				open_mapping = "<C-`>",
-				insert_mappings = true,
-				terminal_mappings = true,
-			})
-			function _G.set_terminal_keymaps()
-				local opts = { buffer = 0 }
-				vim.keymap.set("t", "<C-h>", [[<Cmd>wincmd h<CR>]], opts)
-				vim.keymap.set("t", "<C-j>", [[<Cmd>wincmd j<CR>]], opts)
-				vim.keymap.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]], opts)
-				vim.keymap.set("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opts)
-				vim.keymap.set("t", "<C-w>", [[<C-\><C-n><C-w>]], opts)
-			end
-			vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
-		end,
-	},
-	{
 		"romgrk/barbar.nvim",
 		dependencies = {
 			"lewis6991/gitsigns.nvim", -- OPTIONAL: for git status
@@ -230,99 +201,6 @@ return {
 			},
 		},
 		version = "^1.0.0", -- optional: only update when a new 1.x version is released
-	},
-	{
-		"nvim-tree/nvim-tree.lua",
-		lazy = false,
-		init = function()
-			local function find_and_focus(entity)
-				return function()
-					local actions = require("telescope.actions")
-					local action_state = require("telescope.actions.state")
-
-					local function open_nvim_tree(prompt_bufnr, _)
-						actions.select_default:replace(function()
-							local api = require("nvim-tree.api")
-
-							actions.close(prompt_bufnr)
-							local selection = action_state.get_selected_entry()
-							api.tree.open()
-							api.tree.find_file(selection.cwd .. "/" .. selection.value)
-						end)
-						return true
-					end
-
-					require("telescope.builtin").find_files({
-						find_command = { "fd", "--type", entity, "--hidden", "--exclude", ".git/*" },
-						attach_mappings = open_nvim_tree,
-					})
-				end
-			end
-			vim.keymap.set("n", "<leader>fd", find_and_focus("directory"), { desc = "Find directory to focus in tree" })
-			vim.keymap.set("n", "<leader>ff", find_and_focus("file"), { desc = "Find file to focus in tree" })
-		end,
-		config = function()
-			local api = require("nvim-tree.api")
-			local function edit_or_open()
-				local node = api.tree.get_node_under_cursor()
-
-				if node.nodes ~= nil then
-					-- expand or collapse folder
-					api.node.open.edit()
-				else
-					-- open file
-					api.node.open.edit()
-					-- Close the tree if file was opened
-					api.tree.close()
-				end
-			end
-
-			-- open as vsplit on current node
-			local function open_bg()
-				local node = api.tree.get_node_under_cursor()
-
-				if node.nodes ~= nil then
-					-- expand or collapse folder
-					api.node.open.edit()
-				else
-					-- open file to buffer list
-					api.node.open.edit()
-				end
-
-				-- Finally refocus on tree if it was lost
-				api.tree.focus()
-			end
-			require("nvim-tree").setup({
-				hijack_cursor = true,
-				sync_root_with_cwd = true,
-				respect_buf_cwd = true,
-				actions = {
-					open_file = {
-						quit_on_open = true,
-					},
-				},
-				on_attach = function(bufnr)
-					local function opts(desc)
-						return {
-							desc = "nvim-tree: " .. desc,
-							buffer = bufnr,
-							noremap = true,
-							silent = true,
-							nowait = true,
-						}
-					end
-					api.config.mappings.default_on_attach(bufnr)
-					-- on_attach
-					vim.keymap.set("n", "l", edit_or_open, opts("Edit Or Open"))
-					vim.keymap.set("n", "L", open_bg, opts("Open in new tab"))
-					vim.keymap.set("n", "H", api.tree.collapse_all, opts("Collapse All"))
-				end,
-			})
-		end,
-		keys = {
-			{ "<C-'>", "<Cmd>NvimTreeToggle<CR>", keyOpts },
-			{ "<C-S-'>", "<Cmd>NvimTreeFindFile<CR>", keyOpts },
-		},
 	},
 	{
 		"mikesmithgh/kitty-scrollback.nvim",
