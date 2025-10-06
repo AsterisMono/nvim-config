@@ -17,11 +17,6 @@ return {
 		},
 	},
 	{
-		"windwp/nvim-autopairs",
-		event = "InsertEnter",
-		opts = {},
-	},
-	{
 		"folke/flash.nvim",
 		event = "VeryLazy",
 		---@type Flash.Config
@@ -32,25 +27,13 @@ return {
 				},
 			},
 		},
-    -- stylua: ignore
+		-- stylua: ignore
 		keys = {
-			{ "s", mode = "n", function() require("flash").jump() end, desc = "Flash" },
-			{ "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
-			{ "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
-      { "<leader>ls", function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+			{ "s",          mode = "n",                                   function() require("flash").jump() end,   desc = "Flash" },
+			{ "r",          mode = "o",                                   function() require("flash").remote() end, desc = "Remote Flash" },
+			{ "<c-s>",      mode = { "c" },                               function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+			{ "<leader>ls", function() require("flash").treesitter() end, desc = "Flash Treesitter" },
 		},
-	},
-	{
-		"kevinhwang91/nvim-fundo",
-		dependencies = {
-			"kevinhwang91/promise-async",
-			lazy = true,
-		},
-		build = function()
-			require("fundo").install()
-		end,
-		config = true,
-		event = "VeryLazy",
 	},
 	{
 		"vim-scripts/ReplaceWithRegister",
@@ -85,12 +68,6 @@ return {
 			vim.keymap.set("n", "<c-p>", "<Plug>(YankyPreviousEntry)")
 			vim.keymap.set("n", "<c-n>", "<Plug>(YankyNextEntry)")
 		end,
-	},
-	{
-		"windwp/nvim-ts-autotag",
-		-- lazy loading is not particularly necessary for this plugin.
-		-- nvim-ts-autotag is efficient in choosing when it needs to load
-		opts = {},
 	},
 	{
 		"saifulapm/commasemi.nvim",
