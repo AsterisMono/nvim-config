@@ -64,9 +64,6 @@ vim.opt.signcolumn = "yes" -- Prevent gutter from moving
 -- Recommended session options for auto-session
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions,globals"
 
--- Auto save on focus lost
-vim.cmd("autocmd FocusLost * :wa")
-
 -- Yank highlight
 vim.cmd([[
   augroup highlight_yank
@@ -122,3 +119,17 @@ if vim.g.neovide then
 	vim.g.neovide_scroll_animation_far_lines = 0
 	vim.g.neovide_scroll_animation_length = 0.00
 end
+
+-- Only use system keyboard on yank
+vim.opt.clipboard = ""
+
+vim.api.nvim_create_autocmd("TextYankPost", {
+	callback = function()
+		if vim.v.event.operator == "y" then
+			vim.fn.setreg("+", vim.fn.getreg('"'))
+		end
+	end,
+})
+
+vim.keymap.set({ "n", "v" }, "p", '"+p', { noremap = true })
+vim.keymap.set({ "n", "v" }, "P", '"+P', { noremap = true })

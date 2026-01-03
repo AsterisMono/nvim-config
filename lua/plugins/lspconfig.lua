@@ -2,7 +2,7 @@ return {
 	-- Autocompletion
 	{
 		"saghen/blink.cmp",
-		dependencies = { "rafamadriz/friendly-snippets", "Kaiser-Yang/blink-cmp-avante" },
+		dependencies = { "rafamadriz/friendly-snippets" },
 		version = "1.*",
 		build = "nix run .#build-plugin",
 
@@ -13,18 +13,6 @@ return {
 				local disabled_filetypes = { "NvimTree", "DressingInput" } -- Add extra fileypes you do not want blink enabled.
 				return not vim.tbl_contains(disabled_filetypes, vim.bo.filetype)
 			end,
-			-- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
-			-- 'super-tab' for mappings similar to vscode (tab to accept)
-			-- 'enter' for enter to accept
-			-- 'none' for no mappings
-			--
-			-- All presets have the following mappings:
-			-- C-space: Open menu or open docs if already open
-			-- C-n/C-p or Up/Down: Select next/previous item
-			-- C-e: Hide menu
-			-- C-k: Toggle signature help (if signature.enabled = true)
-			--
-			-- See :h blink-cmp-config-keymap for defining your own keymap
 			keymap = {
 				preset = "super-tab",
 				["<C-e>"] = { "show_documentation", "hide_documentation" },
@@ -68,14 +56,7 @@ return {
 			-- Default list of enabled providers defined so that you can extend it
 			-- elsewhere in your config, without redefining it, due to `opts_extend`
 			sources = {
-				default = { "avante", "lsp", "path", "snippets", "buffer" },
-				providers = {
-					avante = {
-						module = "blink-cmp-avante",
-						name = "Avante",
-						opts = {},
-					},
-				},
+				default = { "lsp", "path", "snippets", "buffer" },
 			},
 
 			-- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
@@ -83,7 +64,20 @@ return {
 			-- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
 			--
 			-- See the fuzzy documentation for more information
-			fuzzy = { implementation = "prefer_rust_with_warning" },
+			fuzzy = {
+				implementation = "prefer_rust_with_warning",
+				sorts = {
+					function(a, b)
+						if (a.client_name == nil or b.client_name == nil) or (a.client_name == b.client_name) then
+							return
+						end
+						return b.client_name == "emmet-language-server"
+					end,
+					-- default sorts
+					"score",
+					"sort_text",
+				},
+			},
 		},
 		opts_extend = { "sources.default" },
 		config = function(_, opts)
@@ -108,86 +102,102 @@ return {
 		"neovim/nvim-lspconfig",
 		cmd = "LspInfo",
 		event = { "BufReadPre", "BufNewFile" },
-		opts = {
-			servers = {
-				lua_ls = {},
-				nixd = {},
-				tailwindcss = {
-					cmd = { "npx", "tailwindcss-language-server", "--stdio" },
+		config = function()
+			vim.lsp.config("emmet-language-server", {
+				cmd = { "bunx", "emmet-language-server", "--stdio" },
+			})
+			vim.lsp.config("tailwindcss", {
+				cmd = { "bunx", "tailwindcss-language-server", "--stdio" },
+			})
+			vim.lsp.config("jsonls", {
+				settings = {
+					json = {
+						schemas = require("schemastore").json.schemas(),
+						validate = { enable = true },
+					},
 				},
-				jsonls = {
-					settings = {
-						json = {
-							schemas = require("schemastore").json.schemas(),
-							validate = { enable = true },
+			})
+			vim.lsp.config("yamlls", {
+				settings = {
+					yaml = {
+						schemaStore = {
+							enable = false,
+							url = "",
 						},
+						schemas = require("schemastore").yaml.schemas(),
 					},
 				},
-				yamlls = {
-					settings = {
-						yaml = {
-							schemaStore = {
-								enable = false,
-								url = "",
-							},
-							schemas = require("schemastore").yaml.schemas(),
-						},
+			})
+			vim.lsp.config("eslint", {
+				filetypes = {
+					"javascript",
+					"javascriptreact",
+					"typescript",
+					"typescriptreact",
+					"vue",
+					"html",
+					"markdown",
+					"json",
+					"jsonc",
+					"yaml",
+					"toml",
+					"xml",
+					"gql",
+					"graphql",
+					"astro",
+					"svelte",
+					"css",
+					"less",
+					"scss",
+					"pcss",
+					"postcss",
+				},
+				settings = {
+					rulesCustomizations = {
+						{ rule = "style/*", severity = "off", fixable = true },
+						{ rule = "format/*", severity = "off", fixable = true },
+						{ rule = "*-indent", severity = "off", fixable = true },
+						{ rule = "*-spacing", severity = "off", fixable = true },
+						{ rule = "*-spaces", severity = "off", fixable = true },
+						{ rule = "*-order", severity = "off", fixable = true },
+						{ rule = "*-dangle", severity = "off", fixable = true },
+						{ rule = "*-newline", severity = "off", fixable = true },
+						{ rule = "*quotes", severity = "off", fixable = true },
+						{ rule = "*semi", severity = "off", fixable = true },
 					},
 				},
-				cssls = {},
-				html = {},
-				eslint = {
-					filetypes = {
-						"javascript",
-						"javascriptreact",
-						"typescript",
-						"typescriptreact",
-						"vue",
-						"html",
-						"markdown",
-						"json",
-						"jsonc",
-						"yaml",
-						"toml",
-						"xml",
-						"gql",
-						"graphql",
-						"astro",
-						"svelte",
-						"css",
-						"less",
-						"scss",
-						"pcss",
-						"postcss",
-					},
-					settings = {
-						rulesCustomizations = {
-							{ rule = "style/*", severity = "off", fixable = true },
-							{ rule = "format/*", severity = "off", fixable = true },
-							{ rule = "*-indent", severity = "off", fixable = true },
-							{ rule = "*-spacing", severity = "off", fixable = true },
-							{ rule = "*-spaces", severity = "off", fixable = true },
-							{ rule = "*-order", severity = "off", fixable = true },
-							{ rule = "*-dangle", severity = "off", fixable = true },
-							{ rule = "*-newline", severity = "off", fixable = true },
-							{ rule = "*quotes", severity = "off", fixable = true },
-							{ rule = "*semi", severity = "off", fixable = true },
-						},
-					},
-				},
-			},
-		},
-		config = function(_, opts)
-			local lspconfig = require("lspconfig")
-
-			for server, config in pairs(opts.servers) do
-				-- passing config.capabilities to blink.cmp merges with the capabilities in your
-				-- `opts[server].capabilities, if you've defined it
-				config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
-				lspconfig[server].setup(config)
-			end
-			-- LspAttach is where you enable features that only work
-			-- if there is a language server active in the file
+			})
+			vim.lsp.config("vtsls", {
+				cmd = { "bunx", "@vtsls/language-server", "--stdio" },
+				on_attach = function(client, _)
+					client.server_capabilities.documentFormattingProvider = false
+					client.server_capabilities.documentRangeFormattingProvider = false
+				end,
+			})
+			vim.lsp.config("gh_actions_ls", {
+				cmd = { "bunx", "gh-actions-language-server", "--stdio" },
+			})
+			vim.lsp.config("dockerls", {
+				cmd = { "bunx", "docker-langserver", "--stdio" },
+			})
+			vim.lsp.config("astro", {
+				cmd = { "bunx", "astro-ls", "--stdio" },
+			})
+			vim.lsp.enable({
+				"lua_ls",
+				"nixd",
+				"tailwindcss",
+				"jsonls",
+				"yamlls",
+				"cssls",
+				"html",
+				"eslint",
+				"vtsls",
+				"rust_analyzer",
+				"gopls",
+				"dockerls",
+				"emmet-language-server",
+			})
 			vim.api.nvim_create_autocmd("LspAttach", {
 				desc = "LSP actions",
 				callback = function(event)
@@ -196,22 +206,24 @@ return {
 						return vim.tbl_extend("force", keymap_opts, { desc = desc })
 					end
 
-					vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", with_desc("Hover"))
-					vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", with_desc("Go to definition"))
-					vim.keymap.set(
-						"n",
-						"go",
-						"<cmd>lua vim.lsp.buf.type_definition()<cr>",
-						with_desc("Go to type definition")
-					)
-					vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", with_desc("Signature help"))
-					vim.keymap.set("n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", with_desc("Rename"))
-					vim.keymap.set(
-						"n",
-						"<leader>la",
-						"<cmd>lua vim.lsp.buf.code_action()<cr>",
-						with_desc("Code actions")
-					)
+					vim.keymap.set("n", "K", function()
+						vim.lsp.buf.hover()
+					end, with_desc("Hover"))
+					vim.keymap.set("n", "gd", function()
+						vim.lsp.buf.definition()
+					end, with_desc("Go to definition"))
+					vim.keymap.set("n", "go", function()
+						vim.lsp.buf.type_definition()
+					end, with_desc("Go to type definition"))
+					vim.keymap.set("n", "gs", function()
+						vim.lsp.buf.signature_help()
+					end, with_desc("Signature help"))
+					-- vim.keymap.set("n", "<leader>lr", function()
+					-- 	vim.lsp.buf.rename()
+					-- end, with_desc("Rename"))
+					vim.keymap.set("n", "<leader>la", function()
+						vim.lsp.buf.code_action()
+					end, with_desc("Code actions"))
 				end,
 			})
 		end,

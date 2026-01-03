@@ -11,7 +11,6 @@ end
 -- Utility keymaps
 keymap.set("n", "<leader>h", "<cmd>noh<CR>", { desc = "Clear highlight" })
 keymap.set("n", "<C-s>", "<cmd>write<CR>", opts)
-keymap.set("n", "<C-x>", safe_exit, opts)
 
 local direction_aware_split = function()
 	local cur_win_width = vim.api.nvim_win_get_width(0)

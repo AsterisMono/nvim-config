@@ -1,53 +1,59 @@
 return {
 	{
-		"pmizio/typescript-tools.nvim",
-		ft = { "typescript", "javascript", "typescriptreact", "javascriptreact" },
-		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-		opts = {
-			on_attach = function(client, bufnr)
-				-- Disable tsserver formatting, we're rolling eslint/prettier
-				client.server_capabilities.documentFormattingProvider = false
-				client.server_capabilities.documentRangeFormattingProvider = false
-			end,
-			settings = {
-				tsserver_locale = "zh-cn",
-			},
-		},
-	},
-	-- Conform.nvim for code formatting
-	{
 		"stevearc/conform.nvim",
 		event = { "BufWritePre" },
 		cmd = { "ConformInfo" },
-		---@module "conform"
-		---@type conform.setupOpts
-		opts = {
-			formatters_by_ft = {
-				-- LSP formatter in ts/js/tsx/jsx is ESLint.
-				-- lsp_format = "first": ESLint, then prettier
-				typescript = { "prettier", lsp_format = "prefer" },
-				javascript = { "prettier", lsp_format = "prefer" },
-				typescriptreact = { "prettier", lsp_format = "prefer" },
-				javascriptreact = { "prettier", lsp_format = "prefer" },
-				json = { "prettier", lsp_format = "prefer" },
-				html = { "prettier", lsp_format = "prefer" },
-				lua = { "stylua" },
-				nix = { "nixfmt" },
-				yaml = { "yamlfmt" },
-				just = { "just" },
-				rust = { "rustfmt", lsp_format = "fallback" },
-				markdown = { "prettier", "injected" },
-			},
-			format_on_save = { timeout_ms = 500 },
-			default_format_opts = {
-				lsp_format = "fallback",
-			},
-		},
-		init = function()
+		config = function()
+			require("conform").setup({
+				formatters_by_ft = {
+					json = { "prettier" },
+					html = { "prettier" },
+					lua = { "stylua" },
+					nix = { "nixfmt" },
+					yaml = { "yamlfmt" },
+					just = { "just" },
+					rust = { "rustfmt" },
+					markdown = { "prettier", "injected" },
+				},
+				default_format_opts = {
+					lsp_format = "fallback",
+				},
+				format_on_save = {
+					lsp_format = "fallback",
+				},
+			})
+
+			local ts_code_actions = {
+				"source.addMissingImports.ts",
+				"source.fixAll.eslint",
+				"source.fixAll.ts",
+				"source.removeUnusedImports.ts",
+			}
+			-- Code actions on save
+			local code_action_configs = {
+				typescriptreact = ts_code_actions,
+				typescript = ts_code_actions,
+			}
+
+			local fmt_group = vim.api.nvim_create_augroup("FormatConfig", { clear = true })
+
 			vim.api.nvim_create_autocmd("BufWritePre", {
+				desc = "Code actions and format on save",
 				pattern = "*",
-				callback = function(args)
-					require("conform").format({ bufnr = args.buf })
+				group = fmt_group,
+				callback = function(ev)
+					local bufnr = ev.buf
+					local ft = vim.bo[bufnr].filetype
+
+					local ft_actions = code_action_configs[ft]
+					if ft_actions then
+						for _, action in ipairs(ft_actions) do
+							vim.lsp.buf.code_action({
+								context = { diagnostics = {}, only = { action } },
+								apply = true,
+							})
+						end
+					end
 				end,
 			})
 		end,
@@ -56,9 +62,8 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 		event = { "BufReadPre", "BufNew" },
-		dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
 		config = function()
-			require("nvim-treesitter.configs").setup({
+			require("nvim-treesitter").setup({
 				sync_install = false,
 				ensure_installed = {
 					"tsx",
@@ -71,72 +76,45 @@ return {
 					"markdown",
 					"markdown_inline",
 					"rust",
+					"go",
 				},
 				highlight = {
 					enable = true,
 					additional_vim_regex_highlighting = false,
 				},
-				textobjects = {
-					select = {
-						enable = true,
-						lookahead = true, -- Auto jump forward for match textobj
-						keymaps = {
-							["af"] = "@function.outer",
-							["if"] = "@function.inner",
-						},
-						selection_modes = {
-							["@function.outer"] = "v", -- charwise selection for functions
-						},
-						include_surrounding_whitespace = true,
-					},
-					move = {
-						enable = true,
-						set_jumps = true,
-						goto_next_start = {
-							["]f"] = "@function.outer",
-							["]c"] = "@class.outer",
-							["]]"] = "@block.outer",
-						},
-						goto_previous_start = {
-							["[f"] = "@function.outer",
-							["[c"] = "@class.outer",
-							["[["] = "@block.outer",
-						},
-					},
-				},
 			})
 		end,
 	},
-	-- tailwind-tools.lua
 	{
-		"luckasRanarison/tailwind-tools.nvim",
-		ft = { "typescriptreact", "javascriptreact", "html" },
-		name = "tailwind-tools",
-		build = ":UpdateRemotePlugins",
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter",
-		},
-		opts = {
-			server = { override = false },
-		}, -- your configuration
-	},
-	-- rust
-	{
-		"mrcjkb/rustaceanvim",
-		version = "^6",
-		lazy = false,
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		branch = "main",
 		init = function()
-			vim.g.rustaceanvim = {
-				server = {
-					default_settings = {
-						["rust-analyzer"] = {
-							files = {
-								exclude = { ".direnv", ".devenv", "node_modules" },
-							},
-						},
+			-- Disable entire built-in ftplugin mappings to avoid conflicts.
+			-- See https://github.com/neovim/neovim/tree/master/runtime/ftplugin for built-in ftplugins.
+			vim.g.no_plugin_maps = true
+		end,
+		config = function()
+			require("nvim-treesitter-textobjects").setup({
+				select = {
+					enable = true,
+					lookahead = true, -- Auto jump forward for match textobj
+					selection_modes = {
+						["@function.outer"] = "V",
 					},
+					include_surrounding_whitespace = false,
 				},
-			}
+				move = {
+					set_jumps = true,
+				},
+			})
+
+			local select = require("nvim-treesitter-textobjects.select")
+			vim.keymap.set({ "x", "o" }, "af", function()
+				select.select_textobject("@function.outer", "textobjects")
+			end)
+			vim.keymap.set({ "x", "o" }, "if", function()
+				select.select_textobject("@function.inner", "textobjects")
+			end)
 		end,
 	},
 	{

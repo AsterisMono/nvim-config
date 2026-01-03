@@ -1,6 +1,7 @@
 local keyOpts = function(desc)
 	return { noremap = true, silent = true, desc = desc }
 end
+local map = vim.keymap.set
 return {
 	-- Bottom: status line
 	{
@@ -66,6 +67,27 @@ return {
 					enabled = false,
 				},
 			},
+			routes = {
+				{
+					filter = { event = "notify", find = "No code actions available" },
+					opts = { skip = true },
+				},
+			},
+		},
+		config = function(_, opts)
+			require("noice").setup(opts)
+			map("n", "<leader>no", ":Noice pick<CR>", keyOpts("Noice picker"))
+		end,
+	},
+	{
+		{
+			"smjonas/inc-rename.nvim",
+			config = function()
+				require("inc_rename").setup({
+					input_buffer_type = "dressing",
+				})
+				vim.keymap.set("n", "<leader>lr", ":IncRename ")
+			end,
 		},
 	},
 	-- Git signs in the gutter
@@ -97,11 +119,8 @@ return {
 			wk.add({ "<leader>l", group = "LSP Actions" })
 			wk.add({ "<leader>g", group = "Git" })
 			wk.add({ "<leader>s", group = "Sessions" })
-			wk.add({ "<leader>t", group = "Tabs" })
-			wk.add({ "<leader>a", group = "Avante" })
 			wk.add({ "<leader>b", group = "Buffer" })
-			wk.add({ "<leader>f", group = "File-tree" })
-			wk.add({ "'g", group = "Telescope Git" })
+			wk.add({ "<leader>n", group = "Noice" })
 			wk.add({ "'l", group = "Telescope LSP" })
 		end,
 	},
@@ -112,16 +131,6 @@ return {
 		keys = {
 			{ "<leader>gb", "<cmd>BlameToggle virtual<CR>", desc = "Git Blame" },
 		},
-	},
-	{
-		"MeanderingProgrammer/render-markdown.nvim",
-		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
-		---@module 'render-markdown'
-		---@type render.md.UserConfig
-		opts = {
-			file_types = { "markdown", "Avante" },
-		},
-		ft = { "markdown", "Avante" },
 	},
 	{
 		"kdheepak/lazygit.nvim",
@@ -151,10 +160,9 @@ return {
 		},
 		init = function()
 			vim.g.barbar_auto_setup = false
-			local map = vim.api.nvim_set_keymap
 			-- Move to previous/next
-			map("n", "H", "<Cmd>BufferPrevious<CR>", keyOpts("Next buffer"))
-			map("n", "L", "<Cmd>BufferNext<CR>", keyOpts("Prev buffer"))
+			map("n", "<C-h>", "<Cmd>BufferPrevious<CR>", keyOpts("Next buffer"))
+			map("n", "<C-l>", "<Cmd>BufferNext<CR>", keyOpts("Prev buffer"))
 
 			-- Re-order to previous/next
 			map("n", "<A-H>", "<Cmd>BufferMovePrevious<CR>", keyOpts("Move buffer to prev"))
@@ -176,7 +184,16 @@ return {
 			map("n", "<leader>bp", "<Cmd>BufferPin<CR>", keyOpts("Pin buffer"))
 
 			-- Close buffer
-			map("n", "X", "<Cmd>BufferClose<CR>", keyOpts("Close buffer"))
+			map("n", "<C-x>", function()
+				-- Get a list of all listed buffers
+				local listed_buffers = vim.fn.getbufinfo({ buflisted = 1 })
+
+				if #listed_buffers <= 1 then
+					vim.cmd("quit")
+				else
+					vim.cmd("BufferClose")
+				end
+			end, keyOpts("Close buffer or quit"))
 
 			-- Close commands
 			map(
@@ -201,20 +218,5 @@ return {
 			},
 		},
 		version = "^1.0.0", -- optional: only update when a new 1.x version is released
-	},
-	{
-		"mikesmithgh/kitty-scrollback.nvim",
-		enabled = true,
-		lazy = true,
-		cmd = {
-			"KittyScrollbackGenerateKittens",
-			"KittyScrollbackCheckHealth",
-			"KittyScrollbackGenerateCommandLineEditing",
-		},
-		event = { "User KittyScrollbackLaunch" },
-		version = "^6.0.0", -- pin major version, include fixes and features that do not have breaking changes
-		config = function()
-			require("kitty-scrollback").setup()
-		end,
 	},
 }
