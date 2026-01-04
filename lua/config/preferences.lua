@@ -86,8 +86,8 @@ vim.diagnostic.config({
 
 -- Neovide
 if vim.g.neovide then
-	vim.o.guifont = "FiraCode Nerd Font:h11:style=Retina"
-	vim.g.neovide_opacity = 0.9
+	vim.o.guifont = "FiraCode Nerd Font:h12:style=Retina"
+	vim.g.neovide_opacity = 0.98
 
 	local function set_ime(args)
 		if args.event:match("Enter$") then
