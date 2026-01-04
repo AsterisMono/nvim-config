@@ -86,8 +86,8 @@ vim.diagnostic.config({
 
 -- Neovide
 if vim.g.neovide then
-	vim.o.guifont = "FiraCode Nerd Font:h12:style=Retina"
-	vim.g.neovide_opacity = 0.98
+	vim.o.guifont = "FiraCode Nerd Font:h13:style=Retina"
+	vim.g.neovide_opacity = 0.90
 
 	local function set_ime(args)
 		if args.event:match("Enter$") then
@@ -118,18 +118,13 @@ if vim.g.neovide then
 	vim.g.neovide_cursor_animate_command_line = false
 	vim.g.neovide_scroll_animation_far_lines = 0
 	vim.g.neovide_scroll_animation_length = 0.00
+	vim.g.neovide_window_blurred = true
 end
 
--- Only use system keyboard on yank
-vim.opt.clipboard = ""
-
-vim.api.nvim_create_autocmd("TextYankPost", {
-	callback = function()
-		if vim.v.event.operator == "y" then
-			vim.fn.setreg("+", vim.fn.getreg('"'))
-		end
-	end,
-})
-
-vim.keymap.set({ "n", "v" }, "p", '"+p', { noremap = true })
-vim.keymap.set({ "n", "v" }, "P", '"+P', { noremap = true })
+-- Only use system clipboard on yank
+vim.opt.clipboard = "unnamedplus"
+vim.cmd([[
+  :nnoremap <expr> d v:register =~ '[\*+]' ? '""d' : 'd'
+  :nnoremap <expr> c v:register =~ '[\*+]' ? '""c' : 'c'
+  :nnoremap <expr> x v:register =~ '[\*+]' ? '""x' : 'x'
+]])

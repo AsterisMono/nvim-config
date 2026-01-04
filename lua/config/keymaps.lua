@@ -3,10 +3,6 @@ local opts = {
 	noremap = true, -- non-recursive
 	silent = true, -- do not show message
 }
-local safe_exit = function()
-	vim.cmd("wa")
-	vim.cmd("q")
-end
 
 -- Utility keymaps
 keymap.set("n", "<leader>h", "<cmd>noh<CR>", { desc = "Clear highlight" })
@@ -24,10 +20,10 @@ local direction_aware_split = function()
 end
 
 -- Better window navigation
-keymap.set("n", "<C-h>", "<C-w>h", opts)
-keymap.set("n", "<C-j>", "<C-w>j", opts)
-keymap.set("n", "<C-k>", "<C-w>k", opts)
-keymap.set("n", "<C-l>", "<C-w>l", opts)
+-- keymap.set("n", "<C-h>", "<C-w>h", opts)
+-- keymap.set("n", "<C-j>", "<C-w>j", opts)
+-- keymap.set("n", "<C-k>", "<C-w>k", opts)
+-- keymap.set("n", "<C-l>", "<C-w>l", opts)
 keymap.set("n", "<C-q>", direction_aware_split, opts)
 
 -- Resize windows with c-arrows
@@ -40,8 +36,3 @@ keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 -- Move screen around with arrows
 keymap.set("n", "<Up>", "<C-y>", opts)
 keymap.set("n", "<Down>", "<C-e>", opts)
-
--- Quick copy & pasting
-keymap.set("n", "<C-S-v>", '"+p', opts)
-keymap.set("n", "<C-S-A-v>", 'o<Esc>"+p', opts)
-keymap.set("v", "<C-S-c>", '"+y', opts)

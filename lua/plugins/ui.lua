@@ -2,6 +2,7 @@ local keyOpts = function(desc)
 	return { noremap = true, silent = true, desc = desc }
 end
 local map = vim.keymap.set
+
 return {
 	-- Bottom: status line
 	{
@@ -121,6 +122,7 @@ return {
 			wk.add({ "<leader>s", group = "Sessions" })
 			wk.add({ "<leader>b", group = "Buffer" })
 			wk.add({ "<leader>n", group = "Noice" })
+			wk.add({ "<leader>t", group = "Neotree" })
 			wk.add({ "'l", group = "Telescope LSP" })
 		end,
 	},
@@ -213,9 +215,6 @@ return {
 				button = "",
 				modified = { button = "" },
 			},
-			sidebar_filetypes = {
-				NvimTree = true,
-			},
 		},
 		version = "^1.0.0", -- optional: only update when a new 1.x version is released
 	},
@@ -227,6 +226,61 @@ return {
 		init = function()
 			vim.opt.foldlevel = 99
 			vim.opt.foldlevelstart = 99
+		end,
+	},
+	{
+		"nvim-neo-tree/neo-tree.nvim",
+		branch = "v3.x",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"MunifTanjim/nui.nvim",
+			"nvim-tree/nvim-web-devicons",
+		},
+		opts = {
+			close_if_last_window = true,
+		},
+		config = function(_, opts)
+			require("neo-tree").setup(opts)
+			map("n", "''", ":Neotree filesystem toggle<CR>", keyOpts("Neotree"))
+			map("n", "<leader>tf", ":Neotree filesystem reveal<CR>", keyOpts("Neotree reveal"))
+			map("n", "<leader>tg", ":Neotree git_status show<CR>", keyOpts("Git Status"))
+
+			vim.api.nvim_create_autocmd("UIEnter", {
+				callback = function()
+					if vim.fn.argc() == 0 then
+						vim.cmd("Neotree show")
+					end
+				end,
+			})
+		end,
+	},
+	{
+		"antosha417/nvim-lsp-file-operations",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-neo-tree/neo-tree.nvim", -- makes sure that this loads after Neo-tree.
+		},
+		config = function()
+			require("lsp-file-operations").setup()
+		end,
+	},
+	{
+		"s1n7ax/nvim-window-picker",
+		version = "2.*",
+		config = function()
+			require("window-picker").setup({
+				filter_rules = {
+					include_current_win = false,
+					autoselect_one = true,
+					-- filter using buffer options
+					bo = {
+						-- if the file type is one of following, the window will be ignored
+						filetype = { "neo-tree", "neo-tree-popup", "notify" },
+						-- if the buffer type is one of following, the window will be ignored
+						buftype = { "terminal", "quickfix" },
+					},
+				},
+			})
 		end,
 	},
 }

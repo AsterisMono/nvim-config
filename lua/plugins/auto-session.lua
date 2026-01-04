@@ -3,11 +3,12 @@ return {
 	lazy = false,
 	config = function()
 		require("auto-session").setup({
-			auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
-			bypass_session_save_file_types = { "NvimTree", "lazy" },
+			allowed_dirs = { "~/Projects/*", "~/.config/nvim" },
+			bypass_save_file_types = { "lazy", "neo-tree" },
+			cwd_change_handling = true,
+			close_filetypes_on_save = { "checkhealth", "lazy", "neo-tree" },
 			session_lens = {
 				picker = "telescope",
-				buftypes_to_ignore = { "NvimTree" },
 				load_on_setup = false,
 			},
 			-- Auto create session inside git projects
