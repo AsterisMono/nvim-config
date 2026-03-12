@@ -120,11 +120,3 @@ if vim.g.neovide then
 	vim.g.neovide_scroll_animation_length = 0.00
 	vim.g.neovide_window_blurred = true
 end
-
--- Only use system clipboard on yank
-vim.opt.clipboard = "unnamedplus"
-vim.cmd([[
-  :nnoremap <expr> d v:register =~ '[\*+]' ? '""d' : 'd'
-  :nnoremap <expr> c v:register =~ '[\*+]' ? '""c' : 'c'
-  :nnoremap <expr> x v:register =~ '[\*+]' ? '""x' : 'x'
-]])
