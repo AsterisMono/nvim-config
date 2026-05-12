@@ -15,6 +15,7 @@ vim.opt.tabstop = 2 -- Number of spaces tabs count for
 vim.opt.backspace = { "start", "eol", "indent" }
 vim.opt.wildignore:append({ "*/node_modules/*" })
 vim.diagnostic.config({
+  virtual_text = true,
   signs = {
     text = {
       [vim.diagnostic.severity.ERROR] = "",
