@@ -1,13 +1,14 @@
-vim.pack.add({ 'https://github.com/nvim-mini/mini.nvim'} )
+-- Mini.nvim
+vim.pack.add({ 'https://github.com/nvim-mini/mini.nvim' })
 
 -- Preferences
 -- Leader key is <Space> by default
 local opts = { silent = true, noremap = true }
 vim.cmd.colorscheme('miniautumn')
 vim.opt.expandtab = true -- Use spaces instead of tabs
-vim.opt.scrolloff = 10 -- Lines of context
-vim.opt.shiftwidth = 2 -- Size of an indent
-vim.opt.tabstop = 2 -- Number of spaces tabs count for
+vim.opt.scrolloff = 10   -- Lines of context
+vim.opt.shiftwidth = 2   -- Size of an indent
+vim.opt.tabstop = 2      -- Number of spaces tabs count for
 -- start: allow backspacing over everything in insert mode
 -- eol: allow backspacing over line breaks (join lines)
 -- indent: allow backspacing over autoindent
@@ -45,7 +46,7 @@ vim.keymap.set('n', '<leader>r', function() MiniPick.builtin.grep_live() end, op
 vim.keymap.set('n', '<leader>b', function() MiniPick.builtin.buffers() end, opts)
 vim.keymap.set('n', '<leader>R', function() MiniPick.builtin.resume() end, opts)
 vim.keymap.set('n', '<leader>d', function() MiniExtra.pickers.diagnostic() end, opts)
-vim.keymap.set('n', '<leader>g', function() MiniExtra.pickers.git_hunks() end, opts)
+vim.keymap.set('n', '<leader>gh', function() MiniExtra.pickers.git_hunks() end, opts)
 
 -- File explorer
 require('mini.files').setup()
@@ -74,3 +75,36 @@ require('mini.sessions').setup({
 vim.keymap.set('n', '<leader>sw', function() MiniSessions.write() end, opts)
 vim.keymap.set('n', '<leader>ss', function() MiniSessions.select() end, opts)
 vim.keymap.set('n', '<leader>sR', function() MiniSessions.restart() end, opts)
+
+-- Flash.nvim
+vim.pack.add({ 'https://github.com/folke/flash.nvim' })
+require('flash').setup({ modes = { char = { jumplabels = true } } })
+vim.keymap.set('n', 's', function() require('flash').jump() end, opts)
+vim.keymap.set('o', 'r', function() require('flash').remote() end, opts)
+
+-- LSP
+vim.pack.add({ 'https://github.com/neovim/nvim-lspconfig' })
+vim.lsp.enable('lua_ls', 'nixd', 'rust_analyzer', 'gopls', 'html', 'hls')
+
+-- Mason (LSP Installer)
+vim.pack.add({ 'https://github.com/mason-org/mason.nvim' })
+require('mason').setup()
+
+-- Conform.nvim (Formatter)
+vim.pack.add({ 'https://github.com/stevearc/conform.nvim' })
+require('conform').setup({
+  formatters_by_ft = {
+    json = { "prettier" },
+    html = { "prettier" },
+    lua = { "stylua" },
+    nix = { "nixfmt" },
+    yaml = { "yamlfmt" },
+    rust = { "rustfmt" },
+    haskell = { "ormolu" }
+  },
+  format_on_save = { timeout_ms = 500, lsp_format = "fallback" }
+})
+
+-- Lazygit Integration
+vim.pack.add({ 'https://github.com/kdheepak/lazygit.nvim' })
+vim.keymap.set('n', '<leader>gg', ":LazyGit<CR>", opts)
