@@ -1,17 +1,13 @@
--- Mini.nvim
 vim.pack.add({ "https://github.com/nvim-mini/mini.nvim" })
 
 -- Preferences
--- Leader key is <Space> by default
+-- Leader key is <Space> by mini.basics
 local opts = { silent = true, noremap = true }
 vim.cmd.colorscheme("miniautumn")
 vim.opt.expandtab = true -- Use spaces instead of tabs
 vim.opt.scrolloff = 10 -- Lines of context
 vim.opt.shiftwidth = 2 -- Size of an indent
 vim.opt.tabstop = 2 -- Number of spaces tabs count for
--- start: allow backspacing over everything in insert mode
--- eol: allow backspacing over line breaks (join lines)
--- indent: allow backspacing over autoindent
 vim.opt.backspace = { "start", "eol", "indent" }
 vim.opt.wildignore:append({ "*/node_modules/*" })
 vim.diagnostic.config({
