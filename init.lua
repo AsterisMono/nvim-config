@@ -84,11 +84,7 @@ vim.keymap.set('o', 'r', function() require('flash').remote() end, opts)
 
 -- LSP
 vim.pack.add({ 'https://github.com/neovim/nvim-lspconfig' })
-vim.lsp.enable('lua_ls', 'nixd', 'rust_analyzer', 'gopls', 'html', 'hls')
-
--- Mason (LSP Installer)
-vim.pack.add({ 'https://github.com/mason-org/mason.nvim' })
-require('mason').setup()
+vim.lsp.enable({'lua_ls', 'nixd', 'rust_analyzer', 'gopls', 'html', 'hls'})
 
 -- Conform.nvim (Formatter)
 vim.pack.add({ 'https://github.com/stevearc/conform.nvim' })
