@@ -14,6 +14,16 @@ vim.opt.tabstop = 2 -- Number of spaces tabs count for
 -- indent: allow backspacing over autoindent
 vim.opt.backspace = { "start", "eol", "indent" }
 vim.opt.wildignore:append({ "*/node_modules/*" })
+vim.diagnostic.config({
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = "",
+			[vim.diagnostic.severity.WARN] = "",
+			[vim.diagnostic.severity.INFO] = "",
+			[vim.diagnostic.severity.HINT] = "",
+		},
+	},
+})
 
 -- mini.nvim
 -- UI and basics
