@@ -91,12 +91,12 @@ vim.keymap.set("o", "r", function() require("flash").remote() end, opts)
 
 -- LSP
 vim.pack.add({ "https://github.com/neovim/nvim-lspconfig" })
-vim.lsp.enable({ "lua_ls", "nixd", "rust_analyzer", "gopls", "html", "hls" })
+vim.lsp.enable({ "lua_ls", "nixd", "rust_analyzer", "gopls", "html", "hls", "yamlls" })
 
 -- Treesitter
 vim.pack.add({ "https://github.com/romus204/tree-sitter-manager.nvim" })
 require("tree-sitter-manager").setup({
-  ensure_installed = { "lua", "nix", "rust", "go", "html", "haskell" },
+  ensure_installed = { "lua", "nix", "rust", "go", "html", "haskell", "yaml" },
 })
 
 -- Conform.nvim (Formatter)
