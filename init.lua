@@ -55,12 +55,18 @@ vim.keymap.set("n", "<leader>R", function() MiniPick.builtin.resume() end, opts)
 vim.keymap.set("n", "<leader>d", function() MiniExtra.pickers.diagnostic() end, opts)
 vim.keymap.set("n", "<leader>gh", function() MiniExtra.pickers.git_hunks() end, opts)
 
--- File explorer
-require("mini.files").setup()
-local minifiles_toggle = function(...)
-  if not MiniFiles.close() then MiniFiles.open(...) end
-end
-vim.keymap.set("n", "<leader>F", minifiles_toggle, opts)
+-- File explorer (Yazi)
+vim.pack.add({ "https://github.com/nvim-lua/plenary.nvim" })
+vim.pack.add({ "https://github.com/mikavilpas/yazi.nvim" })
+vim.g.loaded_netrwPlugin = 1 -- mark netrw as loaded so it's not loaded at all.
+vim.api.nvim_create_autocmd("UIEnter", {
+  callback = function()
+    require("yazi").setup({
+      open_for_directories = true,
+    })
+  end,
+})
+vim.keymap.set("n", "<leader>F", function() require("yazi").yazi() end, opts)
 
 -- Text editing
 require("mini.ai").setup()

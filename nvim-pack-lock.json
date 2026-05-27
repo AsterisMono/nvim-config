@@ -24,9 +24,17 @@
       "rev": "75e49cfa588a89ca667d767c0afef3ceac205faa",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
+    "plenary.nvim": {
+      "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
+      "src": "https://github.com/nvim-lua/plenary.nvim"
+    },
     "tree-sitter-manager.nvim": {
       "rev": "59e1ba49e33e1b73bef655fd34b5e65e1465053f",
       "src": "https://github.com/romus204/tree-sitter-manager.nvim"
+    },
+    "yazi.nvim": {
+      "rev": "2cf811486a1c923d8078a0c25009ca43932c704b",
+      "src": "https://github.com/mikavilpas/yazi.nvim"
     }
   }
 }
