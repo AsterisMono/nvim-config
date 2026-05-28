@@ -1,5 +1,9 @@
 {
   "plugins": {
+    "99": {
+      "rev": "4d229141546290746c82ac90f5afc2786865b5f3",
+      "src": "https://github.com/ThePrimeagen/99"
+    },
     "conform.nvim": {
       "rev": "dca1a190aa85f9065979ef35802fb77131911106",
       "src": "https://github.com/stevearc/conform.nvim"

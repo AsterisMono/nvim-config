@@ -124,3 +124,15 @@ require("conform").setup({
 -- Lazygit Integration
 vim.pack.add({ "https://github.com/kdheepak/lazygit.nvim" })
 vim.keymap.set("n", "<leader>gg", ":LazyGit<CR>", opts)
+
+-- LLM Workflow
+vim.pack.add({ "https://github.com/ThePrimeagen/99" })
+local _99 = require("99")
+_99.setup({
+  tmp_dir = "./.tmp",
+  provider = _99.Providers.ClaudeCodeProvider,
+  model = "claude-sonnet-4-6",
+})
+vim.keymap.set("v", "<leader>9v", function() _99.visual() end, opts)
+vim.keymap.set("n", "<leader>9s", function() _99.search() end, opts)
+vim.keymap.set("n", "<leader>9x", function() _99.stop_all_requests() end, opts)
